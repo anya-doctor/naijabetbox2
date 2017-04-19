@@ -1,0 +1,26 @@
+{
+  "name": "naijabetbox2",
+  "version": "2.0.0",
+  "description": "a betting app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paulsontiti/naijabetbox2.git"
+  },
+  "author": "titi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/paulsontiti/naijabetbox2/issues"
+  },
+  "homepage": "https://github.com/paulsontiti/naijabetbox2#readme",
+  "dependencies": {
+    "bcryptjs": "*",
+    "body-parser": "^1.13.3",
+    "express": "^4.13.3",
+    "mongodb": "*",
+    "mongoose": "*"
+  }
+}

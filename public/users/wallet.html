@@ -1,0 +1,23 @@
+<h1>My Wallet</h1>
+  <div class="row" style="margin-top:50px">
+    <div class="col-xs-12 col-md-6">
+      <table class="table table-bordered table-hovertable-striped">
+        <tr>
+          <td>Main balance</td>
+          <td ng-bind="user.balance"> </td>
+        </tr>
+        <tr>
+          <td>Bonus</td>
+          <td ng-bind="user.bonus"> </td>
+        </tr>
+        <tr>
+          <td>Total balance</td>
+          <td ng-bind="user.total_balance"> </td>
+        </tr>
+        <tr>
+          <td>Withdrawable balance</td>
+          <td ng-bind="user.withdrawable_balance"> </td>
+        </tr>
+      </table>
+    </div>
+  </div>

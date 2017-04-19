@@ -1,0 +1,93 @@
+<div class="container" id="edit-user">
+  <div class="row" style="margin-top:50px;margin-bottom:50px">
+    <div class="col-md-offset-3 col-md-6">
+      <div class="box">
+        <h4 class="text-uppercase">Update your profile</h4>                
+        <hr/>                
+        <form name="loginForm">
+          <ul class="errors">
+          </ul>                    
+          <div class="form-group">
+            <label for="firstname">Firstname</label>                        
+            <input class="form-control" id="firstname" type="text" required="true" name="firstname"  ng-model="user.firstname"/>
+          </div>                    
+          <div class="form-group">
+            <label for="lastname">Lastname</label>                        
+            <input class="form-control" type="text" required="true" name="lastname" id="lastname" ng-model="user.lastname"/>
+          </div>    
+          <div class="form-group">
+            <label for="username">Username</label>                        
+            <input class="form-control" type="text" required="true" name="username" id="username" ng-model="user.username"/>
+          </div>
+          <div class="form-group">
+            <label for="gender">Gender</label>
+            <select class="form-control" id="gender" name="gender" required="true" ng-model="user.gender">
+              <option value="">-- Select Sex --</option>                                
+              <option value="Male" id="male">Male</option>                                
+              <option value="Female" id="female" >Female</option>
+            </select>
+          </div>   
+          <div class="form-group">
+            <label for="email">Email</label>                        
+            <input class="form-control" type="email" required="true" name="email" id="email" ng-model="user.email"/>
+          </div>
+          <div class="form-group">
+            <label for="mobile">Mobile</label>                        
+            <input class="form-control" type="text" required="true" name="mobile" id="mobile" ng-model="user.mobile"/>
+          </div>
+          <div class="form-group">
+            <label for="alt_mobile">Alternate mobile</label>                        
+            <input class="form-control" type="text" required="true" name="alt_mobile" id="alt_mobile" ng-model="user.alt_mobile"/>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <button class="btn btn-primary" ng-click="update()"><i class="fa fa-sign-in" "></i> Update           </button>
+            </div>
+            <div class="col-md-6">
+              <span style="color: green" ng-cloak ng-show="showUpdateMsg">Successfull update!!You will be redirected in <span style="color: red" ng-bind="time"></span> seconds
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--<script type="text/javascript">
+    $(document).ready(function(){
+        var user = JSON.parse(sessionStorage.getItem("user"));
+        $("#firstname").val(user.firstname);
+        $("#lastname").val(user.lastname);
+        $("#username").val(user.username);
+        $("#email").val(user.email);
+        $("#male").attr("selected",user.gender == "Male");
+        $("#female").attr("selected",user.gender == "Female");
+        $("#mobile").val(user.mobile);
+        $("#alt_mobile").val(user.alt_mobile);
+
+        $("#update").click(function(event){
+            event.preventDefault();
+            var username = user.username,
+            data={
+              firstname:$("#firstname").val(),
+              lastname:$("#lastname").val(),
+              username:$("#username").val(),
+              email:$("#email").val(),
+              gender:$("#gender").val(),
+              mobile:$("#mobile").val(),
+              alt_mobile:$("#alt_mobile").val()
+            };
+            $.ajax({
+              url:"/user/update-user",
+              method:"post",
+              data:{username:username,data:data},
+              success:function(res,status,xhr){
+                console.log(res);
+                console.log(status);
+
+              },error:function(err){
+                console.log(err);
+              }
+            })
+        });
+    });
+  </script>-->

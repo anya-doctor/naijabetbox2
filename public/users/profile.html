@@ -1,0 +1,78 @@
+<h1>My Profile</h1>
+  <div class="row" style="margin-top:50px" >
+    <div class="col-xs-12 col-md-4"><img id="img" class="image-fluid" style="width:200px;heigth:100px" ng-src="{{user.profile_img}}"/><br>
+    <button class="btn btn-primary" type="submit"><i class="fa fa-sign-in" id="update"></i> Update  Profile Image</button></div>
+    <div class="col-xs-12 col-md-8">
+      <table class="table table-bordered table-hover table-striped">
+        <tr>
+          <td>Number</td>
+          <td id="reg" ng-bind="user.reg_num"> </td>
+        </tr>
+        <tr></tr>
+        <tr>
+          <td>Firstname</td>
+          <td id="firstname" ng-bind="user.firstname"> </td>
+        </tr>
+        <tr>
+          <td>Lastname</td>
+          <td id="lastname" ng-bind="user.lastname"> </td>
+        </tr>
+        <tr>
+          <td>Username</td>
+          <td id="username" ng-bind="user.username"> </td>
+        </tr>
+        <tr>
+          <td>Gender</td>
+          <td id="gender" ng-bind="user.gender"> </td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td id="email" ng-bind="user.email"> </td>
+        </tr>
+        <tr>
+          <td>Mobile</td>
+          <td id="mobile" ng-bind="user.mobile"> </td>
+        </tr>
+        <tr>
+          <td>Alternate mobile</td>
+          <td id="alt_mobile" ng-bind="user.alt_mobile"> </td>
+        </tr>
+        <tr>
+          <td>Joined date</td>
+          <td id="joined_date" ng-bind="user.joinedDate"> </td>
+        </tr>
+      </table>
+      <a class="btn btn-primary" id="edit_user" ng-click="getEditUser()" href="">Edit Profile</a>
+    </div>
+  </div>
+  <!--<script type="text/javascript">
+    $(document).ready(function(){
+      var user = JSON.parse(sessionStorage.getItem("user"));
+      $("#reg").text(user.reg_num);
+      $("#firstname").text(user.firstname);
+      $("#lastname").text(user.lastname);
+      $("#username").text(user.username);
+      $("#email").text(user.email);
+      $("#gender").text(user.gender);
+      $("#mobile").text(user.mobile);
+      $("#alt_mobile").text(user.alt_mobile);
+      $("#img").attr("src",user.profile_img);
+      var jD = new Date(user.joinedDate),
+       year= jD.getFullYear(),
+      month = jD.getMonth(),
+      date= jD.getDate();
+      $("#joined_date").text(year+"/"+month+"/"+date);
+
+  $("#edit_user").click(function(event){
+    event.preventDefault();
+    $("#page-wrapper").load("/users/edit_user.html",function(res,status,xhr){
+      
+    });
+    var content = $("#edit-user");
+    angular.element(document).injector().invoke(function($compile) {
+        var scope = angular.element(content).scope();
+        $compile(content)(scope);
+    });
+  })
+    })
+  </script>-->
