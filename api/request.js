@@ -98,6 +98,7 @@ router.post("/fund_bet",function(req,res){
                             request.amount = amount;
                              FundRequest.createFundRequest(request,function(err,fundRequest){
                                 if(err){
+                                  res.json(err);
                                   res.json({msg:'Something bad happened'});
                                 } else {
                                     var alert = new Alert();
