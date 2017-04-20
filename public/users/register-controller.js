@@ -16,19 +16,12 @@
                         data:$scope.user
                     }).then(function (res) {
                         if (res.data.username) {
-                            $scope.time = 5;
                             $scope.suc = true;
-                            function timer() {
-                                if ($scope.time > 0) {
-                                    $timeout(timer, 1000);
-                                    $scope.time--;
-                                }
-                            }
                             $timeout(timer, 1000);
                             sessionStorage.setItem("user", JSON.stringify(res.data));
                             $timeout(function () {
                                 $location.path("/dashboard");
-                            }, 5000);
+                            }, 3000);
                         } else {
                             console.log(res.data);
                         }

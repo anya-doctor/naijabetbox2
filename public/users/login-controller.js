@@ -14,19 +14,11 @@
                     if (res.data) {
                         sessionStorage.setItem("user", JSON.stringify(res.data));
                         $location.search("");
-                        $scope.time = 5;
                         $scope.loginSuc = true;
                         $scope.loginErr = false;
-                        function timing() {
-                            if ($scope.time > 0) {
-                                $timeout(timing, 1000);
-                            }
-                            $scope.time--;
-                        }
-                        $timeout(timing, 1000);
                         $timeout(function () {
                             $location.path("/dashboard");
-                        }, 5000);
+                        }, 3000);
                     } else {
                         $scope.loginErr = true;
                         $scope.loginSuc = false;

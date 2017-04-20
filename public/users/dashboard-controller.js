@@ -6,6 +6,8 @@
             $rootScope.showNavbar = true;
             $location.path("/login");
         }
+
+        
     $rootScope.title = "Dashboard";
     $rootScope.showNavBar = false;
     $scope.user = JSON.parse(sessionStorage.getItem("user"));
@@ -27,17 +29,18 @@
                 if(res.data.msg){
                     $scope.errMsg = res.data.msg;
                     $scope.sucMsg = null;
-                }else{
+                }else if(res.data.username){
                     $scope.user = res.data;
-                sessionStorage.setItem("user", JSON.stringify(res.data));
-                $scope.errMsg = null;
-                $scope.sucMsg = "Your request has been sent.It will be processed soon";
-                $timeout(function(){
-                    $scope.getWallet();
-                    $scope.request = {};
-                    $scope.sucMsg = null;
-                },3000)
-                
+                    sessionStorage.setItem("user", JSON.stringify(res.data));
+                    $scope.errMsg = null;
+                    $scope.sucMsg = "Your request has been sent.It will be processed soon";
+                    $timeout(function(){
+                        $scope.getWallet();
+                        $scope.request = {};
+                        $scope.sucMsg = null;
+                    },3000);
+                }else{
+                    console.log(res.data);
                 }
             });
         }
@@ -252,17 +255,18 @@ $scope.dstv = [
                 if(res.data.msg){
                     $scope.errMsg = res.data.msg;
                     $scope.sucMsg = null;
-                }else{
+                }else if(res.data.username){
                     $scope.user = res.data;
-                sessionStorage.setItem("user", JSON.stringify(res.data));
-                $scope.errMsg = null;
-                $scope.sucMsg = "Your request has been sent.It will be processed soon";
-                $timeout(function(){
-                    $scope.getWallet();
-                    $scope.request = {};
-                    $scope.sucMsg = null;
-                },3000)
-                
+                    sessionStorage.setItem("user", JSON.stringify(res.data));
+                    $scope.errMsg = null;
+                    $scope.sucMsg = "Your request has been sent.It will be processed soon";
+                    $timeout(function(){
+                        $scope.getWallet();
+                        $scope.request = {};
+                        $scope.sucMsg = null;
+                    },3000);
+                }else{
+                    console.log(res.data);
                 }
             });
         }
@@ -284,17 +288,18 @@ $scope.dstv = [
                 if(res.data.msg){
                     $scope.errMsg = res.data.msg;
                     $scope.sucMsg = null;
-                }else{
+                }else if(res.data.username){
                     $scope.user = res.data;
-                sessionStorage.setItem("user", JSON.stringify(res.data));
-                $scope.errMsg = null;
-                $scope.sucMsg = "Your request has been sent.It will be processed soon";
-                $timeout(function(){
-                    $scope.getWallet();
-                    $scope.request = {};
-                    $scope.sucMsg = null;
-                },3000)
-                
+                    sessionStorage.setItem("user", JSON.stringify(res.data));
+                    $scope.errMsg = null;
+                    $scope.sucMsg = "Your request has been sent.It will be processed soon";
+                    $timeout(function(){
+                        $scope.getWallet();
+                        $scope.request = {};
+                        $scope.sucMsg = null;
+                    },3000);
+                }else{
+                    console.log(res.data);
                 }
             });
         }else{
@@ -317,17 +322,18 @@ $scope.dstv = [
                 if(res.data.msg){
                     $scope.errMsg = res.data.msg;
                     $scope.sucMsg = null;
-                }else{
+                }else if(res.data.username){
                     $scope.user = res.data;
-                sessionStorage.setItem("user", JSON.stringify(res.data));
-                $scope.errMsg = null;
-                $scope.sucMsg = "Your request has been sent.It will be processed soon";
-                $timeout(function(){
-                    $scope.getWallet();
-                    $scope.request = {};
-                    $scope.sucMsg = null;
-                },3000)
-                
+                    sessionStorage.setItem("user", JSON.stringify(res.data));
+                    $scope.errMsg = null;
+                    $scope.sucMsg = "Your request has been sent.It will be processed soon";
+                    $timeout(function(){
+                        $scope.getWallet();
+                        $scope.request = {};
+                        $scope.sucMsg = null;
+                    },3000);
+                }else{
+                    console.log(res.data);
                 }
             });
         }else{
@@ -362,7 +368,7 @@ $scope.dstv = [
                         $scope.sucMsg = null;
                     },3000);
                 
-                }els{
+                }else{
                     console.log(res.data);
                 }
             });
@@ -385,17 +391,18 @@ $scope.dstv = [
                 if(res.data.msg){
                     $scope.errMsg = res.data.msg;
                     $scope.sucMsg = null;
-                }else{
+                }else if(res.data.username){
                     $scope.user = res.data;
-                sessionStorage.setItem("user", JSON.stringify(res.data));
-                $scope.errMsg = null;
-                $scope.sucMsg = "Your request has been sent.It will be processed soon";
-                $timeout(function(){
-                    $scope.getWallet();
-                    $scope.request = {};
-                    $scope.sucMsg = null;
-                },3000)
-                
+                    sessionStorage.setItem("user", JSON.stringify(res.data));
+                    $scope.errMsg = null;
+                    $scope.sucMsg = "Your request has been sent.It will be processed soon";
+                    $timeout(function(){
+                        $scope.getWallet();
+                        $scope.request = {};
+                        $scope.sucMsg = null;
+                    },3000);
+                }else{
+                    console.log(res.data);
                 }
             });
         }else{
@@ -404,6 +411,8 @@ $scope.dstv = [
     }
     
     $scope.getProfile = function(){
+        $scope.errMsg = null;
+        $scope.sucMsg = null;
         $scope.showProfile = true;
         $scope.showEditUser = false;
         $scope.showWallet = false;
@@ -415,6 +424,8 @@ $scope.dstv = [
         $scope.showBooking= false;
     }
     $scope.getEditUser = function(){
+        $scope.errMsg = null;
+        $scope.sucMsg = null;
         $scope.showEditUser = true;
         $scope.showProfile = false;
         $scope.showWallet = false;
@@ -426,6 +437,8 @@ $scope.dstv = [
         $scope.showBooking= false;
     }
     $scope.getWallet = function(){
+        $scope.errMsg = null;
+        $scope.sucMsg = null;
         $scope.showEditUser = false;
         $scope.showProfile = false;
         $scope.showWallet = true;

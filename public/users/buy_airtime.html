@@ -23,7 +23,8 @@
           </div>
           <div class="form-group"><sup>*</sup>
             <label>Amount</label>
-            <input class="form-control" type="number" min="100" placeholder="how much recharge do you want?" name="amount" ng-model="request.amount"/><br/>
+            <input class="form-control" type="number" min="100" placeholder="how much recharge do you want?" ng-required="true" name="amount" ng-model="request.amount"/>
+            <br/>
             <button class="btn btn-primary" ng-click="buy()">Recharge</button>
           </div>
         </form>
