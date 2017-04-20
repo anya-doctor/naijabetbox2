@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row" style="margin-top:100px;margin-bottom:50px">
+    <div class="col-md-offset-3 col-md-6">
+      <div class="box">
+        <h4 class="text-uppercase">Please provide your details</h4>                
+        <hr/> 
+        <form name="formHolder.fundBet" novalidate>
+        <label style="font-size: 14px" class="alert alert-danger" ng-show="errMsg" ng-cloak ng-bind="errMsg"></label>
+        <label style="font-size: 14px" class="alert alert-success" ng-show="sucMsg" ng-cloak ng-bind="sucMsg"></label>
+          <div class="form-group"><sup>*</sup>
+            <label>Betting username</label>
+            <input class="form-control" type="text" placeholder="your username for betting" ng-model="request.username" name="bet_username" autofocus="autofocus" ng-required="true"/>
+            <span ng-show="formHolder.fundBet.bet_username.$dirty && formHolder.fundBet.bet_username.$error.required" class="error-message">Username is required</span>       
+          </div>
+          <div class="form-group"><sup>*</sup>
+            <label>Betting company</label>
+            <select class="form-control" ng-model="request.bet_company" ng-required="true" name="bet_company">
+              <option value="">select your betting company</option>
+              <option value="bet9ja">bet9ja</option>
+              <option value="nairabet">nairabet</option>
+              <option value="surebet247">surebet247</option>
+              <option value="merrybet">merrybet</option>
+              <option value="supabet">supabet</option>
+            </select>
+            <span ng-show="formHolder.fundBet.bet_company.$dirty && formHolder.fundBet.bet_company.$error.required" class="error-message">Betting company is required</span>
+          </div>
+          <div class="form-group"><sup>*</sup>
+            <label>Amount</label>
+            <input class="form-control" type="number" min="50" placeholder="how much do you want to fund?" name="amount"  ng-model="request.amount"/>
+            <span ng-show="formHolder.fundBet.amount.$dirty && formHolder.fundBet.amount.$invalid" class="error-message">Minimum amount is 50</span><br/>
+            <button class="btn btn-primary" ng-click="fundBet()">Fund bet</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

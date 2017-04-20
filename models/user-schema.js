@@ -77,5 +77,5 @@ module.exports.countOfUsers = function (callback) {
     User.count(callback);
 };
 module.exports.updateAUser = function (username,updateParam,callback) {
-    User.findOneAndUpdate({"username":username},{$set:updateParam},callback);
+    User.findOneAndUpdate({username:username},{$set:updateParam},callback);
 };

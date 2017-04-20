@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row" style="margin-top:50px;margin-bottom:50px">
+    <div class="col-md-offset-3 col-md-6">
+      <div class="box">
+        <h4 class="text-uppercase">Please provide your details</h4>                
+        <hr/> 
+        <form name="formHolder.recharge" novalidate="">
+        <label style="font-size: 14px" class="alert alert-danger" ng-show="errMsg" ng-cloak ng-bind="errMsg"></label>
+        <label style="font-size: 14px" class="alert alert-success" ng-show="sucMsg" ng-cloak ng-bind="sucMsg"></label>
+          <div class="form-group"><sup>*</sup>
+            <label>Network</label>
+            <select class="form-control" name="network" ng-model="request.network" ng-required="true">
+              <option>select a network</option>
+              <option>mtn</option>
+              <option>glo</option>
+              <option>airtel</option>
+              <option>etisalat</option>
+            </select>
+          </div>
+          <div class="form-group"><sup>*</sup>
+            <label>Phone number</label>
+            <input class="form-control" type="text" placeholder="your phone number" name="phone_number" ng-model="request.phone_number" ng-required="true"/>
+          </div>
+          <div class="form-group"><sup>*</sup>
+            <label>Amount</label>
+            <input class="form-control" type="number" min="100" placeholder="how much recharge do you want?" name="amount" ng-model="request.amount"/><br/>
+            <button class="btn btn-primary" ng-click="buy()">Recharge</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

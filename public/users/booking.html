@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row" style="margin-top:50px;margin-bottom:50px">
+    <div class="col-md-offset-3 col-md-6">
+      <div class="box">
+        <h4 class="text-uppercase">Please provide your details</h4>                
+        <hr/> 
+        <form name="formHolder.booking" novalidate>
+        <label style="font-size: 14px" class="alert alert-danger" ng-show="errMsg" ng-cloak ng-bind="errMsg"></label>
+        <label style="font-size: 14px" class="alert alert-success" ng-show="sucMsg" ng-cloak ng-bind="sucMsg"></label>
+        <div class="form-group">
+        	<label>Fullname</label>
+        		<input type="text" name="fullname" ng-model="request.fullname" ng-required="true" class="form-control">
+        		<span ng-show="formHolder.booking.fullname.$dirty && formHolder.booking.fullname.$error.required" class="error-message">Fullname is required</span>
+        </div>
+        <div class="form-group">
+        	<label>Mobile <small>(08x, 07x, 09x Format)</small></label>
+        		<input type="text" name="mobile" ng-pattern="/^(08|07|09)\d{9}$/" ng-model="request.mobile" ng-required="true" class="form-control">
+        		<span ng-show="formHolder.booking.mobile.$dirty && formHolder.booking.mobile.$error.required" class="error-message">Mobile is required</span>
+        		<span ng-show="formHolder.booking.mobile.$dirty && formHolder.booking.mobile.$invalid && !formHolder.booking.mobile.$error.required" class="error-message">Invalid Mobile format</span>
+        </div>
+        <div class="form-group">
+        	<label>Betting Company</label>
+        		<select class="form-control" name="bet_company" ng-required="true" ng-model="request.bet_company">
+        			<option value="">--select--</option>
+        			<option value="bet9ja">bet9ja</option>
+                   <option value="nairabet">nairabet</option>
+                   <option>surebet247</option>
+                   <option>merrybet</option>
+                   <option>supabet</option>
+        		</select>
+        		<span ng-show="formHolder.booking.bet_company.$dirty && formHolder.booking.bet_company.$error.required" class="error-message">Gender is required</span>
+        </div>
+        <div class="form-group">
+        	<label>Betting Code</label>
+        		<input type="text" name="code" ng-model="request.code" ng-required="true" class="form-control">
+        		<span ng-show="formHolder.booking.code.$dirty && formHolder.booking.code.$error.required" class="error-message">Code is required</span>
+        </div>
+        <div class="form-group">
+        	<label>Amount</label>
+        		<input type="number" min="50" name="amount" ng-model="request.amount" ng-required="true" class="form-control">
+        		<span ng-show="formHolder.booking.amount.$dirty && formHolder.booking.amount.$invalid" class="error-message">Amount is minimum of 50</span>
+        </div>
+        <button class="btn btn-primary" ng-click="book()">Book</button>
+</form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -8,8 +8,12 @@ app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-var user = require("./api/user");
+var user = require("./api/user"),
+request = require("./api/request");
+
+
 app.use("/user", user);
+app.use("/request", request);
 
 var server = app.listen(process.env.PORT || 8080, function () {
         var port = server.address().port;

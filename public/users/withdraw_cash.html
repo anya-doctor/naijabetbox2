@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row" style="margin-top:50px;margin-bottom:50px">
+    <div class="col-md-4"><sup style="color:red">***</sup><span style="color:green">Note: You will be charged 2.5% of your main balance</span></div>
+    <div class="col-md-6">
+      <div class="box">
+        <h4 class="text-uppercase">Please provide your details</h4>                
+        <hr>
+        <form name="formHolder.transferCash" novalidate="">
+        <label style="font-size: 14px" class="alert alert-danger" ng-show="errMsg" ng-cloak ng-bind="errMsg"></label>
+        <label style="font-size: 14px" class="alert alert-success" ng-show="sucMsg" ng-cloak ng-bind="sucMsg"></label>
+          <div class="form-group"><sup>*</sup>
+            <label>First name</label>
+            <input class="form-control" type="text" placeholder="firstname as with bank account details" name="firstname" autofocus="autofocus" ng-model="request.firstname" ng-required="true"/>
+            <span ng-show="formHolder.transferCash.firstname.$dirty && formHolder.transferCash.firstname.$error.required" class="error-message">Firstname is required</span> 
+          </div>
+          <div class="form-group"><sup>*</sup>
+            <label>Surname</label>
+            <input class="form-control" type="text" placeholder="surname as with bank account details" name="surname" ng-model="request.surname" ng-required="true"/>
+            <span ng-show="formHolder.transferCash.surname.$dirty && formHolder.transferCash.surname.$error.required" class="error-message">Surname is required</span> 
+          </div>
+          <div class="form-group"><sup>*</sup>
+            <label>Bank</label>
+            <select class="form-control" name="bank" ng-model="request.bank" ng-required="true">
+              <option value="">select your bank</option>
+              <option value="zenith">Zenith</option>
+              <option value="first">First</option>
+              <option value="fidelity">Fidelity</option>
+              <option value="gtb">GTB</option>
+              <option value="Oceanic">Oceanic</option>
+              <option value="keystone">Keystone</option>
+              <option value="diamond">Diamond</option>
+              <option value="uba">UBA</option>
+              <option value="sterling">Sterling</option>
+              <option value="mainstream">Mainstream</option>
+              <option value="access">Access</option>
+            </select>
+            <span ng-show="formHolder.transferCash.bank.$dirty && formHolder.transferCash.bank.$error.required" class="error-message">Bank is required</span> 
+          </div>
+          <div class="form-group"><sup>*</sup>
+            <label>Account number</label>
+            <input class="form-control" type="text" placeholder="account number" name="account_number" ng-model="request.account_number" ng-required="true"/>
+            <span ng-show="formHolder.transferCash.account_number.$dirty && formHolder.transferCash.account_number.$error.required" class="error-message">Accoun number is required</span> 
+          </div>
+          <div class="form-group"><sup>*</sup>
+            <label>Amount</label>
+            <input class="form-control" type="number" min="1000" placeholder="amount to transfer" name="amount" ng-model="request.amount"/>
+            <span ng-show="formHolder.transferCash.amount.$dirty && formHolder.transferCash.amount.$invalid" class="error-message">Amount must be minimum of 1000</span> 
+          </div><br/>
+          <button class="btn btn-primary" ng-click="transfer()">Transfer</button>
+        </hrform>
+      </div>
+    </div>
+  </div>
+</div>
