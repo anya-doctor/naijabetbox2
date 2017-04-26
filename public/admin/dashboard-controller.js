@@ -11,6 +11,31 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 		$scope.update = {};
 		$scope.creditDetails = {};
 
+		function getAlerts() {
+		    if (true) {
+		        $timeout(getAlerts, 1000);
+		    }
+		    $http({
+		        url: "user/getAlerts",
+		        method: "get"
+		    }).then(function (res) {
+		        if (res.data.alerts) {
+		            $scope.alerts = res.data.alerts;
+		            $scope.count = res.data.alerts.length
+		        } else {
+		        }
+		    });
+		}
+		$timeout(getAlerts, 1000);
+
+		$scope.clearAlert = function (id) {
+		    $http({
+		        url: "user/updateAlert",
+		        method: "post",
+		        data: { id: id, status: "seen" }
+		    });
+		}
+
 		$scope.toggle = function(){
 	        $(".navbar-toggle").click(function(ev){
 	            ev.preventDefault();
@@ -24,11 +49,16 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
     }
 
 		$scope.creditAccount = function(){
-			if($scope.formHolder.creditAccount.$valid){
+		    if ($scope.formHolder.creditAccount.$valid) {
+		        var message = {
+		            msg: "Your Naijabetbox has been credited with " +
+                        $scope.creditDetails.amount,
+		            username: $scope.req.username
+		        };
 				$http({
 					url:"user/credit_account",
 					method:"post",
-					data:$scope.creditDetails
+					data: { creditDetails: $scope.creditDetails, message: message }
 				}).then(function(res){
 					if(res.data.user){
 						$scope.sucMsg = "Successfull,you will be redircted";
@@ -37,7 +67,11 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 							$scope.user();
 							$scope.sucMsg = null;
 						},3000);
-					}else{
+					} else if (res.data.msg) {
+					    $scope.sucMsg = null;
+					    $scope.errMsg = res.data.msg;
+					}
+					else {
 						$scope.sucMsg = null;
 						$scope.errMsg = "An error occured.Please try again";
 					}
@@ -81,16 +115,20 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 					method:"post",
 					data:{id:$scope.req._id,done:$scope.update.done,message:message}
 				}).then(function(res){
-					if(res.data.msg){
+					if(res.data.msg ==="success"){
 						$scope.sucMsg = "Successfull,you will be redircted";
 						$scope.errMsg = null;
 						$timeout(function(){
 							$scope.booking();
 							$scope.sucMsg = null;
 						},3000);
-					}else{
-						$scope.sucMsg = null;
-						$scope.errMsg = "An error occured.Please try again";
+					} else if (res.data.msg) {
+					    $scope.sucMsg = null;
+					    $scope.errMsg = res.data.msg;
+					}
+					else {
+					    $scope.sucMsg = null;
+					    $scope.errMsg = "An error occured.Please try again";
 					}
 				})
 			}else{
@@ -112,17 +150,21 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 					method:"post",
 					data:{id:$scope.req._id,done:$scope.update.done,message:message}
 				}).then(function(res){
-					if(res.data.msg){
-						$scope.sucMsg = "Successfull,you will be redircted";
-						$scope.errMsg = null;
-						$timeout(function(){
-							$scope.data();
-							$scope.sucMsg = null;
-						},3000);
-					}else{
-						$scope.sucMsg = null;
-						$scope.errMsg = "An error occured.Please try again";
-					}
+				    if (res.data.msg === "success") {
+				        $scope.sucMsg = "Successfull,you will be redircted";
+				        $scope.errMsg = null;
+				        $timeout(function () {
+				            $scope.booking();
+				            $scope.sucMsg = null;
+				        }, 3000);
+				    } else if (res.data.msg) {
+				        $scope.sucMsg = null;
+				        $scope.errMsg = res.data.msg;
+				    }
+				    else {
+				        $scope.sucMsg = null;
+				        $scope.errMsg = "An error occured.Please try again";
+				    }
 				})
 			}else{
 				$scope.sucMsg = null;
@@ -143,17 +185,21 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 					method:"post",
 					data:{id:$scope.req._id,done:$scope.update.done,message:message}
 				}).then(function(res){
-					if(res.data.msg){
-						$scope.sucMsg = "Successfull,you will be redircted";
-						$scope.errMsg = null;
-						$timeout(function(){
-							$scope.fundbet();
-							$scope.sucMsg = null;
-						},3000);
-					}else{
-						$scope.sucMsg = null;
-						$scope.errMsg = "An error occured.Please try again";
-					}
+				    if (res.data.msg === "success") {
+				        $scope.sucMsg = "Successfull,you will be redircted";
+				        $scope.errMsg = null;
+				        $timeout(function () {
+				            $scope.booking();
+				            $scope.sucMsg = null;
+				        }, 3000);
+				    } else if (res.data.msg) {
+				        $scope.sucMsg = null;
+				        $scope.errMsg = res.data.msg;
+				    }
+				    else {
+				        $scope.sucMsg = null;
+				        $scope.errMsg = "An error occured.Please try again";
+				    }
 				})
 			}else{
 				$scope.sucMsg = null;
@@ -174,17 +220,21 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 					method:"post",
 					data:{id:$scope.req._id,done:$scope.update.done,message:message}
 				}).then(function(res){
-					if(res.data.msg){
-						$scope.sucMsg = "Successfull,you will be redircted";
-						$scope.errMsg = null;
-						$timeout(function(){
-							$scope.recharge();
-							$scope.sucMsg = null;
-						},3000);
-					}else{
-						$scope.sucMsg = null;
-						$scope.errMsg = "An error occured.Please try again";
-					}
+				    if (res.data.msg === "success") {
+				        $scope.sucMsg = "Successfull,you will be redircted";
+				        $scope.errMsg = null;
+				        $timeout(function () {
+				            $scope.booking();
+				            $scope.sucMsg = null;
+				        }, 3000);
+				    } else if (res.data.msg) {
+				        $scope.sucMsg = null;
+				        $scope.errMsg = res.data.msg;
+				    }
+				    else {
+				        $scope.sucMsg = null;
+				        $scope.errMsg = "An error occured.Please try again";
+				    }
 				})
 			}else{
 				$scope.sucMsg = null;
@@ -205,17 +255,21 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 					method:"post",
 					data:{id:$scope.req._id,done:$scope.update.done,message:message}
 				}).then(function(res){
-					if(res.data.msg){
-						$scope.sucMsg = "Successfull,you will be redircted";
-						$scope.errMsg = null;
-						$timeout(function(){
-							$scope.transfer();
-							$scope.sucMsg = null;
-						},3000);
-					}else{
-						$scope.sucMsg = null;
-						$scope.errMsg = "An error occured.Please try again";
-					}
+				    if (res.data.msg === "success") {
+				        $scope.sucMsg = "Successfull,you will be redircted";
+				        $scope.errMsg = null;
+				        $timeout(function () {
+				            $scope.booking();
+				            $scope.sucMsg = null;
+				        }, 3000);
+				    } else if (res.data.msg) {
+				        $scope.sucMsg = null;
+				        $scope.errMsg = res.data.msg;
+				    }
+				    else {
+				        $scope.sucMsg = null;
+				        $scope.errMsg = "An error occured.Please try again";
+				    }
 				})
 			}else{
 				$scope.sucMsg = null;
@@ -236,17 +290,21 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 					method:"post",
 					data:{id:$scope.req._id,done:$scope.update.done,message:message}
 				}).then(function(res){
-					if(res.data.msg){
-						$scope.sucMsg = "Successfull,you will be redircted";
-						$scope.errMsg = null;
-						$timeout(function(){
-							$scope.tv();
-							$scope.sucMsg = null;
-						},3000);
-					}else{
-						$scope.sucMsg = null;
-						$scope.errMsg = "An error occured.Please try again";
-					}
+				    if (res.data.msg === "success") {
+				        $scope.sucMsg = "Successfull,you will be redircted";
+				        $scope.errMsg = null;
+				        $timeout(function () {
+				            $scope.booking();
+				            $scope.sucMsg = null;
+				        }, 3000);
+				    } else if (res.data.msg) {
+				        $scope.sucMsg = null;
+				        $scope.errMsg = res.data.msg;
+				    }
+				    else {
+				        $scope.sucMsg = null;
+				        $scope.errMsg = "An error occured.Please try again";
+				    }
 				})
 			}else{
 				$scope.sucMsg = null;
@@ -387,8 +445,6 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 							$scope.countOfBooking = 0;
 						}else if(res.data.count > 0){
 							$scope.countOfBooking = res.data.count;
-						}else{
-							alert("err");
 						}
 					});
 		}
@@ -405,8 +461,6 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 							$scope.countOfTv = 0;
 						}else if(res.data.count > 0){
 							$scope.countOfTv = res.data.count;
-						}else{
-							alert("err");
 						}
 					});
 		}
@@ -422,8 +476,6 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 							$scope.countOfRecharge = 0;
 						}else if(res.data.count > 0){
 							$scope.countOfRecharge = res.data.count;
-						}else{
-							alert("err");
 						}
 					});
 		}
@@ -439,8 +491,6 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 							$scope.countOfData = 0;
 						}else if(res.data.count > 0){
 							$scope.countOfData = res.data.count;
-						}else{
-							alert("err");
 						}
 					});
 		}
@@ -456,8 +506,6 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 							$scope.countOfTransfer = 0;
 						}else if(res.data.count > 0){
 							$scope.countOfTransfer = res.data.count;
-						}else{
-							alert("err");
 						}
 					});
 		}
@@ -473,8 +521,6 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 							$scope.countOfFundBet = 0;
 						}else if(res.data.count > 0){
 							$scope.countOfFundBet = res.data.count;
-						}else{
-							alert("err");
 						}
 					});
 		}
@@ -506,10 +552,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 			}).then(function(res){
 				if(res.data.users){
 					$scope.users = res.data.users;
-				}else{
-					alert("err");
 				}
-				
 			});
 		}
 
@@ -556,7 +599,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 			$scope.showEditTransfer = false;
 			$scope.getCreditAccount = false;
 				}else{
-					$scope.errMsg = "An error occured.Please contact titi";
+					$scope.errMsg = res.data.msg;
 				}
 			});
 			$(".navbar-ex1-collapse").css({"display":"none"});
@@ -584,7 +627,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 			$scope.showEditTransfer = false;
 			$scope.getCreditAccount = false;
 				}else{
-					$scope.errMsg = "An error occured.Please contact titi";
+					$scope.errMsg = res.data.msg;
 				}
 			});
 			$(".navbar-ex1-collapse").css({"display":"none"});
@@ -612,7 +655,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 			$scope.showEditTransfer = false;
 			$scope.getCreditAccount = false;
 				}else{
-					$scope.errMsg = "An error occured.Please contact titi";
+					$scope.errMsg = res.data.msg;
 				}
 			});
 			$(".navbar-ex1-collapse").css({"display":"none"});
@@ -640,7 +683,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 			$scope.showEditTransfer = false;
 			$scope.getCreditAccount = false;
 				}else{
-					$scope.errMsg = "An error occured.Please contact titi";
+					$scope.errMsg = res.data.msg;
 				}
 			});
 			$(".navbar-ex1-collapse").css({"display":"none"});
@@ -667,7 +710,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 			$scope.showEditTransfer = false;
 			$scope.getCreditAccount = false;
 				}else{
-					$scope.errMsg = "An error occured.Please contact titi";
+					$scope.errMsg = res.data.msg;
 				}
 			});
 			$(".navbar-ex1-collapse").css({"display":"none"});
@@ -694,7 +737,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 			$scope.showEditTransfer = false;
 			$scope.getCreditAccount = false;
 				}else{
-					$scope.errMsg = "An error occured.Please contact titi";
+					$scope.errMsg = res.data.msg;
 				}
 			});
 			$(".navbar-ex1-collapse").css({"display":"none"});

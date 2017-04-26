@@ -8,6 +8,7 @@ WithdrawalRequest = require('../models/withdraw_request'),
 RechargeRequest = require('../models/recharge_request'),
 BuyDataRequest = require('../models/buy_data'),
 Message = require('../models/messages'),
+Alert = require('../models/alerts'),
 TvRequest = require('../models/pay_for_tv');
 
 router.post("/booking",function(req,res){
@@ -35,8 +36,13 @@ router.post("/booking",function(req,res){
                 withdrawable_balance:withdrawableBalance
               };
               User.updateAUser(username,updateParams,function(err,result){
-                       if(err){
-                        res.json(err);
+                  if (err) {
+                      var alert = new Alert();
+                      alert.message = "An error occurred";
+                      alert.err = err;
+                      Alert.createAlert(alert, function (err, alert) {
+                      });
+                      res.json({ msg: 'Something bad happened,please try again or contact the admin' });
                        }else{
                             User.checkUsername(username,function(err,user){
                             var request = new BookingRequest();
@@ -47,8 +53,13 @@ router.post("/booking",function(req,res){
                             request.betting_company = bet_company;
                             request.amount = amount;
                              BookingRequest.createBookingRequest(request,function(err,bookingRequest){
-                                if(err){
-                                  res.json({msg:'Something bad happened'});
+                                 if (err) {
+                                     var alert = new Alert();
+                                     alert.message = "An error occurred";
+                                     alert.err = err;
+                                     Alert.createAlert(alert, function (err, alert) {
+                                     });
+                                     res.json({ msg: 'Something bad happened,please try again or contact the admin' });
                                 } else {
                                  res.json(user);
                                 }
@@ -63,14 +74,24 @@ router.post("/update_booking",function(req,res){
   BookingRequest.updateABookingRequest(req.body.id,
     req.body.done, function(err,booking){
       if(err){
-        res.json({err:err});
+          var alert = new Alert();
+          alert.message = "An error occurred";
+          alert.err = err;
+          Alert.createAlert(alert, function (err, alert) {
+          });
+          res.json({ msg: 'Something bad happened,please try again or contact the admin' });
       }else{
         var msg = new Message();
         msg.username = req.body.message.username;
         msg.message= req.body.message.msg;
         Message.createMessage(msg,function(err,msg){
           if(err){
-            console.log(err);
+              var alert = new Alert();
+              alert.message = "An error occurred";
+              alert.err = err;
+              Alert.createAlert(alert, function (err, alert) {
+              });
+              res.json({ msg: 'Something bad happened,please try again or contact the admin' });
           }
         });
         res.json({msg:"success"});
@@ -82,14 +103,24 @@ router.post("/update_fundbet",function(req,res){
   FundRequest.updateAFundRequest(req.body.id,
     req.body.done, function(err,booking){
       if(err){
-        res.json({err:err});
+          var alert = new Alert();
+          alert.message = "An error occurred";
+          alert.err = err;
+          Alert.createAlert(alert, function (err, alert) {
+          });
+          res.json({ msg: 'Something bad happened,please try again or contact the admin' });
       }else{
         var msg = new Message();
         msg.username = req.body.message.username;
         msg.message= req.body.message.msg;
         Message.createMessage(msg,function(err,msg){
           if(err){
-            console.log(err);
+              var alert = new Alert();
+              alert.message = "An error occurred";
+              alert.err = err;
+              Alert.createAlert(alert, function (err, alert) {
+              });
+              res.json({ msg: 'Something bad happened,please try again or contact the admin' });
           }
         });
         res.json({msg:"success"});
@@ -101,14 +132,24 @@ router.post("/update_transfer",function(req,res){
   WithdrawalRequest.updateAWithdrawalRequest(req.body.id,
     req.body.done, function(err,booking){
       if(err){
-        res.json({err:err});
+          var alert = new Alert();
+          alert.message = "An error occurred";
+          alert.err = err;
+          Alert.createAlert(alert, function (err, alert) {
+          });
+          res.json({ msg: 'Something bad happened,please try again or contact the admin' });
       }else{
         var msg = new Message();
         msg.username = req.body.message.username;
         msg.message= req.body.message.msg;
         Message.createMessage(msg,function(err,msg){
           if(err){
-            console.log(err);
+              var alert = new Alert();
+              alert.message = "An error occurred";
+              alert.err = err;
+              Alert.createAlert(alert, function (err, alert) {
+              });
+              res.json({ msg: 'Something bad happened,please try again or contact the admin' });
           }
         });
         res.json({msg:"success"});
@@ -120,14 +161,24 @@ router.post("/update_recharge",function(req,res){
   RechargeRequest.updateARechargeRequest(req.body.id,
     req.body.done, function(err,booking){
       if(err){
-        res.json({err:err});
+          var alert = new Alert();
+          alert.message = "An error occurred";
+          alert.err = err;
+          Alert.createAlert(alert, function (err, alert) {
+          });
+          res.json({ msg: 'Something bad happened,please try again or contact the admin' });
       }else{
         var msg = new Message();
         msg.username = req.body.message.username;
         msg.message= req.body.message.msg;
         Message.createMessage(msg,function(err,msg){
           if(err){
-            console.log(err);
+              var alert = new Alert();
+              alert.message = "An error occurred";
+              alert.err = err;
+              Alert.createAlert(alert, function (err, alert) {
+              });
+              res.json({ msg: 'Something bad happened,please try again or contact the admin' });
           }
         });
         res.json({msg:"success"});
@@ -139,14 +190,24 @@ router.post("/update_data",function(req,res){
   BuyDataRequest.updateABuyDataRequest(req.body.id,
     req.body.done, function(err,booking){
       if(err){
-        res.json({err:err});
+          var alert = new Alert();
+          alert.message = "An error occurred";
+          alert.err = err;
+          Alert.createAlert(alert, function (err, alert) {
+          });
+          res.json({ msg: 'Something bad happened,please try again or contact the admin' });
       }else{
         var msg = new Message();
         msg.username = req.body.message.username;
         msg.message= req.body.message.msg;
         Message.createMessage(msg,function(err,msg){
           if(err){
-            console.log(err);
+              var alert = new Alert();
+              alert.message = "An error occurred";
+              alert.err = err;
+              Alert.createAlert(alert, function (err, alert) {
+              });
+              res.json({ msg: 'Something bad happened,please try again or contact the admin' });
           }
         });
         res.json({msg:"success"});
@@ -158,14 +219,24 @@ router.post("/update_tv",function(req,res){
   TvRequest.updateATvRequest(req.body.id,
     req.body.done, function(err,tv){
       if(err){
-        res.json({err:err});
+          var alert = new Alert();
+          alert.message = "An error occurred";
+          alert.err = err;
+          Alert.createAlert(alert, function (err, alert) {
+          });
+          res.json({ msg: 'Something bad happened,please try again or contact the admin' });
       }else{
         var msg = new Message();
         msg.username = req.body.message.username;
         msg.message= req.body.message.msg;
         Message.createMessage(msg,function(err,msg){
           if(err){
-            console.log(err);
+              var alert = new Alert();
+              alert.message = "An error occurred";
+              alert.err = err;
+              Alert.createAlert(alert, function (err, alert) {
+              });
+              res.json({ msg: 'Something bad happened,please try again or contact the admin' });
           }
         });
         res.json({msg:"success"});
@@ -176,7 +247,12 @@ router.post("/update_tv",function(req,res){
 router.get("/booking",function(req,res){
   BookingRequest.getAllBookingRequest(function(err,request){
     if(err){
-      res.json({error:err});
+        var alert = new Alert();
+        alert.message = "An error occurred";
+        alert.err = err;
+        Alert.createAlert(alert, function (err, alert) {
+        });
+        res.json({ msg: 'Something bad happened,please try again or contact the admin' });
     }else{
       res.json({bookings:request});
     }
@@ -186,7 +262,12 @@ router.get("/booking",function(req,res){
 router.get("/fund_bet",function(req,res){
   FundRequest.getAllFundRequest(function(err,request){
     if(err){
-      res.json({error:err});
+        var alert = new Alert();
+        alert.message = "An error occurred";
+        alert.err = err;
+        Alert.createAlert(alert, function (err, alert) {
+        });
+        res.json({ msg: 'Something bad happened,please try again or contact the admin' });
     }else{
       res.json({fundbet:request});
     }
@@ -196,7 +277,12 @@ router.get("/fund_bet",function(req,res){
 router.get("/recharge",function(req,res){
   RechargeRequest.getAllRechargeRequest(function(err,request){
     if(err){
-      res.json({error:err});
+        var alert = new Alert();
+        alert.message = "An error occurred";
+        alert.err = err;
+        Alert.createAlert(alert, function (err, alert) {
+        });
+        res.json({ msg: 'Something bad happened,please try again or contact the admin' });
     }else{
       res.json({recharge:request});
     }
@@ -206,7 +292,12 @@ router.get("/recharge",function(req,res){
 router.get("/data",function(req,res){
   BuyDataRequest.getAllBuyDataRequest(function(err,request){
     if(err){
-      res.json({error:err});
+        var alert = new Alert();
+        alert.message = "An error occurred";
+        alert.err = err;
+        Alert.createAlert(alert, function (err, alert) {
+        });
+        res.json({ msg: 'Something bad happened,please try again or contact the admin' });
     }else{
       res.json({data:request});
     }
@@ -216,7 +307,12 @@ router.get("/data",function(req,res){
 router.get("/tv",function(req,res){
   TvRequest.getAllTvRequest(function(err,request){
     if(err){
-      res.json({error:err});
+        var alert = new Alert();
+        alert.message = "An error occurred";
+        alert.err = err;
+        Alert.createAlert(alert, function (err, alert) {
+        });
+        res.json({ msg: 'Something bad happened,please try again or contact the admin' });
     }else{
       res.json({tv:request});
     }
@@ -226,7 +322,12 @@ router.get("/tv",function(req,res){
 router.get("/transfer",function(req,res){
   WithdrawalRequest.getAllWithdrawRequest(function(err,request){
     if(err){
-      res.json({error:err});
+        var alert = new Alert();
+        alert.message = "An error occurred";
+        alert.err = err;
+        Alert.createAlert(alert, function (err, alert) {
+        });
+        res.json({ msg: 'Something bad happened,please try again or contact the admin' });
     }else{
       res.json({transfer:request});
     }
@@ -236,7 +337,12 @@ router.get("/transfer",function(req,res){
 router.get("/count_of_booking",function(req,res){
   BookingRequest.getCount(function(err,count){
     if(err){
-      res.json({error:err});
+        var alert = new Alert();
+        alert.message = "An error occurred";
+        alert.err = err;
+        Alert.createAlert(alert, function (err, alert) {
+        });
+        res.json({ msg: 'Something bad happened,please try again or contact the admin' });
     }else{
       res.json({count:count});
     }
@@ -246,7 +352,12 @@ router.get("/count_of_booking",function(req,res){
 router.get("/count_of_recharge",function(req,res){
   RechargeRequest.getCount(function(err,count){
     if(err){
-      res.json({error:err});
+        var alert = new Alert();
+        alert.message = "An error occurred";
+        alert.err = err;
+        Alert.createAlert(alert, function (err, alert) {
+        });
+        res.json({ msg: 'Something bad happened,please try again or contact the admin' });
     }else{
       res.json({count:count});
     }
@@ -255,7 +366,12 @@ router.get("/count_of_recharge",function(req,res){
 router.get("/count_of_fund",function(req,res){
   FundRequest.getCount(function(err,count){
     if(err){
-      res.json({error:err});
+        var alert = new Alert();
+        alert.message = "An error occurred";
+        alert.err = err;
+        Alert.createAlert(alert, function (err, alert) {
+        });
+        res.json({ msg: 'Something bad happened,please try again or contact the admin' });
     }else{
       res.json({count:count});
     }
@@ -264,7 +380,12 @@ router.get("/count_of_fund",function(req,res){
 router.get("/count_of_data",function(req,res){
   BuyDataRequest.getCount(function(err,count){
     if(err){
-      res.json({error:err});
+        var alert = new Alert();
+        alert.message = "An error occurred";
+        alert.err = err;
+        Alert.createAlert(alert, function (err, alert) {
+        });
+        res.json({ msg: 'Something bad happened,please try again or contact the admin' });
     }else{
       res.json({count:count});
     }
@@ -273,7 +394,12 @@ router.get("/count_of_data",function(req,res){
 router.get("/count_of_booking",function(req,res){
   BookingRequest.getCount(function(err,count){
     if(err){
-      res.json({error:err});
+        var alert = new Alert();
+        alert.message = "An error occurred";
+        alert.err = err;
+        Alert.createAlert(alert, function (err, alert) {
+        });
+        res.json({ msg: 'Something bad happened,please try again or contact the admin' });
     }else{
       res.json({count:count});
     }
@@ -282,7 +408,12 @@ router.get("/count_of_booking",function(req,res){
 router.get("/count_of_transfer",function(req,res){
   WithdrawalRequest.getCount(function(err,count){
     if(err){
-      res.json({error:err});
+        var alert = new Alert();
+        alert.message = "An error occurred";
+        alert.err = err;
+        Alert.createAlert(alert, function (err, alert) {
+        });
+        res.json({ msg: 'Something bad happened,please try again or contact the admin' });
     }else{
       res.json({count:count});
     }
@@ -292,7 +423,12 @@ router.get("/count_of_transfer",function(req,res){
 router.get("/count_of_tv",function(req,res){
   TvRequest.getCount(function(err,count){
     if(err){
-      res.json({error:err});
+        var alert = new Alert();
+        alert.message = "An error occurred";
+        alert.err = err;
+        Alert.createAlert(alert, function (err, alert) {
+        });
+        res.json({ msg: 'Something bad happened,please try again or contact the admin' });
     }else{
       res.json({count:count});
     }
@@ -323,7 +459,12 @@ router.post("/fund_bet",function(req,res){
               };
               User.updateAUser(username,updateParams,function(err,result){
                        if(err){
-                        res.json(err);
+                           var alert = new Alert();
+                           alert.message = "An error occurred";
+                           alert.err = err;
+                           Alert.createAlert(alert, function (err, alert) {
+                           });
+                           res.json({ msg: 'Something bad happened,please try again or contact the admin' });
                        }else{
                             User.checkUsername(username,function(err,user){
                             var request = new FundRequest();
@@ -332,8 +473,12 @@ router.post("/fund_bet",function(req,res){
                             request.amount = amount;
                              FundRequest.createFundRequest(request,function(err,fundRequest){
                                 if(err){
-                                  res.json(err);
-                                  res.json({msg:'Something bad happened'});
+                                    var alert = new Alert();
+                                    alert.message = "An error occurred";
+                                    alert.err = err;
+                                    Alert.createAlert(alert, function (err, alert) {
+                                    });
+                                    res.json({ msg: 'Something bad happened,please try again or contact the admin' });
                                 } else {
                                  res.json(user);
                                 }
@@ -369,7 +514,12 @@ router.post("/transfer",function(req,res){
       };
       User.updateAUser(username,updateParams,function(err,result){
                        if(err){
-                        res.json(err);
+                           var alert = new Alert();
+                           alert.message = "An error occurred";
+                           alert.err = err;
+                           Alert.createAlert(alert, function (err, alert) {
+                           });
+                           res.json({ msg: 'Something bad happened,please try again or contact the admin' });
                        }else{
                             User.checkUsername(username,function(err,user){
                             var request = new WithdrawalRequest();
@@ -381,7 +531,12 @@ router.post("/transfer",function(req,res){
                             request.amount = amount;
                              WithdrawalRequest.createWithdrawRequest(request,function(err,withdrawalRequest){
                                 if(err){
-                                  res.json({msg:'Something bad happened'});
+                                    var alert = new Alert();
+                                    alert.message = "An error occurred";
+                                    alert.err = err;
+                                    Alert.createAlert(alert, function (err, alert) {
+                                    });
+                                    res.json({ msg: 'Something bad happened,please try again or contact the admin' });
                                 } else {
                                  res.json(user);
                                 }
@@ -414,7 +569,12 @@ router.post("/recharge",function(req,res){
               };
               User.updateAUser(username,updateParams,function(err,result){
                        if(err){
-                        res.json(err);
+                           var alert = new Alert();
+                           alert.message = "An error occurred";
+                           alert.err = err;
+                           Alert.createAlert(alert, function (err, alert) {
+                           });
+                           res.json({ msg: 'Something bad happened,please try again or contact the admin' });
                        }else{
                             User.checkUsername(username,function(err,user){
                             var request = new RechargeRequest();
@@ -424,7 +584,12 @@ router.post("/recharge",function(req,res){
                             request.amount = amount;
                              RechargeRequest.createRechargeRequest(request,function(err,rechargeRequest){
                                 if(err){
-                                  res.json({msg:'Something bad happened'});
+                                    var alert = new Alert();
+                                    alert.message = "An error occurred";
+                                    alert.err = err;
+                                    Alert.createAlert(alert, function (err, alert) {
+                                    });
+                                    res.json({ msg: 'Something bad happened,please try again or contact the admin' });
                                 } else {
                                  res.json(user);
                                 }
@@ -459,7 +624,12 @@ router.post("/buy_data",function(req,res){
               };
               User.updateAUser(username,updateParams,function(err,result){
                        if(err){
-                        res.json(err);
+                           var alert = new Alert();
+                           alert.message = "An error occurred";
+                           alert.err = err;
+                           Alert.createAlert(alert, function (err, alert) {
+                           });
+                           res.json({ msg: 'Something bad happened,please try again or contact the admin' });
                        }else{
                             User.checkUsername(username,function(err,user){
                             var request = new BuyDataRequest();
@@ -470,7 +640,12 @@ router.post("/buy_data",function(req,res){
                             request.bundle = bundle;
                              BuyDataRequest.createBuyDataRequest(request,function(err,rechargeRequest){
                                 if(err){
-                                  res.json({msg:'Something bad happened'});
+                                    var alert = new Alert();
+                                    alert.message = "An error occurred";
+                                    alert.err = err;
+                                    Alert.createAlert(alert, function (err, alert) {
+                                    });
+                                    res.json({ msg: 'Something bad happened,please try again or contact the admin' });
                                 } else {
                                  res.json(user);
                                 }
@@ -483,7 +658,6 @@ router.post("/buy_data",function(req,res){
 
 router.post('/pay',function(req,res){
    //get form values
-   console.log(req.body.request);
    var tv = req.body.request.tv.toLowerCase(),
    phone = req.body.request.phone_number,
    card_number = req.body.request.card_number,
@@ -505,8 +679,13 @@ router.post('/pay',function(req,res){
                 withdrawable_balance:withdrawableBalance
               };
               User.updateAUser(username,updateParams,function(err,result){
-                       if(err){
-                        res.json(err);
+                  if (err) {
+                      var alert = new Alert();
+                      alert.message = "An error occurred";
+                      alert.err = err;
+                      Alert.createAlert(alert, function (err, alert) {
+                      });
+                      res.json({ msg: 'Something bad happened,please try again or contact the admin' });
                        }else{
                             User.checkUsername(username,function(err,user){
                             var request = new TvRequest();
@@ -517,9 +696,13 @@ router.post('/pay',function(req,res){
                             request.card_number = card_number;
                             request.amount = amount;
                              TvRequest.createTvRequest(request,function(err,rechargeRequest){
-                                if(err){
-                                  console.log(err);
-                                  res.json({msg:'Something bad happened'});
+                                 if (err) {
+                                     var alert = new Alert();
+                                     alert.message = "An error occurred";
+                                     alert.err = err;
+                                     Alert.createAlert(alert, function (err, alert) {
+                                     });
+                                     res.json({ msg: 'Something bad happened,please try again or contact the admin' });
                                 } else {
                                  res.json(user);
                                 }

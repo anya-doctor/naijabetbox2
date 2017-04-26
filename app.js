@@ -1,9 +1,11 @@
+/// <reference path="models/alerts.js" />
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var Alert = require('./models/alerts');
 
 
 //var index = require('./routes/index');
@@ -42,12 +44,17 @@ app.use(function (req, res, next) {
 // error handler
 app.use(function (err, req, res, next) {
     // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    //res.locals.message = err.message;
+    //res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-    // render the error page
-    res.status(err.status || 500);
-    res.render('error');
+    //// render the error page
+    //res.status(err.status || 500);
+    //res.render('error');
+    var alert = new Alert();
+    alert.message = "An error occurred";
+    alert.err = err;
+    Alert.createAlert(alert, function (err, alert) {
+    });
 });
 
 module.exports = app;
