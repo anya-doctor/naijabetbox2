@@ -15,9 +15,9 @@
             <label>Network</label>
             <select class="form-control" name="network" ng-model="request.network" ng-change="networkChange()">
               <option value="">select a network</option>
-              <option>MTN</option>
-              <option>Etisalat</option>
-              <option>Airtel</option>
+              <option value="mtn">MTN</option>
+              <option value="etisalat">Etisalat</option>
+              <option value="airtel">Airtel</option>
             </select>
           </div>
           <div class="form-group" ng-show="showMtn" ng-cloak="ng-cloak">
