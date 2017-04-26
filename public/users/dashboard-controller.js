@@ -28,7 +28,7 @@
             if(res.data.user){
                 $scope.user = res.data.user;
             }else{
-                alert("err");
+                console.log(res.data);
             }
         });
     }
@@ -47,7 +47,7 @@
                 $scope.msgs = res.data.msgs;
                 $scope.count = res.data.msgs.length
             }else{
-                alert("err");
+                console.log(res.data);
             }
         });
     }

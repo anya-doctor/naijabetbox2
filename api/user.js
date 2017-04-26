@@ -85,19 +85,19 @@ router.get("/get_user", function (req, res) {
     });
 });
 
-router.post("/login", function (req, res) {
+router.post("/login", function (req, res,next) {
     User.checkUsername(req.body.username, function (err, user) {
         if (err) {
-            res.json(err);
+            res.json({err:err});
         } else {
             if (user) {
                 if (Hash.confirmPassword(user, req.body.password)) {
-                    res.json(user);
+                    res.json({user:user});
                 } else {
-                    res.json(null);
+                    res.json({user:null});
                 }
             } else {
-                res.json(null);
+                res.json({user:null});
             }
 
         }

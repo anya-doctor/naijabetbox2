@@ -11,27 +11,28 @@
                     method: "post",
                     data: { "username": $scope.username, "password": $scope.password }
                 }).then(function (res) {
-                    if(res.data.isAdmin === "Yes"){
-                        sessionStorage.setItem("admin", res.data.isAdmin);
+                    if(res.data.user === null){
+                        $scope.loginErr = true;
+                        $scope.loginSuc = false;
+                        $scope.invalidCredentials = "Invalid credentials";
+                        
+                    }
+                    else if (res.data.user.isAdmin ==="Yes") {
+                        sessionStorage.setItem("admin", res.data.user.isAdmin);
                         $location.search("");
                         $scope.loginSuc = true;
                         $scope.loginErr = false;
                         $timeout(function () {
                             $location.path("/admin");
                         },3000);
-                    }
-                    else if (res.data.username) {
-                        sessionStorage.setItem("user", JSON.stringify(res.data));
+                    } else {
+                        sessionStorage.setItem("user", JSON.stringify(res.data.user));
                         $location.search("");
                         $scope.loginSuc = true;
                         $scope.loginErr = false;
                         $timeout(function () {
                             $location.path("/dashboard");
                         }, 3000);
-                    } else {
-                        $scope.loginErr = true;
-                        $scope.loginSuc = false;
-                        $scope.invalidCredentials = "Invalid credentials";
                     }
                 });
             } else {
