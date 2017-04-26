@@ -28,7 +28,6 @@
             if(res.data.user){
                 $scope.user = res.data.user;
             }else{
-                console.log(res.data);
             }
         });
     }
@@ -47,7 +46,6 @@
                 $scope.msgs = res.data.msgs;
                 $scope.count = res.data.msgs.length
             }else{
-                console.log(res.data);
             }
         });
     }
@@ -387,7 +385,6 @@ $scope.dstv = [
                         $scope.sucMsg = null;
                     },3000);
                 }else{
-                    console.log(res.data);
                 }
             });
         }
@@ -420,7 +417,6 @@ $scope.dstv = [
                         $scope.sucMsg = null;
                     },3000);
                 }else{
-                    console.log(res.data);
                 }
             });
         }else{
@@ -454,7 +450,6 @@ $scope.dstv = [
                         $scope.sucMsg = null;
                     },3000);
                 }else{
-                    console.log(res.data);
                 }
             });
         }else{
@@ -490,7 +485,6 @@ $scope.dstv = [
                     },3000);
                 
                 }else{
-                    console.log(res.data);
                 }
             });
         }else{
@@ -523,7 +517,6 @@ $scope.dstv = [
                         $scope.sucMsg = null;
                     },3000);
                 }else{
-                    console.log(res.data);
                 }
             });
         }else{
