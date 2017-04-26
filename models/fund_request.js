@@ -25,7 +25,8 @@ var fundSchema = mongoose.Schema({
 	done:{
 		type:String,
 		required:true,
-		default:'no'
+		enum:["No","Yes"],
+		default:'No'
 	}
 });
 var FundRequest = module.exports = mongoose.model('FundRequest',fundSchema);
@@ -36,5 +37,12 @@ module.exports.getAllFundRequest =function(query,callback){
 	FundRequest.find(query,callback);
 };
 module.exports.updateAFundRequest = function(id,done,callback){
-	FundRequest.findOneAndUpdate({_id:id},{$set:{done:done,done_date:new Date().toLocaleString().substring(0,new Date().toLocaleString().indexOf(","))}},callback);
+	var done_date = null;
+	if(done === "Yes"){
+		done_date = new Date();
+	}
+	FundRequest.findOneAndUpdate({_id:id},{$set:{done:done,done_date:done_date}},callback);
+};
+module.exports.getCount =function(callback){
+	FundRequest.count({done:"No"},callback);
 };

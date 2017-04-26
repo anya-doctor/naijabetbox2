@@ -11,7 +11,16 @@
                     method: "post",
                     data: { "username": $scope.username, "password": $scope.password }
                 }).then(function (res) {
-                    if (res.data) {
+                    if(res.data.isAdmin === "Yes"){
+                        sessionStorage.setItem("admin", res.data.isAdmin);
+                        $location.search("");
+                        $scope.loginSuc = true;
+                        $scope.loginErr = false;
+                        $timeout(function () {
+                            $location.path("/admin");
+                        },3000);
+                    }
+                    else if (res.data.username) {
                         sessionStorage.setItem("user", JSON.stringify(res.data));
                         $location.search("");
                         $scope.loginSuc = true;

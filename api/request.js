@@ -7,8 +7,8 @@ BookingRequest = require('../models/booking_request'),
 WithdrawalRequest = require('../models/withdraw_request'),
 RechargeRequest = require('../models/recharge_request'),
 BuyDataRequest = require('../models/buy_data'),
-TvRequest = require('../models/pay_for_tv'),
-Alert = require('../models/request_alert');
+Message = require('../models/messages'),
+TvRequest = require('../models/pay_for_tv');
 
 router.post("/booking",function(req,res){
     //get form values
@@ -50,12 +50,6 @@ router.post("/booking",function(req,res){
                                 if(err){
                                   res.json({msg:'Something bad happened'});
                                 } else {
-                                    var alert = new Alert();
-                                    alert.request = "Booking";
-                                    alert.username = username;
-                                    Alert.createAlert(alert, function (err, alert) {
-
-                                    });
                                  res.json(user);
                                 }
                             });
@@ -64,6 +58,246 @@ router.post("/booking",function(req,res){
             });
             }
 });
+
+router.post("/update_booking",function(req,res){
+  BookingRequest.updateABookingRequest(req.body.id,
+    req.body.done, function(err,booking){
+      if(err){
+        res.json({err:err});
+      }else{
+        var msg = new Message();
+        msg.username = req.body.message.username;
+        msg.message= req.body.message.msg;
+        Message.createMessage(msg,function(err,msg){
+          if(err){
+            console.log(err);
+          }
+        });
+        res.json({msg:"success"});
+      }
+    })
+});
+
+router.post("/update_fundbet",function(req,res){
+  FundRequest.updateAFundRequest(req.body.id,
+    req.body.done, function(err,booking){
+      if(err){
+        res.json({err:err});
+      }else{
+        var msg = new Message();
+        msg.username = req.body.message.username;
+        msg.message= req.body.message.msg;
+        Message.createMessage(msg,function(err,msg){
+          if(err){
+            console.log(err);
+          }
+        });
+        res.json({msg:"success"});
+      }
+    })
+});
+
+router.post("/update_transfer",function(req,res){
+  WithdrawalRequest.updateAWithdrawalRequest(req.body.id,
+    req.body.done, function(err,booking){
+      if(err){
+        res.json({err:err});
+      }else{
+        var msg = new Message();
+        msg.username = req.body.message.username;
+        msg.message= req.body.message.msg;
+        Message.createMessage(msg,function(err,msg){
+          if(err){
+            console.log(err);
+          }
+        });
+        res.json({msg:"success"});
+      }
+    })
+});
+
+router.post("/update_recharge",function(req,res){
+  RechargeRequest.updateARechargeRequest(req.body.id,
+    req.body.done, function(err,booking){
+      if(err){
+        res.json({err:err});
+      }else{
+        var msg = new Message();
+        msg.username = req.body.message.username;
+        msg.message= req.body.message.msg;
+        Message.createMessage(msg,function(err,msg){
+          if(err){
+            console.log(err);
+          }
+        });
+        res.json({msg:"success"});
+      }
+    })
+});
+
+router.post("/update_data",function(req,res){
+  BuyDataRequest.updateABuyDataRequest(req.body.id,
+    req.body.done, function(err,booking){
+      if(err){
+        res.json({err:err});
+      }else{
+        var msg = new Message();
+        msg.username = req.body.message.username;
+        msg.message= req.body.message.msg;
+        Message.createMessage(msg,function(err,msg){
+          if(err){
+            console.log(err);
+          }
+        });
+        res.json({msg:"success"});
+      }
+    })
+});
+
+router.post("/update_tv",function(req,res){
+  TvRequest.updateATvRequest(req.body.id,
+    req.body.done, function(err,tv){
+      if(err){
+        res.json({err:err});
+      }else{
+        var msg = new Message();
+        msg.username = req.body.message.username;
+        msg.message= req.body.message.msg;
+        Message.createMessage(msg,function(err,msg){
+          if(err){
+            console.log(err);
+          }
+        });
+        res.json({msg:"success"});
+      }
+    })
+});
+
+router.get("/booking",function(req,res){
+  BookingRequest.getAllBookingRequest(function(err,request){
+    if(err){
+      res.json({error:err});
+    }else{
+      res.json({bookings:request});
+    }
+  })
+});
+
+router.get("/fund_bet",function(req,res){
+  FundRequest.getAllFundRequest(function(err,request){
+    if(err){
+      res.json({error:err});
+    }else{
+      res.json({fundbet:request});
+    }
+  })
+});
+
+router.get("/recharge",function(req,res){
+  RechargeRequest.getAllRechargeRequest(function(err,request){
+    if(err){
+      res.json({error:err});
+    }else{
+      res.json({recharge:request});
+    }
+  })
+});
+
+router.get("/data",function(req,res){
+  BuyDataRequest.getAllBuyDataRequest(function(err,request){
+    if(err){
+      res.json({error:err});
+    }else{
+      res.json({data:request});
+    }
+  })
+});
+
+router.get("/tv",function(req,res){
+  TvRequest.getAllTvRequest(function(err,request){
+    if(err){
+      res.json({error:err});
+    }else{
+      res.json({tv:request});
+    }
+  })
+});
+
+router.get("/transfer",function(req,res){
+  WithdrawalRequest.getAllWithdrawRequest(function(err,request){
+    if(err){
+      res.json({error:err});
+    }else{
+      res.json({transfer:request});
+    }
+  })
+});
+
+router.get("/count_of_booking",function(req,res){
+  BookingRequest.getCount(function(err,count){
+    if(err){
+      res.json({error:err});
+    }else{
+      res.json({count:count});
+    }
+  })
+});
+
+router.get("/count_of_recharge",function(req,res){
+  RechargeRequest.getCount(function(err,count){
+    if(err){
+      res.json({error:err});
+    }else{
+      res.json({count:count});
+    }
+  })
+});
+router.get("/count_of_fund",function(req,res){
+  FundRequest.getCount(function(err,count){
+    if(err){
+      res.json({error:err});
+    }else{
+      res.json({count:count});
+    }
+  })
+});
+router.get("/count_of_data",function(req,res){
+  BuyDataRequest.getCount(function(err,count){
+    if(err){
+      res.json({error:err});
+    }else{
+      res.json({count:count});
+    }
+  })
+});
+router.get("/count_of_booking",function(req,res){
+  BookingRequest.getCount(function(err,count){
+    if(err){
+      res.json({error:err});
+    }else{
+      res.json({count:count});
+    }
+  })
+});
+router.get("/count_of_transfer",function(req,res){
+  WithdrawalRequest.getCount(function(err,count){
+    if(err){
+      res.json({error:err});
+    }else{
+      res.json({count:count});
+    }
+  })
+})
+
+router.get("/count_of_tv",function(req,res){
+  TvRequest.getCount(function(err,count){
+    if(err){
+      res.json({error:err});
+    }else{
+      res.json({count:count});
+    }
+  })
+})
 
 router.post("/fund_bet",function(req,res){
     //get form values
@@ -101,12 +335,6 @@ router.post("/fund_bet",function(req,res){
                                   res.json(err);
                                   res.json({msg:'Something bad happened'});
                                 } else {
-                                    var alert = new Alert();
-                                    alert.request = "Fund bet";
-                                    alert.username = username;
-                                    Alert.createAlert(alert, function (err, alert) {
-
-                                    });
                                  res.json(user);
                                 }
                             });
@@ -147,6 +375,7 @@ router.post("/transfer",function(req,res){
                             var request = new WithdrawalRequest();
                             request.firstname = firstname;
                             request.surname = surname;
+                            request.username = username;
                             request.account_number = account_number;
                             request.bank = bank;
                             request.amount = amount;
@@ -154,12 +383,6 @@ router.post("/transfer",function(req,res){
                                 if(err){
                                   res.json({msg:'Something bad happened'});
                                 } else {
-                                    var alert = new Alert();
-                                    alert.request = "Transfer";
-                                    alert.username = username;
-                                    Alert.createAlert(alert, function (err, alert) {
-
-                                    });
                                  res.json(user);
                                 }
                             });
@@ -203,12 +426,6 @@ router.post("/recharge",function(req,res){
                                 if(err){
                                   res.json({msg:'Something bad happened'});
                                 } else {
-                                    var alert = new Alert();
-                                    alert.request = "Recharge";
-                                    alert.username = username;
-                                    Alert.createAlert(alert, function (err, alert) {
-
-                                    });
                                  res.json(user);
                                 }
                             });
@@ -255,12 +472,6 @@ router.post("/buy_data",function(req,res){
                                 if(err){
                                   res.json({msg:'Something bad happened'});
                                 } else {
-                                    var alert = new Alert();
-                                    alert.request = "Buy Data";
-                                    alert.username = username;
-                                    Alert.createAlert(alert, function (err, alert) {
-
-                                    });
                                  res.json(user);
                                 }
                             });
@@ -310,12 +521,6 @@ router.post('/pay',function(req,res){
                                   console.log(err);
                                   res.json({msg:'Something bad happened'});
                                 } else {
-                                    var alert = new Alert();
-                                    alert.request = "Tv";
-                                    alert.username = username;
-                                    Alert.createAlert(alert, function (err, alert) {
-
-                                    });
                                  res.json(user);
                                 }
                             });

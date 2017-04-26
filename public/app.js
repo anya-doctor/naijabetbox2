@@ -18,6 +18,15 @@
                  "/assets/dashboard/css/sb-admin.css",
                  "/assets/dashboard/css/morris.css",
                  "/assets/dashboard/css/font-awesome.min.css"]
+    }).when("/admin",
+        {
+            templateUrl: "admin/dashboard.html",
+            controller: "AdminDashboardController",
+                css: ["/assets/bootstrap/css/bootstrap.min.css",
+                "/assets/mobirise/css/mbr-additional.css",
+                 "/assets/dashboard/css/sb-admin.css",
+                 "/assets/dashboard/css/morris.css",
+                 "/assets/dashboard/css/font-awesome.min.css"]
     });
     //$locationProvider.html5Mode(true);
 });

@@ -11,10 +11,55 @@
     $rootScope.title = "Dashboard";
     $rootScope.showNavBar = false;
     $scope.user = JSON.parse(sessionStorage.getItem("user"));
+    $scope.users = $scope.user;
     $scope.username = $scope.user.username;
     $scope.formHolder = {};
     $scope.request = {};
 
+    function getAUser(){
+        if(true){
+            $timeout(getAUser,1000);
+        }
+        $http({
+            url:"user/get_user",
+            method:"get",
+            params:{username:$scope.user.username}
+        }).then(function(res){
+            if(res.data.user){
+                $scope.user = res.data.user;
+            }else{
+                alert("err");
+            }
+        });
+    }
+    $timeout(getAUser,1000);
+
+    function getMessages(){
+        if(true){
+            $timeout(getMessages,1000);
+        }
+        $http({
+            url:"user/getMessages",
+            method:"get",
+            params:{username:$scope.user.username}
+        }).then(function(res){
+            if(res.data.msgs){
+                $scope.msgs = res.data.msgs;
+                $scope.count = res.data.msgs.length
+            }else{
+                alert("err");
+            }
+        });
+    }
+    $timeout(getMessages,1000);
+
+    $scope.clearMsg = function(id){
+        $http({
+            url:"user/updateMessage",
+            method:"post",
+            data:{id:id,status:"seen"}
+        });
+    }
     $scope.buyData = function(){
         if($scope.formHolder.buyData.$valid){
             var balance = $scope.user.balance;
@@ -40,7 +85,8 @@
                         $scope.sucMsg = null;
                     },3000);
                 }else{
-                    console.log(res.data);
+                    $scope.errMsg = "An error occurred";
+                    $scope.sucMsg = null;
                 }
             });
         }
@@ -87,6 +133,18 @@
         {name:"15Gb validity period of 33 days,",price:10000.00}
     ];
 
+    $scope.mytv = [
+    { name: "MyTV Smart – 1 month banquet", price: 1000.00 },
+    { name: "MyTV Smart – 3 months banquet", price: 2500.00 },
+    { name: " MyTV Smart – 6 months banquet ", price: 4650.00 },
+    { name: "MyTV Smart – 12 months banquet", price: 8850.00 }
+    ];
+    $scope.irokotv = [
+{ name: "Iroko banquet", price: 1000.00 }
+    ];
+    $scope.daarsat = [
+{ name: "Daarsat banquet", price: 5700.00 }
+    ];
 $scope.dstv = [
         {name :"Access + Asia",price:6800.00},
         {name :"Access + HD/ExtraView",price:4100.00},
@@ -142,25 +200,64 @@ $scope.dstv = [
                 $scope.showBanquet = false;
                 $scope.showGotv = false;
                 $scope.showStartimes = false;
+                $scope.showMytv = false;
+                $scope.showIrokotv = false;
+                $scope.showDaarsattv = false;
             break;
             case "DSTV":
                 $scope.showDstv = true;
                 $scope.showBanquet = false;
                 $scope.showGotv = false;
                 $scope.showStartimes = false;
+                $scope.showMytv = false;
+                $scope.showIrokotv = false;
+                $scope.showDaarsattv = false;
             break;
             case "GoTv":
                 $scope.showGotv = true;
                 $scope.showDstv = false;
                 $scope.showBanquet = false;
                 $scope.showStartimes = false;
+                $scope.showMytv = false;
+                $scope.showIrokotv = false;
+                $scope.showDaarsattv = false;
             break;
         case "Startimes":
                 $scope.showStartimes = true;
                 $scope.showBanquet = false;
                 $scope.showDstv = false;
                 $scope.showGotv = false;
-            break;
+                $scope.showMytv = false;
+                $scope.showIrokotv = false;
+                $scope.showDaarsattv = false;
+                break;
+            case "Mytv":
+                $scope.showStartimes = false;
+                $scope.showBanquet = false;
+                $scope.showDstv = false;
+                $scope.showGotv = false;
+                $scope.showMytv = true;
+                $scope.showIrokotv = false;
+                $scope.showDaarsattv = false;
+                break;
+            case "IrokoTv":
+                $scope.showStartimes = false;
+                $scope.showBanquet = false;
+                $scope.showDstv = false;
+                $scope.showGotv = false;
+                $scope.showMytv = false;
+                $scope.showIrokotv = true;
+                $scope.showDaarsattv = false;
+                break;
+            case "DaarsatTv":
+                $scope.showStartimes = false;
+                $scope.showBanquet = false;
+                $scope.showDstv = false;
+                $scope.showGotv = false;
+                $scope.showMytv = false;
+                $scope.showIrokotv = false;
+                $scope.showDaarsattv = true;
+                break;
         }   
     }
     $scope.dstvBanquetChange = function(){
@@ -170,6 +267,30 @@ $scope.dstv = [
                     $scope.showBanquet = true;
                 }
             });
+    }
+    $scope.mytvBanquetChange = function () {
+        $scope.mytv.forEach(function (e) {
+            if (e.name === $scope.request.banquet) {
+                $scope.request.price = e.price;
+                $scope.showBanquet = true;
+            }
+        });
+    }
+    $scope.irokotvBanquetChange = function () {
+        $scope.irokotv.forEach(function (e) {
+            if (e.name === $scope.request.banquet) {
+                $scope.request.price = e.price;
+                $scope.showBanquet = true;
+            }
+        });
+    }
+    $scope.daarsatBanquetChange = function () {
+        $scope.daarsat.forEach(function (e) {
+            if (e.name === $scope.request.banquet) {
+                $scope.request.price = e.price;
+                $scope.showBanquet = true;
+            }
+        });
     }
     $scope.gotvBanquetChange = function(){
         $scope.gotv.forEach(function(e){
@@ -547,7 +668,7 @@ $scope.dstv = [
         $http({
             url:"/user/update-user",
             method:"post",
-            data:{username:$scope.username,data:$scope.user}
+            data:{username:$scope.username,data:$scope.users}
         }).then(function(res){
             if(res.data._id){
                 sessionStorage.setItem("user", JSON.stringify(res.data));

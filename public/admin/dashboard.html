@@ -1,0 +1,232 @@
+<div id="wrapper">
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" ng-click="toggle()" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/">Naijabetbox</a>
+        </div>
+        <!-- Top Menu Items -->
+        <ul class="nav navbar-right top-nav">
+            <!--<li class="dropdown">
+                <a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+                <ul class="dropdown-menu message-dropdown">
+                    <li class="message-preview">
+                        <a href="">
+                            <div class="media">
+                                <span class="pull-left">
+                                    <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                </span>
+                                <div class="media-body">
+                                    <h5 class="media-heading">
+                                        <strong ng-bind="user.username"></strong>
+                                    </h5>
+                                    <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="message-preview">
+                        <a href="">
+                            <div class="media">
+                                <span class="pull-left">
+                                    <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                </span>
+                                <div class="media-body">
+                                    <h5 class="media-heading">
+                                        <strong ng-bind="user.username"></strong>
+                                    </h5>
+                                    <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="message-preview">
+                        <a href="">
+                            <div class="media">
+                                <span class="pull-left">
+                                    <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                </span>
+                                <div class="media-body">
+                                    <h5 class="media-heading">
+                                        <strong></strong>
+                                    </h5>
+                                    <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="message-footer">
+                        <a href="">Read All New Messages</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+                <ul class="dropdown-menu alert-dropdown">
+                    <li>
+                        <a href="">Alert Name <span class="label label-default">Alert Badge</span></a>
+                    </li>
+                    <li>
+                        <a href="">Alert Name <span class="label label-primary">Alert Badge</span></a>
+                    </li>
+                    <li>
+                        <a href="">Alert Name <span class="label label-success">Alert Badge</span></a>
+                    </li>
+                    <li>
+                        <a href="">Alert Name <span class="label label-info">Alert Badge</span></a>
+                    </li>
+                    <li>
+                        <a href="">Alert Name <span class="label label-warning">Alert Badge</span></a>
+                    </li>
+                    <li>
+                        <a href="">Alert Name <span class="label label-danger">Alert Badge</span></a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="">View All</a>
+                    </li>
+                </ul>
+            </li>-->
+            <li class="dropdown">
+                <a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><span>admin</span> <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    
+                    <li>
+                        <a href=""><i class="fa fa-fw fa-gear"></i> Change Password</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="" ng-click="logout()"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse" style="margin-left:0px">
+            <ul class="nav navbar-nav side-nav">
+                <li>
+                    <a href="" ng-click="user()"><i class="fa fa-fw fa-bar-chart-o"></i> Users</a>
+                </li>
+                <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-user"></i> Requests <sup style="color: red;background-color: white" class="badge" ng-bind="countOfRequest >0?countOfRequest:''"></sup><i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo" class="collapse">
+                            <li>
+                                <a href="" ng-click="fundbet()"> <i class="fa fa-edit"></i> Fund bet<sup style="color: red;background-color: white" class="badge" ng-bind="countOfFundBet > 0?countOfFundBet:''"></sup></a>
+                            </li>
+                            <li>
+                                <a href="" ng-click="recharge()"><i class="fa fa-edit"></i> Recharge<sup style="color: red;background-color: white" class="badge" ng-bind="countOfRecharge > 0?countOfRecharge:''"></sup></a>
+                            </li><li>
+                                <a href="" ng-click="data()"><i class="fa fa-edit"></i> Buy data<sup style="color: red;background-color: white" class="badge" ng-bind="countOfData > 0?countOfData:''"></sup></a>
+                            </li>
+                            <li>
+                                <a href="" ng-click="tv()"><i class="fa fa-edit"></i> Tv<sup style="color: red;background-color: white" class="badge" ng-bind="countOfTv > 0?countOfTv:''"></sup></a>
+                            </li>
+                            <li>
+                                <a href="" ng-click="booking()"><i class="fa fa-edit"></i> Play booking<sup style="color: red;background-color: white" class="badge" ng-bind="countOfBooking > 0?countOfBooking:''"></sup></a>
+
+                            </li>
+                            <li>
+                                <a href="" ng-click="transfer()"><i class="fa fa-edit"></i> Transfer<sup style="color: red;background-color: white" class="badge" ng-bind="countOfTransfer > 0?countOfTransfer:''"></sup></a>
+                            </li>
+                        </ul>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </nav>
+
+    <div id="page-wrapper" style="padding-top: 20px" class="container">
+        <div ng-if="getUsers">
+            <div class="row">
+                <div class="col-md-6">
+                  <h1>List of users</h1>
+                </div>
+                <div class="col-md-6">
+                  <input class="form-control" type="text" ng-model="username" placeholder="search by username"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                  <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-condensed">
+                      <thead>
+                        <tr>
+                          <th>Reg Number</th>
+                          <th>First name</th>
+                          <th>Last name</th>
+                          <th>Username</th>
+                          <th>Email</th>
+                          <th>Phone number</th>
+                          <th>Alternate phone number</th>
+                          <th>Joined date</th>
+                          <th>Main balance</th>
+                          <th>Bonus</th>
+                          <th>Total balance</th>
+                          <th>Withdrawable balance</th>
+                          <th>Actions</th>
+                        </tr>
+                        <tbody>
+                          <tr ng-repeat="user in users | filter:username">
+                            <td ng-bind="user.reg_Num"></td>
+                            <td ng-bind="user.firstname"></td>
+                            <td ng-bind="user.lastname"></td>
+                            <td ng-bind="user.username"></td>
+                            <td ng-bind="user.email"></td>
+                            <td ng-bind="user.mobile"></td>
+                            <td ng-bind="user.alt_mobile"></td>
+                            <td ng-bind="user.joinedDate | date:'yyyy/MM/dd'"></td>
+                            <td ng-bind="user.balance.toFixed(2)"></td>
+                            <td ng-bind="user.bonus.toFixed(2)"></td>
+                            <td ng-bind="user.total_balance.toFixed(2)"></td>
+                            <td ng-bind="user.withdrawable_balance.toFixed(2)"></td>
+                            <td> <a href="" ng-click="credit(user.username)">credit account</a></td>
+                          </tr>
+                        </tbody>
+                      </thead>
+                    </table>
+                  </div>
+                </div>
+            </div>
+        </div>    
+        <div ng-if="showBooking" ng-include="'/admin/booking_request.html'">
+        </div>
+        <div ng-if="showEditUser" ng-include="'/users/edit_user.html'">
+        </div>
+        <div ng-if="showFundBet" ng-include="'/admin/fund_request.html'">
+        </div>
+        <div ng-if="showWithdrawCash" ng-include="'/admin/withdraw_request.html'">
+        </div>
+        <div ng-if="showPayForTv" ng-include="'/admin/tv_request.html'">
+        </div>
+        <div ng-if="showBuyData" ng-include="'/admin/data_request.html'">
+        </div>
+        <div ng-if="showBuyAirtime" ng-include="'/admin/recharge_request.html'">
+        </div>
+        <div ng-if="showEditBooking" ng-include="'/admin/edit_booking.html'">
+        </div>
+        <div ng-if="showEditData" ng-include="'/admin/edit_data.html'">
+        </div>
+        <div ng-if="showEditFund" ng-include="'/admin/edit_fund.html'">
+        </div>
+        <div ng-if="showEditRecharge" ng-include="'/admin/edit_recharge.html'">
+        </div>
+        <div ng-if="showEditTransfer" ng-include="'/admin/edit_transfer.html'">
+        </div>
+        <div ng-if="showEditTv" ng-include="'/admin/edit_tv.html'">
+        </div>
+        <div ng-if="getCreditAccount" ng-include="'/admin/credit_account.html'">
+        </div>
+    </div>    
+    <!-- /#page-wrapper -->
+
+</div>

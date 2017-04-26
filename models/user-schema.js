@@ -23,10 +23,6 @@ var schema = mongoose.Schema({
         type: String,
         required:true
     },
-    profile_img:{
-        type:String,
-        default:"images/profile.png"
-    },
     username: {
         type: String,
         required: true,
@@ -72,6 +68,10 @@ module.exports.createUser = function (user, callback) {
 };
 module.exports.checkUsername = function (username, callback) {
     User.findOne({ username: username }, callback);
+};
+
+module.exports.getAllUsers = function (callback) {
+    User.find(callback);
 };
 module.exports.countOfUsers = function (callback) {
     User.count(callback);

@@ -4,19 +4,19 @@
       <table class="table table-bordered table-hovertable-striped">
         <tr>
           <td>Main balance</td>
-          <td ng-bind="user.balance"> </td>
+          <td ng-bind="user.balance.toFixed(2)"> </td>
         </tr>
         <tr>
           <td>Bonus</td>
-          <td ng-bind="user.bonus"> </td>
+          <td ng-bind="user.bonus.toFixed(2)"> </td>
         </tr>
         <tr>
           <td>Total balance</td>
-          <td ng-bind="user.total_balance"> </td>
+          <td ng-bind="user.total_balance.toFixed(2)"> </td>
         </tr>
         <tr>
           <td>Withdrawable balance</td>
-          <td ng-bind="user.withdrawable_balance"> </td>
+          <td ng-bind="user.withdrawable_balance.toFixed(2)"> </td>
         </tr>
       </table>
     </div>

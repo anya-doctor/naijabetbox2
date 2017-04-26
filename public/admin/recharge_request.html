@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+      <h1>Recharge Requests</h1>
+    </div>
+    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+      <input class="form-control" type="text" ng-model="filter" placeholder="search"/>
+    </div>
+  </div>
+  <div class="row">
+    <col-lg-12>
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Network</th>
+              <th>Phone</th>
+              <th>Amount</th>
+              <th>Request Date</th>
+              <th>Done</th>
+              <th>Done Date</th>
+              <th>Actions</th>
+            </tr>
+            <tbody>
+              <tr ng-repeat="req in recharge_request | filter:filter">
+                <td ng-bind="req.username"></td>
+                <td ng-bind="req.network"></td>
+                <td ng-bind="req.phone_number"></td>
+                <td ng-bind="req.amount"></td>
+                <td ng-bind="req.request_date | date:'yyyy/MM/dd'"></td>
+                <td ng-bind="req.done"></td>
+                <td ng-bind="req.done_date | date:'yyyy/MM/dd'"></td>
+                <td> <a href="" style="display:{{req.done =='Yes'?'none':'inline'}}" ng-click="editRecharge(req)">edit </a></td>
+              </tr>
+            </tbody>
+          </thead>
+        </table>
+      </div>
+    </col-lg-12>
+  </div>
+</div>

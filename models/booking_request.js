@@ -34,7 +34,8 @@ var bookingSchema = mongoose.Schema({
 	done:{
 		type:String,
 		required:true,
-		default:'no'
+		enum:["No","Yes"],
+		default:'No'
 	},
 	done_date:{
         type:Date
@@ -48,6 +49,14 @@ module.exports.createBookingRequest =function(request,callback){
 module.exports.getAllBookingRequest =function(query,callback){
 	BookingRequest.find(query,callback);
 };
+module.exports.getCount =function(callback){
+	BookingRequest.count({done:"No"},callback);
+};
 module.exports.updateABookingRequest = function(id,done,callback){
-	BookingRequest.findOneAndUpdate({_id:id},{$set:{done:done,done_date:new Date().toLocaleString().substring(0,new Date().toLocaleString().indexOf(","))}},callback);
+	var done_date = null;
+	if(done == "Yes"){
+		done_date = new Date();
+	}
+	BookingRequest.findOneAndUpdate({_id:id},{$set:{done:done,
+		done_date:done_date}},callback);
 };

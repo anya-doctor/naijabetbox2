@@ -28,7 +28,8 @@ var rechargeSchema = mongoose.Schema({
 	},
 	done:{
 		type:String,
-		default:'no',
+		enum:["No","Yes"],
+		default:'No',
 		required:true
 	}
 });
@@ -40,5 +41,12 @@ module.exports.getAllRechargeRequest = function(query,callback){
 	RechargeRequest.find(query,callback);
 };
 module.exports.updateARechargeRequest = function(id,done,callback){
-	RechargeRequest.findOneAndUpdate({_id:id},{$set:{done:done,done_date:new Date().toLocaleString().substring(0,new Date().toLocaleString().indexOf(","))}},callback);
+	var done_date = null;
+	if(done === "Yes"){
+		done_date = new Date();
+	}
+	RechargeRequest.findOneAndUpdate({_id:id},{$set:{done:done,done_date:done_date}},callback);
+};
+module.exports.getCount =function(callback){
+	RechargeRequest.count({done:"No"},callback);
 };

@@ -1,7 +1,5 @@
 <h1>My Profile</h1>
   <div class="row" style="margin-top:50px" >
-    <div class="col-xs-12 col-md-4"><img id="img" class="image-fluid" style="width:200px;heigth:100px" ng-src="{{user.profile_img}}"/><br>
-    <button class="btn btn-primary" type="submit"><i class="fa fa-sign-in" id="update"></i> Update  Profile Image</button></div>
     <div class="col-xs-12 col-md-8">
       <table class="table table-bordered table-hover table-striped">
         <tr>
@@ -39,7 +37,7 @@
         </tr>
         <tr>
           <td>Joined date</td>
-          <td id="joined_date" ng-bind="user.joinedDate"> </td>
+          <td id="joined_date" ng-bind="user.joinedDate | date:'yyyy/MM/dd'"> </td>
         </tr>
       </table>
       <a class="btn btn-primary" id="edit_user" ng-click="getEditUser()" href="">Edit Profile</a>

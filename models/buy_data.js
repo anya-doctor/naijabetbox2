@@ -32,7 +32,8 @@ var buyDataSchema = mongoose.Schema({
   },
   done:{
     type:String,
-    default:'no',
+    enum:["No","Yes"],
+    default:'No',
     required:true
   }
 });
@@ -44,5 +45,12 @@ module.exports.getAllBuyDataRequest = function(query,callback){
   BuyDataRequest.find(query,callback);
 };
 module.exports.updateABuyDataRequest = function(id,done,callback){
-  BuyDataRequest.findOneAndUpdate({_id:id},{$set:{done:done,done_date:new Date().toLocaleString().substring(0,new Date().toLocaleString().indexOf(","))}},callback);
+  var done_date = null;
+  if(done =="Yes"){
+    done_date = new Date();
+  }
+  BuyDataRequest.findOneAndUpdate({_id:id},{$set:{done:done,done_date:done_date}},callback);
+};
+module.exports.getCount =function(callback){
+  BuyDataRequest.count({done:"No"},callback);
 };

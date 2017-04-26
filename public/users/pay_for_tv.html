@@ -22,6 +22,9 @@
               <option>DSTV</option>
               <option>GoTv</option>
               <option>Startimes</option>
+                <option>Mytv</option>
+                <option>IrokoTv</option>
+                <option>DaarsatTv</option>
             </select>
           </div>
           <div class="form-group" ng-show="showDstv" ng-cloak="ng-cloak">
@@ -30,6 +33,24 @@
               <option value="">select a banquet</option>
             </select>
           </div>
+            <div class="form-group" ng-show="showMytv" ng-cloak="ng-cloak">
+                <label>Banquet</label>
+                <select class="form-control" name="banquet" ng-options="m.name as m.name for m in mytv" ng-model="request.banquet" ng-change="mytvBanquetChange()">
+                    <option value="">select a banquet</option>
+                </select>
+            </div>
+            <div class="form-group" ng-show="showIrokotv" ng-cloak="ng-cloak">
+                <label>Banquet</label>
+                <select class="form-control" name="banquet" ng-options="m.name as m.name for m in irokotv" ng-model="request.banquet" ng-change="irokotvBanquetChange()">
+                    <option value="">select a banquet</option>
+                </select>
+            </div>
+            <div class="form-group" ng-show="showDaarsattv" ng-cloak="ng-cloak">
+                <label>Banquet</label>
+                <select class="form-control" name="banquet" ng-options="m.name as m.name for m in daarsat" ng-model="request.banquet" ng-change="daarsatBanquetChange()">
+                    <option value="">select a banquet</option>
+                </select>
+            </div>
           <div class="form-group" ng-show="showGotv" ng-cloak="ng-cloak">
             <label>Banquet</label>
             <select class="form-control" name="banquet" ng-options="m.name as m.name for m in gotv" ng-model="request.banquet" ng-change="gotvBanquetChange()">

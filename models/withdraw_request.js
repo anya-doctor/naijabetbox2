@@ -10,6 +10,10 @@ var requsetSchema = mongoose.Schema({
 	type:String,
 		required:true
 	},
+	username:{
+	type:String,
+		required:true
+	},
 	bank:{
 	type:String,
 		required:true
@@ -32,8 +36,9 @@ var requsetSchema = mongoose.Schema({
 	},
 	done:{
 		type:String,
+		enum:["No","Yes"],
 		required:true,
-		default:'no'
+		default:'No'
 	}
 });
 
@@ -45,5 +50,12 @@ module.exports.getAllWithdrawRequest =function(query,callback){
 	WithdrawRequest.find(query,callback);
 };
 module.exports.updateAWithdrawalRequest = function(id,done,callback){
-	WithdrawRequest.findOneAndUpdate({_id:id},{$set:{done:done,done_date:new Date().toLocaleString().substring(0,new Date().toLocaleString().indexOf(","))}},callback);
+	var done_date = null;
+	if(done ==="Yes"){
+		done_date = new Date();
+	}
+	WithdrawRequest.findOneAndUpdate({_id:id},{$set:{done:done,done_date:null}},callback);
+};
+module.exports.getCount =function(callback){
+	WithdrawRequest.count({done:"No"},callback);
 };

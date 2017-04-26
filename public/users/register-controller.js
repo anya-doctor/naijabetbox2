@@ -17,11 +17,10 @@
                     }).then(function (res) {
                         if (res.data.username) {
                             $scope.suc = true;
-                            $timeout(timer, 1000);
                             sessionStorage.setItem("user", JSON.stringify(res.data));
                             $timeout(function () {
-                                $location.path("/dashboard");
-                            }, 3000);
+                            $location.path("/dashboard");
+                        }, 3000);
                         } else {
                             console.log(res.data);
                         }

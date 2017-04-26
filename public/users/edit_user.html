@@ -9,19 +9,19 @@
           </ul>                    
           <div class="form-group">
             <label for="firstname">Firstname</label>                        
-            <input class="form-control" id="firstname" type="text" required="true" name="firstname"  ng-model="user.firstname"/>
+            <input class="form-control" id="firstname" type="text" ng-required="true" name="firstname"  ng-model="users.firstname"/>
           </div>                    
           <div class="form-group">
             <label for="lastname">Lastname</label>                        
-            <input class="form-control" type="text" required="true" name="lastname" id="lastname" ng-model="user.lastname"/>
+            <input class="form-control" type="text" ng-required="true" name="lastname" id="lastname" ng-model="users.lastname"/>
           </div>    
           <div class="form-group">
             <label for="username">Username</label>                        
-            <input class="form-control" type="text" required="true" name="username" id="username" ng-model="user.username"/>
+            <input class="form-control" type="text" ng-required="true" name="username" id="username" ng-model="users.username"/>
           </div>
           <div class="form-group">
             <label for="gender">Gender</label>
-            <select class="form-control" id="gender" name="gender" required="true" ng-model="user.gender">
+            <select class="form-control" id="gender" name="gender" ng-required="true" ng-model="users.gender">
               <option value="">-- Select Sex --</option>                                
               <option value="Male" id="male">Male</option>                                
               <option value="Female" id="female" >Female</option>
@@ -29,22 +29,22 @@
           </div>   
           <div class="form-group">
             <label for="email">Email</label>                        
-            <input class="form-control" type="email" required="true" name="email" id="email" ng-model="user.email"/>
+            <input class="form-control" type="email" required="true" name="email" id="email" ng-model="users.email"/>
           </div>
           <div class="form-group">
             <label for="mobile">Mobile</label>                        
-            <input class="form-control" type="text" required="true" name="mobile" id="mobile" ng-model="user.mobile"/>
+            <input class="form-control" type="text" ng-required="true" name="mobile" id="mobile" ng-model="users.mobile"/>
           </div>
           <div class="form-group">
             <label for="alt_mobile">Alternate mobile</label>                        
-            <input class="form-control" type="text" required="true" name="alt_mobile" id="alt_mobile" ng-model="user.alt_mobile"/>
+            <input class="form-control" type="text" name="alt_mobile" id="alt_mobile" ng-model="users.alt_mobile"/>
           </div>
           <div class="row">
             <div class="col-md-6">
-              <button class="btn btn-primary" ng-click="update()"><i class="fa fa-sign-in" "></i> Update           </button>
+              <button class="btn btn-primary" ng-click="update()"><i class="fa fa-sign-in"></i> Update           </button>
             </div>
             <div class="col-md-6">
-              <span style="color: green" ng-cloak ng-show="showUpdateMsg">Successfull update!!You will be redirected in <span style="color: red" ng-bind="time"></span> seconds
+              <span style="color: green" ng-cloak ng-show="showUpdateMsg">Successfull update!!You will be redirected</span>
             </div>
           </div>
         </form>
