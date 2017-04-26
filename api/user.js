@@ -48,7 +48,7 @@ router.post("/register", function (req, res) {
         email: req.body.email,
         username: req.body.username,
         password: Hash.saltHashPassword(req.body.password),
-        reg_num : count++
+        reg_num : ++count
     });
     User.createUser(user, function (err, user) {
         if (err) {
