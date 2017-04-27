@@ -426,9 +426,8 @@ $scope.dstv = [
 
     $scope.book = function(){
         if($scope.formHolder.booking.$valid){
-            var total = $scope.request.bet_company === 'nairabet' ? 
-            $scope.user.balance : $scope.user.total_balance;
-            if(total < $scope.request.amount){
+            var balance = $scope.user.balance;
+            if(balance < $scope.request.amount){
                 $scope.errMsg = 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.\nNote that we do not give bonus for Nairabet';
             }
             $http({
@@ -461,7 +460,7 @@ $scope.dstv = [
         if($scope.formHolder.fundBet.$valid){
             $scope.errMsg = null;
             var total = $scope.request.bet_company === 'nairabet' ? 
-            $scope.user.balance : $scope.user.total_balance;
+            ($scope.user.total_balance - 100) : ($scope.user.balance - 100);
             if(total < $scope.request.amount){
                 $scope.errMsg = 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.\nNote that we do not give bonus for Nairabet';
             }
