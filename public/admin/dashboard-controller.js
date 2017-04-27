@@ -48,7 +48,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
         $location.path("/");
         $timeout(function () {
             $rootScope.$destroy();
-        }, 3000);
+        }, 5000);
     }
 
 		$scope.creditAccount = function(){
