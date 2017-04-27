@@ -20,15 +20,13 @@ router.post("/booking",function(req,res){
     amount  = req.body.request.amount,
     user = req.body.user;
 
-         var total = bet_company === 'nairabet' ? user.balance : user.total_balance,
-        username = user.username,balance = user.balance,bonus = user.bonus;
-        if(total < amount){
+         var username = user.username,balance = user.balance;
+        if(balance < amount){
             res.json({msg:'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.\nNote that we do not give bonus for Nairabet'});
        }else{
-              var balance = amount > balance ? 0 : (balance - amount),
-              total = amount > balance ? total - amount : (bonus + balance),
-              bonus = amount > balance ? total - balance : bonus,
-              withdrawableBalance = amount > balance ? 0 : balance - balance * 0.025,
+              var balance = balance - amount,
+              total = bonus + balance,
+              withdrawableBalance = balance - balance * 0.025,
               updateParams = {
                 balance:balance,
                 total_balance:total,
@@ -442,12 +440,12 @@ router.post("/fund_bet",function(req,res){
     amount  = req.body.request.amount,
     user = req.body.user;
 
-         var total = bet_company === 'nairabet' ? user.balance : user.total_balance,
+         var total = bet_company === 'nairabet' ? (user.total_balance - 100) : (user.balance - 100),
         username = user.username,balance = user.balance,bonus = user.bonus;
         if(total < amount){
             res.json({msg:'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.\nNote that we do not give bonus for Nairabet'});
        }else{
-              var balance = amount > balance ? 0 : (balance - amount),
+              var balance = amount > balance ? 0 : (balance - amount - 100),
               total = amount > balance ? total - amount : (bonus + balance),
               bonus = amount > balance ? total - balance : bonus,
               withdrawableBalance = amount > balance ? 0 : balance - balance * 0.025,
