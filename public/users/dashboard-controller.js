@@ -18,7 +18,7 @@
 
     function getAUser(){
         if(true){
-            $timeout(getAUser,1000);
+            $timeout(getAUser,10000);
         }
         $http({
             url:"user/get_user",
@@ -35,7 +35,7 @@
 
     function getMessages(){
         if(true){
-            $timeout(getMessages,1000);
+            $timeout(getMessages,10000);
         }
         $http({
             url:"user/getMessages",
@@ -81,7 +81,7 @@
                         $scope.getWallet();
                         $scope.request = {};
                         $scope.sucMsg = null;
-                    },3000);
+                    },1000);
                 }else{
                     $scope.errMsg = "An error occurred";
                     $scope.sucMsg = null;
@@ -383,7 +383,7 @@ $scope.dstv = [
                         $scope.getWallet();
                         $scope.request = {};
                         $scope.sucMsg = null;
-                    },3000);
+                    },1000);
                 }else{
                 }
             });
@@ -415,7 +415,7 @@ $scope.dstv = [
                         $scope.getWallet();
                         $scope.request = {};
                         $scope.sucMsg = null;
-                    },3000);
+                    },1000);
                 }else{
                 }
             });
@@ -447,7 +447,7 @@ $scope.dstv = [
                         $scope.getWallet();
                         $scope.request = {};
                         $scope.sucMsg = null;
-                    },3000);
+                    },1000);
                 }else{
                 }
             });
@@ -455,7 +455,7 @@ $scope.dstv = [
             $scope.errMsg = "Please fill in all the required details in the right format";
         }
     }
-
+    
     $scope.fundBet = function(){
         if($scope.formHolder.fundBet.$valid){
             $scope.errMsg = null;
@@ -481,7 +481,7 @@ $scope.dstv = [
                         $scope.getWallet();
                         $scope.request = {};
                         $scope.sucMsg = null;
-                    },3000);
+                    },1000);
                 
                 }else{
                 }
@@ -514,7 +514,7 @@ $scope.dstv = [
                         $scope.getWallet();
                         $scope.request = {};
                         $scope.sucMsg = null;
-                    },3000);
+                    },1000);
                 }else{
                 }
             });
@@ -665,16 +665,9 @@ $scope.dstv = [
             if(res.data._id){
                 sessionStorage.setItem("user", JSON.stringify(res.data));
                 $scope.showUpdateMsg = true;
-                $scope.time = 5;
-                        function timing() {
-                            if ($scope.time > 0) {
-                                $timeout(timing, 1000);
-                            }
-                            $scope.time--;
-                        }
-                        $timeout(timing, 1000);
                 $timeout(function(){
-                    $scope.getProfile();},5000);
+                    $scope.getProfile();
+                }, 1000);
             }
         });
     }
@@ -682,5 +675,8 @@ $scope.dstv = [
     $scope.logout = function () {
         sessionStorage.removeItem("user");
         $location.path("/");
+        $timeout(function () {
+        $rootScope.$destroy();
+        },10);
     }
 }])

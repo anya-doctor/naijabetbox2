@@ -13,7 +13,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 
 		function getAlerts() {
 		    if (true) {
-		        $timeout(getAlerts, 1000);
+		        $timeout(getAlerts, 10000);
 		    }
 		    $http({
 		        url: "user/getAlerts",
@@ -46,6 +46,9 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
     	$scope.logout = function () {
         sessionStorage.removeItem("admin");
         $location.path("/");
+        $timeout(function () {
+            $rootScope.$destroy();
+        }, 10);
     }
 
 		$scope.creditAccount = function(){
@@ -66,7 +69,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 						$timeout(function(){
 							$scope.user();
 							$scope.sucMsg = null;
-						},3000);
+						},1000);
 					} else if (res.data.msg) {
 					    $scope.sucMsg = null;
 					    $scope.errMsg = res.data.msg;
@@ -121,7 +124,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 						$timeout(function(){
 							$scope.booking();
 							$scope.sucMsg = null;
-						},3000);
+						},1000);
 					} else if (res.data.msg) {
 					    $scope.sucMsg = null;
 					    $scope.errMsg = res.data.msg;
@@ -156,7 +159,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 				        $timeout(function () {
 				            $scope.booking();
 				            $scope.sucMsg = null;
-				        }, 3000);
+				        }, 1000);
 				    } else if (res.data.msg) {
 				        $scope.sucMsg = null;
 				        $scope.errMsg = res.data.msg;
@@ -191,7 +194,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 				        $timeout(function () {
 				            $scope.booking();
 				            $scope.sucMsg = null;
-				        }, 3000);
+				        }, 1000);
 				    } else if (res.data.msg) {
 				        $scope.sucMsg = null;
 				        $scope.errMsg = res.data.msg;
@@ -226,7 +229,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 				        $timeout(function () {
 				            $scope.booking();
 				            $scope.sucMsg = null;
-				        }, 3000);
+				        }, 1000);
 				    } else if (res.data.msg) {
 				        $scope.sucMsg = null;
 				        $scope.errMsg = res.data.msg;
@@ -261,7 +264,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 				        $timeout(function () {
 				            $scope.booking();
 				            $scope.sucMsg = null;
-				        }, 3000);
+				        }, 1000);
 				    } else if (res.data.msg) {
 				        $scope.sucMsg = null;
 				        $scope.errMsg = res.data.msg;
@@ -296,7 +299,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 				        $timeout(function () {
 				            $scope.booking();
 				            $scope.sucMsg = null;
-				        }, 3000);
+				        }, 1000);
 				    } else if (res.data.msg) {
 				        $scope.sucMsg = null;
 				        $scope.errMsg = res.data.msg;
@@ -435,7 +438,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 
 		function getBookingCount(){
 			if(true){
-				$timeout(getBookingCount,1000);
+				$timeout(getBookingCount,10000);
 			}
 			$http({
 						url:"request/count_of_booking",
@@ -451,7 +454,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 
 		function getTvCount(){
 			if(true){
-				$timeout(getTvCount,1000);
+				$timeout(getTvCount,10000);
 			}
 			$http({
 						url:"request/count_of_tv",
@@ -466,7 +469,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 		}
 		function getRechargeCount(){
 			if(true){
-				$timeout(getRechargeCount,1000);
+				$timeout(getRechargeCount,10000);
 			}
 			$http({
 						url:"request/count_of_recharge",
@@ -481,7 +484,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 		}
 		function getDataCount(){
 			if(true){
-				$timeout(getDataCount,1000);
+				$timeout(getDataCount,10000);
 			}
 			$http({
 						url:"request/count_of_data",
@@ -496,7 +499,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 		}
 		function getTransferCount(){
 			if(true){
-				$timeout(getTransferCount,1000);
+				$timeout(getTransferCount,10000);
 			}
 			$http({
 						url:"request/count_of_transfer",
@@ -511,7 +514,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 		}
 		function getFundCount(){
 			if(true){
-				$timeout(getFundCount,1000);
+				$timeout(getFundCount,10000);
 			}
 			$http({
 						url:"request/count_of_fund",
@@ -526,7 +529,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 		}
 		function getRequestCount(){
 			if(true){
-				$timeout(getRequestCount,1000);
+				$timeout(getRequestCount,10000);
 			}
 			$scope.countOfRequest = $scope.countOfBooking+$scope.countOfTv+
 		$scope.countOfTransfer+$scope.countOfRecharge+$scope.countOfData
@@ -544,7 +547,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 		 	
 		function getAllUsers(){
 			if(true){
-				$timeout(getAllUsers,1000);
+				$timeout(getAllUsers,10000);
 			}
 			$http({
 				url:"user/getAllUsers",
