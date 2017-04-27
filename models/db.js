@@ -1,7 +1,7 @@
 ﻿'use strict';
 var mongoose = require('mongoose');
-//mongoose.connect('mongodb://127.0.0.1:27017/naijabetbox2');
-mongoose.connect('mongodb://titile1987:titile1987@ds035826.mlab.com:35826/naijabetbox');
+mongoose.connect('mongodb://127.0.0.1:27017/naijabetbox2');
+//mongoose.connect('mongodb://titile1987:titile1987@ds035826.mlab.com:35826/naijabetbox');
 mongoose.connection.on('connected', function () {
     console.log('Mongoose connected');
 });

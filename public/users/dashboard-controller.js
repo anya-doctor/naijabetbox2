@@ -677,6 +677,6 @@ $scope.dstv = [
         $location.path("/");
         $timeout(function () {
         $rootScope.$destroy();
-        },10);
+        },3000);
     }
 }])
