@@ -20,7 +20,7 @@ router.post("/booking",function(req,res){
     amount  = req.body.request.amount,
     user = req.body.user;
 
-         var username = user.username,balance = user.balance;
+         var username = user.username,balance = user.balance,bonus = user.bonus;
         if(balance < amount){
             res.json({msg:'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.\nNote that we do not give bonus for Nairabet'});
        }else{
@@ -59,7 +59,7 @@ router.post("/booking",function(req,res){
                                      });
                                      res.json({ msg: 'Something bad happened,please try again or contact the admin' });
                                 } else {
-                                 res.json(user);
+                                     res.json({ user: user });
                                 }
                             });
                           });

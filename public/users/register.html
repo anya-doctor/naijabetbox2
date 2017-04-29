@@ -115,7 +115,7 @@
                             <input type="hidden" name="payTO" value="" />
                             <input type="hidden" name="token" value="hjtU6349BTI8Tcurtyfugv77" />
                             <button ng-click="register()" class="btn btn-lg btn-primary"><i class="fa fa-edit"></i> Create Account</button>
-
+                            <span ng-show="notConnected" style="color:red">You are not connected</span>
                             <div ng-show="suc" style="color:green"><span>Successful registration.You will be redirected</span></div>
                         </div>
 

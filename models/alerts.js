@@ -16,7 +16,7 @@ var schema = mongoose.Schema({
         default: "unseen"
     },
     err: {
-        type: Object
+        type: Array
     }
 });
 

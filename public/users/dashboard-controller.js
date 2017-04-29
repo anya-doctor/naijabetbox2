@@ -18,7 +18,7 @@
 
     function getAUser(){
         if(true){
-            $timeout(getAUser,10000);
+            $timeout(getAUser,1000);
         }
         $http({
             url:"user/get_user",
@@ -35,7 +35,7 @@
 
     function getMessages(){
         if(true){
-            $timeout(getMessages,10000);
+            $timeout(getMessages,1000);
         }
         $http({
             url:"user/getMessages",
@@ -425,7 +425,7 @@ $scope.dstv = [
     }
 
     $scope.book = function(){
-        if($scope.formHolder.booking.$valid){
+        if ($scope.formHolder.booking.$valid) {
             var balance = $scope.user.balance;
             if(balance < $scope.request.amount){
                 $scope.errMsg = 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.\nNote that we do not give bonus for Nairabet';
@@ -434,13 +434,13 @@ $scope.dstv = [
                 url:"/request/booking",
                 method:"post",
                 data:{"user":$scope.user,"request":$scope.request}
-            }).then(function(res){
+            }).then(function (res) {
                 if(res.data.msg){
                     $scope.errMsg = res.data.msg;
                     $scope.sucMsg = null;
-                }else if(res.data.username){
-                    $scope.user = res.data;
-                    sessionStorage.setItem("user", JSON.stringify(res.data));
+                }else if(res.data.user.username){
+                    $scope.user = res.data.user;
+                    sessionStorage.setItem("user", JSON.stringify(res.data.user));
                     $scope.errMsg = null;
                     $scope.sucMsg = "Your request has been sent.It will be processed soon";
                     $timeout(function(){
@@ -675,8 +675,8 @@ $scope.dstv = [
     $scope.logout = function () {
         sessionStorage.removeItem("user");
         $location.path("/");
-        $timeout(function () {
-        $rootScope.$destroy();
-        },5000);
+        //$timeout(function () {
+        //$rootScope.$destroy();
+        //},5000);
     }
 }])

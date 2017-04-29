@@ -41,6 +41,7 @@
         		<span ng-show="formHolder.booking.amount.$dirty && formHolder.booking.amount.$invalid" class="error-message">Amount is minimum of 50</span>
         </div>
         <button class="btn btn-primary" ng-click="book()">Book</button>
+            <span ng-show="notConnected" style="color:red">You are not connected</span>
 </form>
       </div>
     </div>

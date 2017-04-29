@@ -13,7 +13,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 
 		function getAlerts() {
 		    if (true) {
-		        $timeout(getAlerts, 10000);
+		        $timeout(getAlerts, 1000);
 		    }
 		    $http({
 		        url: "user/getAlerts",
@@ -46,9 +46,9 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
     	$scope.logout = function () {
         sessionStorage.removeItem("admin");
         $location.path("/");
-        $timeout(function () {
-            $rootScope.$destroy();
-        }, 5000);
+        //$timeout(function () {
+        //    $rootScope.$destroy();
+        //}, 5000);
     }
 
 		$scope.creditAccount = function(){
@@ -56,21 +56,21 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 		        var message = {
 		            msg: "Your Naijabetbox has been credited with " +
                         $scope.creditDetails.amount,
-		            username: $scope.req.username
+		            username: $scope.creditDetails.username
 		        };
 				$http({
 					url:"user/credit_account",
 					method:"post",
 					data: { creditDetails: $scope.creditDetails, message: message }
-				}).then(function(res){
-					if(res.data.user){
+				}).then(function (res) {
+				    if (res.data.user) {
 						$scope.sucMsg = "Successfull,you will be redircted";
 						$scope.errMsg = null;
 						$timeout(function(){
 							$scope.user();
 							$scope.sucMsg = null;
 						},1000);
-					} else if (res.data.msg) {
+				    } else if (res.data.msg) {
 					    $scope.sucMsg = null;
 					    $scope.errMsg = res.data.msg;
 					}
@@ -438,7 +438,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 
 		function getBookingCount(){
 			if(true){
-				$timeout(getBookingCount,10000);
+				$timeout(getBookingCount,1000);
 			}
 			$http({
 						url:"request/count_of_booking",
@@ -454,7 +454,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 
 		function getTvCount(){
 			if(true){
-				$timeout(getTvCount,10000);
+				$timeout(getTvCount,1000);
 			}
 			$http({
 						url:"request/count_of_tv",
@@ -469,7 +469,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 		}
 		function getRechargeCount(){
 			if(true){
-				$timeout(getRechargeCount,10000);
+				$timeout(getRechargeCount,1000);
 			}
 			$http({
 						url:"request/count_of_recharge",
@@ -484,7 +484,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 		}
 		function getDataCount(){
 			if(true){
-				$timeout(getDataCount,10000);
+				$timeout(getDataCount,1000);
 			}
 			$http({
 						url:"request/count_of_data",
@@ -499,7 +499,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 		}
 		function getTransferCount(){
 			if(true){
-				$timeout(getTransferCount,10000);
+				$timeout(getTransferCount,1000);
 			}
 			$http({
 						url:"request/count_of_transfer",
@@ -514,7 +514,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 		}
 		function getFundCount(){
 			if(true){
-				$timeout(getFundCount,10000);
+				$timeout(getFundCount,1000);
 			}
 			$http({
 						url:"request/count_of_fund",
@@ -529,7 +529,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 		}
 		function getRequestCount(){
 			if(true){
-				$timeout(getRequestCount,10000);
+				$timeout(getRequestCount,1000);
 			}
 			$scope.countOfRequest = $scope.countOfBooking+$scope.countOfTv+
 		$scope.countOfTransfer+$scope.countOfRecharge+$scope.countOfData
@@ -547,7 +547,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 		 	
 		function getAllUsers(){
 			if(true){
-				$timeout(getAllUsers,10000);
+				$timeout(getAllUsers,1000);
 			}
 			$http({
 				url:"user/getAllUsers",
