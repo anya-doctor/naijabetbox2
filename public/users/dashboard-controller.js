@@ -1,8 +1,16 @@
 ﻿angular.module("App").controller("DashboardController", ["$rootScope",
  "$scope","$timeout",
     "$location","$http", function ($rootScope, $scope,$timeout,
-     $location,$http) {
-        if (sessionStorage.getItem("user") == null) {
+     $location, $http) {
+        $scope.isUser = JSON.parse(sessionStorage.getItem("user")) !== null;
+        function checkIfUser() {
+            if ($scope.isUser) {
+                $timeout(checkIfUser, 1000);
+            }
+            $scope.isUser = JSON.parse(sessionStorage.getItem("user")) !== null;
+        }
+        $timeout(checkIfUser, 1000);
+        if (!$scope.isUser) {
             $rootScope.showNavbar = true;
             $location.path("/login");
         }
@@ -17,7 +25,7 @@
     $scope.request = {};
 
     function getAUser(){
-        if(true){
+        if ($scope.isUser) {
             $timeout(getAUser,1000);
         }
         $http({
@@ -34,7 +42,7 @@
     $timeout(getAUser,1000);
 
     function getMessages(){
-        if(true){
+        if ($scope.isUser) {
             $timeout(getMessages,1000);
         }
         $http({
@@ -675,8 +683,6 @@ $scope.dstv = [
     $scope.logout = function () {
         sessionStorage.removeItem("user");
         $location.path("/");
-        //$timeout(function () {
-        //$rootScope.$destroy();
-        //},5000);
+        
     }
 }])

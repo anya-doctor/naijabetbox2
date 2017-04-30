@@ -1,8 +1,15 @@
 angular.module("App").controller("AdminDashboardController",["$rootScope",
 	"$scope","$http","$timeout","$location"
 	,function($rootScope,$scope,$http,$timeout,$location) {
-
-		if(!sessionStorage.getItem("admin")){
+	    $scope.isAdmin = sessionStorage.getItem("admin");
+		function checkIfAdmin() {
+		    if ($scope.isAdmin) {
+		        $timeout(checkIfAdmin, 1000);
+		    }
+		    $scope.isAdmin = sessionStorage.getItem("admin");
+		}
+		$timeout(checkIfAdmin, 1000);
+		if(!$scope.isAdmin){
 			$location.path("/login");
 		}
 		$rootScope.title = "Admin-Dashboard";
@@ -11,8 +18,9 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 		$scope.update = {};
 		$scope.creditDetails = {};
 
+
 		function getAlerts() {
-		    if (true) {
+		    if ($scope.isAdmin) {
 		        $timeout(getAlerts, 1000);
 		    }
 		    $http({
@@ -437,7 +445,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 
 
 		function getBookingCount(){
-			if(true){
+			if($scope.isAdmin){
 				$timeout(getBookingCount,1000);
 			}
 			$http({
@@ -453,7 +461,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 		}
 
 		function getTvCount(){
-			if(true){
+			if($scope.isAdmin){
 				$timeout(getTvCount,1000);
 			}
 			$http({
@@ -468,7 +476,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 					});
 		}
 		function getRechargeCount(){
-			if(true){
+			if($scope.isAdmin){
 				$timeout(getRechargeCount,1000);
 			}
 			$http({
@@ -483,7 +491,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 					});
 		}
 		function getDataCount(){
-			if(true){
+			if($scope.isAdmin){
 				$timeout(getDataCount,1000);
 			}
 			$http({
@@ -498,7 +506,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 					});
 		}
 		function getTransferCount(){
-			if(true){
+			if($scope.isAdmin){
 				$timeout(getTransferCount,1000);
 			}
 			$http({
@@ -513,7 +521,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 					});
 		}
 		function getFundCount(){
-			if(true){
+			if($scope.isAdmin){
 				$timeout(getFundCount,1000);
 			}
 			$http({
@@ -528,7 +536,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 					});
 		}
 		function getRequestCount(){
-			if(true){
+			if($scope.isAdmin){
 				$timeout(getRequestCount,1000);
 			}
 			$scope.countOfRequest = $scope.countOfBooking+$scope.countOfTv+
@@ -546,7 +554,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 
 		 	
 		function getAllUsers(){
-			if(true){
+			if($scope.isAdmin){
 				$timeout(getAllUsers,1000);
 			}
 			$http({

@@ -12,7 +12,7 @@
         $timeout(isConnected, 1000);
         $scope.login = function () {
             if ($scope.loginForm.$valid) {
-                if ($scope.connected) {
+                //if ($scope.connected) {
                     $scope.notConnected = false;
                     $http({
                         url: "/user/login",
@@ -43,12 +43,12 @@
                             }, 1000);
                         }
                     });
-                } else {
+                //} else {
 
-                    $scope.loginSuc = false;
-                    $scope.loginErr = false;
-                    $scope.notConnected = true;
-                }
+                  //  $scope.loginSuc = false;
+                   // $scope.loginErr = false;
+                    //$scope.notConnected = true;
+                //}
                 
             }
             else {
