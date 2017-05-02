@@ -3,13 +3,7 @@
         $rootScope.title = "Registration";
         $scope.captchaAns = 10;
         $rootScope.showNavBar = true;
-        function isConnected() {
-            if (true) {
-                $timeout(isConnected, 1000);
-            }
-            $scope.connected = navigator.onLine;
-        }
-        $timeout(isConnected, 1000);
+        $scope.errMsg = null;
         $scope.register = function () {
             if ($scope.signupForm.$valid) {
                 if ($scope.passwordDoNotMatch) {
@@ -17,21 +11,23 @@
                     $scope.usernameTaken = true;
                 }
                 else {
-                    if ($scope.connected) {
+                    if ($rootScope.connected) {
                         $scope.notConnected = false;
+                        $("body").addClass("loading");
                         $http({
                             url: "/user/register",
                             method: "post",
                             data: $scope.user
                         }).then(function (res) {
-                            if (res.data.username) {
+                            $("body").removeClass("loading");
+                            if (res.data.user.username) {
                                 $scope.suc = true;
                                 sessionStorage.setItem("user", JSON.stringify(res.data));
                                 $timeout(function () {
                                     $location.path("/dashboard");
                                 }, 1000);
                             } else {
-                                console.log(res.data);
+                               $scope.errMsg = res.data.msg;
                             }
                         })
                     } else {

@@ -13,6 +13,8 @@
           <thead>
             <tr>
               <th>Username</th>
+                <th>Betting Username</th>
+                <th>Customer Id</th>
               <th>Betting company</th>
               <th>Amount</th>
               <th>Request Date</th>
@@ -23,6 +25,8 @@
             <tbody>
               <tr ng-repeat="req in fund_request | filter:filter">
                 <td ng-bind="req.username"></td>
+                  <td ng-bind="req.bet_username"></td>
+                  <td ng-bind="req.customer_id"></td>
                 <td ng-bind="req.betting_company"></td>
                 <td ng-bind="req.amount"></td>
                 <td ng-bind="req.request_date | date:'yyyy/MM/dd'"></td>

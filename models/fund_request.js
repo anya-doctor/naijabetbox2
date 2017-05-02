@@ -2,9 +2,17 @@
 var mongoose = require('../models/db');
 //request schema
 var fundSchema = mongoose.Schema({
-	username:{
+    username: {
+        type: String,
+        required: true
+    },
+	bet_username:{
 		type:String,
 		required:true
+	},
+	customer_id: {
+	    type: String,
+	    required: true
 	},
 	betting_company:{
 		type:String,

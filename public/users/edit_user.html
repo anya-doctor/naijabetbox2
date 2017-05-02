@@ -4,20 +4,22 @@
       <div class="box">
         <h4 class="text-uppercase">Update your profile</h4>                
         <hr/>                
-        <form name="loginForm">
-          <ul class="errors">
-          </ul>                    
+        <form name="formHolder.update" novalidate>
+            <label style="font-size: 14px" class="alert alert-danger" ng-show="errMsg" ng-cloak ng-bind="errMsg"></label>                 
           <div class="form-group">
             <label for="firstname">Firstname</label>                        
             <input class="form-control" id="firstname" type="text" ng-required="true" name="firstname"  ng-model="users.firstname"/>
+              <span ng-cloak class="error-message" ng-show="formHolder.update.firstname.$dirty && formHolder.update.firstname.$error.required">Firstname is required</span>
           </div>                    
           <div class="form-group">
             <label for="lastname">Lastname</label>                        
             <input class="form-control" type="text" ng-required="true" name="lastname" id="lastname" ng-model="users.lastname"/>
+              <span ng-cloak class="error-message" ng-show="formHolder.update.lastname.$dirty && formHolder.update.lastname.$error.required">Lastname is required</span>
           </div>    
           <div class="form-group">
             <label for="username">Username</label>                        
             <input class="form-control" type="text" ng-required="true" name="username" id="username" ng-model="users.username"/>
+              <span ng-cloak class="error-message" ng-show="formHolder.update.username.$dirty && formHolder.update.username.$error.required">Username is required</span>
           </div>
           <div class="form-group">
             <label for="gender">Gender</label>
@@ -26,18 +28,23 @@
               <option value="Male" id="male">Male</option>                                
               <option value="Female" id="female" >Female</option>
             </select>
+              <span ng-cloak class="error-message" ng-show="users.gender === '' && formHolder.update.gender.$dirty || formHolder.update.gender.$dirty && formHolder.update.gender.$error.required">Gender is required</span>
           </div>   
           <div class="form-group">
             <label for="email">Email</label>                        
-            <input class="form-control" type="email" required="true" name="email" id="email" ng-model="users.email"/>
+            <input class="form-control" type="email" ng-required="true" name="email" id="email" ng-model="users.email"/>
+              <span ng-cloak class="error-message" ng-show="formHolder.update.email.$dirty && formHolder.update.email.$invalid">Email is required in valid format</span>
           </div>
           <div class="form-group">
             <label for="mobile">Mobile</label>                        
-            <input class="form-control" type="text" ng-required="true" name="mobile" id="mobile" ng-model="users.mobile"/>
+            <input class="form-control" type="text" ng-required="true" name="mobile" id="mobile" ng-model="users.mobile" ng-pattern="/^(08|07|09)\d{9}$/"/>
+              <span ng-cloak class="error-message" ng-show="formHolder.update.mobile.$dirty && formHolder.update.mobile.$error.required">Mobile is required</span>
+              <span ng-show="formHolder.update.mobile.$dirty && !formHolder.update.mobile.$error.required && formHolder.update.mobile.$invalid" ng-cloak class="error-message">Invalid phone number format</span>
           </div>
           <div class="form-group">
             <label for="alt_mobile">Alternate mobile</label>                        
-            <input class="form-control" type="text" name="alt_mobile" id="alt_mobile" ng-model="users.alt_mobile"/>
+            <input class="form-control" type="text" name="alt_mobile" id="alt_mobile" ng-model="users.alt_mobile" ng-pattern="/^(08|07|09)\d{9}$/"/>
+              <span ng-show="formHolder.update.alt_mobile.$dirty && formHolder.update.alt_mobile.$invalid" ng-cloak class="error-message">Invalid phone number format</span>
           </div>
           <div class="row">
             <div class="col-md-6">

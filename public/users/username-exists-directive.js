@@ -5,12 +5,13 @@
             elem.keyup(function () {
                 scope.usernameTaken = false;
                 if (elem.val().length >= 6) {
-
+                    $("body").addClass("loading");
                     $http({
                         url: "/user/check_username",
                         method: "get",
                         params: { username: elem.val() }
                     }).then(function (res) {
+                        $("body").removeClass("loading");
                         if (res.data.userAlreadyExist) {
                             scope.usernameExists = true;
                             $(elem[0].nextElementSibling).css({ "color": "red" }).

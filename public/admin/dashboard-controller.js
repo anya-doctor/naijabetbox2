@@ -61,6 +61,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 
 		$scope.creditAccount = function(){
 		    if ($scope.formHolder.creditAccount.$valid) {
+		        $("body").addClass("loading");
 		        var message = {
 		            msg: "Your Naijabetbox has been credited with " +
                         $scope.creditDetails.amount,
@@ -71,6 +72,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 					method:"post",
 					data: { creditDetails: $scope.creditDetails, message: message }
 				}).then(function (res) {
+				    $("body").removeClass("loading");
 				    if (res.data.user) {
 						$scope.sucMsg = "Successfull,you will be redircted";
 						$scope.errMsg = null;
@@ -93,7 +95,8 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 			}
 		}
 
-		$scope.credit = function(username){
+		$scope.credit = function (username) {
+		    $("body").addClass("loading");
 			$scope.creditDetails.username = username;
 			$scope.getCreditAccount = true;
 			$scope.getUsers = false;
@@ -113,7 +116,8 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 
 		$scope.updateBooking = function(){
 			
-			if($scope.formHolder.editBooking.$valid){
+		    if ($scope.formHolder.editBooking.$valid) {
+		        $("body").addClass("loading");
 				var message ={
 				msg:"Your play booking request on "+
 				new Date($scope.req.request_date).toString().substr(0,24)+
@@ -125,7 +129,8 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 					url:"request/update_booking",
 					method:"post",
 					data:{id:$scope.req._id,done:$scope.update.done,message:message}
-				}).then(function(res){
+				}).then(function (res) {
+				    $("body").removeClass("loading");
 					if(res.data.msg ==="success"){
 						$scope.sucMsg = "Successfull,you will be redircted";
 						$scope.errMsg = null;
@@ -149,7 +154,8 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 		}
 
 		$scope.updateData = function(){
-			if($scope.formHolder.editData.$valid){
+		    if ($scope.formHolder.editData.$valid) {
+		        $("body").addClass("loading");
 				var message ={
 				msg:"Your data request on "+
 				new Date($scope.req.request_date).toString().substr(0,24)+
@@ -160,7 +166,8 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 					url:"request/update_data",
 					method:"post",
 					data:{id:$scope.req._id,done:$scope.update.done,message:message}
-				}).then(function(res){
+				}).then(function (res) {
+				    $("body").removeClass("loading");
 				    if (res.data.msg === "success") {
 				        $scope.sucMsg = "Successfull,you will be redircted";
 				        $scope.errMsg = null;
@@ -184,7 +191,8 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 		}
 
 		$scope.updateFund = function(){
-			if($scope.formHolder.editFund.$valid){
+		    if ($scope.formHolder.editFund.$valid) {
+		        $("body").addClass("loading");
 				var message ={
 				msg:"Your fund bet request on "+
 				new Date($scope.req.request_date).toString().substr(0,24)+
@@ -195,7 +203,8 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 					url:"request/update_fundbet",
 					method:"post",
 					data:{id:$scope.req._id,done:$scope.update.done,message:message}
-				}).then(function(res){
+				}).then(function (res) {
+				    $("body").removeClass("loading");
 				    if (res.data.msg === "success") {
 				        $scope.sucMsg = "Successfull,you will be redircted";
 				        $scope.errMsg = null;
@@ -219,7 +228,8 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 		}
 
 		$scope.updateRecharge = function(){
-			if($scope.formHolder.editRecharge.$valid){
+		    if ($scope.formHolder.editRecharge.$valid) {
+		        $("body").addClass("loading");
 				var message ={
 				msg:"Your airtime request on "+
 				new Date($scope.req.request_date).toString().substr(0,24)+
@@ -230,7 +240,8 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 					url:"request/update_recharge",
 					method:"post",
 					data:{id:$scope.req._id,done:$scope.update.done,message:message}
-				}).then(function(res){
+				}).then(function (res) {
+				    $("body").removeClass("loading");
 				    if (res.data.msg === "success") {
 				        $scope.sucMsg = "Successfull,you will be redircted";
 				        $scope.errMsg = null;
@@ -254,7 +265,8 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 		}
 
 		$scope.updateTransfer = function(){
-			if($scope.formHolder.editTransfer.$valid){
+		    if ($scope.formHolder.editTransfer.$valid) {
+		        $("body").addClass("loading");
 				var message ={
 				msg:"Your transfer request on "+
 				new Date($scope.req.request_date).toString().substr(0,24)+
@@ -265,7 +277,8 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 					url:"request/update_transfer",
 					method:"post",
 					data:{id:$scope.req._id,done:$scope.update.done,message:message}
-				}).then(function(res){
+				}).then(function (res) {
+				    $("body").removeClass("loading");
 				    if (res.data.msg === "success") {
 				        $scope.sucMsg = "Successfull,you will be redircted";
 				        $scope.errMsg = null;
@@ -289,7 +302,8 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 		}
 
 		$scope.updateTv = function(){
-			if($scope.formHolder.editTv.$valid){
+		    if ($scope.formHolder.editTv.$valid) {
+		        $("body").addClass("loading");
 				var message ={
 				msg:"Your tv subscription request on "+
 				new Date($scope.req.request_date).toString().substr(0,24)+
@@ -300,7 +314,8 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 					url:"request/update_tv",
 					method:"post",
 					data:{id:$scope.req._id,done:$scope.update.done,message:message}
-				}).then(function(res){
+				}).then(function (res) {
+				    $("body").removeClass("loading");
 				    if (res.data.msg === "success") {
 				        $scope.sucMsg = "Successfull,you will be redircted";
 				        $scope.errMsg = null;
@@ -323,7 +338,8 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 			}
 		}
 
-		$scope.editBooking = function(req){
+		$scope.editBooking = function (req) {
+		    $("body").addClass("loading");
 			$scope.req = req;
 			$scope.getUsers = false;
 			$scope.showBooking = false;
@@ -343,7 +359,8 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 			$scope.getCreditAccount = false;
 		}
 
-		$scope.editTv = function(req){
+		$scope.editTv = function (req) {
+		    $("body").addClass("loading");
 			$scope.req = req;
 			$scope.getUsers = false;
 			$scope.showBooking = false;
@@ -363,7 +380,8 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 			$scope.getCreditAccount = false;
 		}
 
-		$scope.editFund = function(req){
+		$scope.editFund = function (req) {
+		    $("body").addClass("loading");
 			$scope.req = req;
 			$scope.getUsers = false;
 			$scope.showBooking = false;
@@ -383,7 +401,8 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 			$scope.getCreditAccount = false;
 		}
 
-		$scope.editRecharge = function(req){
+		$scope.editRecharge = function (req) {
+		    $("body").addClass("loading");
 			$scope.req = req;
 			$scope.getUsers = false;
 			$scope.showBooking = false;
@@ -403,7 +422,8 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 			$scope.getCreditAccount = false;
 		}
 
-		$scope.editData = function(req){
+		$scope.editData = function (req) {
+		    $("body").addClass("loading");
 			$scope.req = req;
 			$scope.getUsers = false;
 			$scope.showBooking = false;
@@ -423,7 +443,8 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 			$scope.getCreditAccount = false;
 		}
 
-		$scope.editTransfer = function(req){
+		$scope.editTransfer = function (req) {
+		    $("body").addClass("loading");
 			$scope.req = req;
 			$scope.getUsers = false;
 			$scope.showBooking = false;
@@ -570,7 +591,7 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 		$timeout(getAllUsers,1000);
 		$scope.getUsers = true;
 
-		$scope.user = function(){
+		$scope.user = function () {
 			$scope.getUsers = true;
 			$scope.showBooking = false;
 			$scope.showFundBet = false;
@@ -588,11 +609,13 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 			$(".navbar-ex1-collapse").css({"display":"none"});
 		}
 
-		$scope.tv = function(){
+		$scope.tv = function () {
+		    $("body").addClass("loading");
 			$http({
 				url:"request/tv",
 				method:"get"
-			}).then(function(res){
+			}).then(function (res) {
+			    $("body").removeClass("loading");
 				if(res.data.tv){
 					$scope.tv_request = res.data.tv;
 					$scope.getUsers = false;
@@ -616,11 +639,13 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 			$(".navbar-ex1-collapse").css({"display":"none"});
 		}
 
-		$scope.recharge = function(){
+		$scope.recharge = function () {
+		    $("body").addClass("loading");
 			$http({
 				url:"request/recharge",
 				method:"get"
-			}).then(function(res){
+			}).then(function (res) {
+			    $("body").removeClass("loading");
 				if(res.data.recharge){
 					$scope.recharge_request = res.data.recharge;
 					$scope.getUsers = false;
@@ -644,11 +669,13 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 			$(".navbar-ex1-collapse").css({"display":"none"});
 		}
 
-		$scope.data = function(){
+		$scope.data = function () {
+		    $("body").addClass("loading");
 			$http({
 				url:"request/data",
 				method:"get"
-			}).then(function(res){
+			}).then(function (res) {
+			    $("body").removeClass("loading");
 				if(res.data.data){
 					$scope.data_request = res.data.data;
 					$scope.getUsers = false;
@@ -672,11 +699,13 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 			$(".navbar-ex1-collapse").css({"display":"none"});
 		}
 
-		$scope.booking = function(){
+		$scope.booking = function () {
+		    $("body").addClass("loading");
 			$http({
 				url:"request/booking",
 				method:"get"
-			}).then(function(res){
+			}).then(function (res) {
+			    $("body").removeClass("loading");
 				if(res.data.bookings){
 					$scope.booking_request = res.data.bookings;
 					$scope.getUsers = false;
@@ -699,12 +728,14 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 			});
 			$(".navbar-ex1-collapse").css({"display":"none"});
 		}
-		$scope.fundbet = function(){
+		$scope.fundbet = function () {
+		    $("body").addClass("loading");
 			$http({
 				url:"request/fund_bet",
 				method:"get"
-			}).then(function(res){
-				if(res.data.fundbet){
+			}).then(function (res) {
+			    $("body").removeClass("loading");
+			    if (res.data.fundbet) {
 					$scope.fund_request = res.data.fundbet;
 					$scope.getUsers = false;
 			$scope.showBooking = false;
@@ -726,11 +757,13 @@ angular.module("App").controller("AdminDashboardController",["$rootScope",
 			});
 			$(".navbar-ex1-collapse").css({"display":"none"});
 		}
-		$scope.transfer = function(){
+		$scope.transfer = function () {
+		    $("body").addClass("loading");
 			$http({
 				url:"request/transfer",
 				method:"get"
-			}).then(function(res){
+			}).then(function (res) {
+			    $("body").removeClass("loading");
 				if(res.data.transfer){
 					$scope.transfer_request = res.data.transfer;
 					$scope.getUsers = false;

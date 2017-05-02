@@ -1,4 +1,21 @@
-﻿angular.module("App", ["ngRoute"]).config(function ($routeProvider, $locationProvider) {
+﻿angular.module("App", ["ngRoute"]).run(function($rootScope,$timeout){
+$rootScope.$on('$routeChangeStart',function(e,ar){
+    $("body").addClass("loading");
+});
+$rootScope.$on('$routeChangeSuccess', function (ar) {
+    $("body").removeClass("loading");
+});
+$rootScope.$on('$includeContentLoaded', function () {
+    $("body").removeClass("loading");
+});
+function isConnected() {
+    if (true) {
+        $timeout(isConnected, 1000);
+    }
+    $rootScope.connected = navigator.onLine;
+}
+$timeout(isConnected, 1000);
+}).config(function ($routeProvider, $locationProvider) {
     $routeProvider.otherwise("/");
     $routeProvider.when("/", {
         templateUrl: "users/home.html",

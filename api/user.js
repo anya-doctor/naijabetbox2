@@ -12,7 +12,7 @@ router.get("/getAllUsers",function(req,res){
     User.getAllUsers(function(err,users){
         if(err){
             var alert = new Alert();
-            alert.message = "An error occurred";
+            alert.message = "An error occurred at get users before line 15";
             alert.err = err;
             Alert.createAlert(alert, function (err, alert) {
             });
@@ -27,7 +27,7 @@ router.get("/getMessages",function(req,res){
     Message.getMessageByUsername(req.query.username,function(err,msgs){
         if(err){
             var alert = new Alert();
-            alert.message = "An error occurred";
+            alert.message = "An error occurred at get messages before line 30";
             alert.err = err;
             Alert.createAlert(alert, function (err, alert) {
             });
@@ -42,7 +42,7 @@ router.post("/updateMessage",function(req,res){
     Message.updateAMessage(req.body.id,req.body.status,function(err,msg){
         if(err){
             var alert = new Alert();
-            alert.message = "An error occurred";
+            alert.message = "An error occurred at update message before line 45";
             alert.err = err;
             Alert.createAlert(alert, function (err, alert) {
             });
@@ -55,7 +55,7 @@ router.get("/getAlerts", function (req, res) {
     Alert.getAlert(function (err, alerts) {
         if (err) {
             var alert = new Alert();
-            alert.message = "An error occurred";
+            alert.message = "An error occurred at get alerts before line 58";
             alert.err = err;
             Alert.createAlert(alert, function (err, alert) {
             });
@@ -70,7 +70,7 @@ router.post("/updateAlert", function (req, res) {
     Alert.updateAlert(req.body.id, req.body.status, function (err, msg) {
         if (err) {
             var alert = new Alert();
-            alert.message = "An error occurred";
+            alert.message = "An error occurred at update alert before line 73";
             alert.err = err;
             Alert.createAlert(alert, function (err, alert) {
             });
@@ -95,13 +95,13 @@ router.post("/register", function (req, res) {
     User.createUser(user, function (err, user) {
         if (err) {
             var alert = new Alert();
-            alert.message = "An error occurred";
+            alert.message = "An error occurred at register before line 98";
             alert.err = err;
             Alert.createAlert(alert, function (err, alert) {
             });
             res.json({ msg: 'Something bad happened,please try again or contact the admin' });
         } else {
-            res.json(user);
+            res.json({ user: user });
         }
     });
     });
@@ -111,7 +111,7 @@ router.get("/check_username", function (req, res) {
     User.checkUsername(req.query.username, function (err, user) {
         if (err) {
             var alert = new Alert();
-            alert.message = "An error occurred";
+            alert.message = "An error occurred at check username before line 114";
             alert.err = err;
             Alert.createAlert(alert, function (err, alert) {
             });
@@ -131,7 +131,7 @@ router.get("/get_user", function (req, res) {
     User.checkUsername(req.query.username, function (err, user) {
         if (err) {
             var alert = new Alert();
-            alert.message = "An error occurred";
+            alert.message = "An error occurred at get user before line 134";
             alert.err = err;
             Alert.createAlert(alert, function (err, alert) {
             });
@@ -146,7 +146,7 @@ router.post("/login", function (req, res,next) {
     User.checkUsername(req.body.username, function (err, user) {
         if (err) {
             var alert = new Alert();
-            alert.message = "An error occurred";
+            alert.message = "An error occurred at login before line 149";
             alert.err = err;
             Alert.createAlert(alert, function (err, alert) {
             });
@@ -179,7 +179,7 @@ router.post("/update-user",function(req,res,next){
     User.updateAUser(username,updateParam,function(err,user){
         if(err){
             var alert = new Alert();
-            alert.message = "An error occurred";
+            alert.message = "An error occurred at get update userbefore line 182";
             alert.err = err;
             Alert.createAlert(alert, function (err, alert) {
             });
@@ -188,7 +188,7 @@ router.post("/update-user",function(req,res,next){
             User.checkUsername(updateParam.username, function (err, user) {
         if (err) {
             var alert = new Alert();
-            alert.message = "An error occurred";
+            alert.message = "An error occurred at update user before line 191";
             alert.err = err;
             Alert.createAlert(alert, function (err, alert) {
             });
@@ -218,7 +218,7 @@ router.post("/credit_account",function(req,res){
         User.updateAUser(username,updateParam,function(err,user){
         if(err){
             var alert = new Alert();
-            alert.message = "An error occurred";
+            alert.message = "An error occurred at credit account before line 221";
             alert.err = err;
             Alert.createAlert(alert, function (err, alert) {
             });
@@ -230,7 +230,7 @@ router.post("/credit_account",function(req,res){
             Message.createMessage(msg, function (err, msg) {
                 if (err) {
                     var alert = new Alert();
-                    alert.message = "An error occurred";
+                    alert.message = "An error occurred at credit account  before line 233";
                     alert.err = err;
                     Alert.createAlert(alert, function (err, alert) {
                     });
@@ -240,7 +240,7 @@ router.post("/credit_account",function(req,res){
             User.checkUsername(username, function (err, user) {
                 if (err) {
                     var alert = new Alert();
-                    alert.message = "An error occurred";
+                    alert.message = "An error occurred at credit account before line 243";
                     alert.err = err;
                     Alert.createAlert(alert, function (err, alert) {
                     });

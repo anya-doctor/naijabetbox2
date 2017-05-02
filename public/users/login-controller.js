@@ -3,22 +3,17 @@
     function ($rootScope, $location, $scope, $http, $timeout) {
         $rootScope.title = "Login";
         $rootScope.showNavbar = true;
-        function isConnected() {
-            if (true) {
-                $timeout(isConnected, 1000);
-            }
-            $scope.connected = navigator.onLine;
-        }
-        $timeout(isConnected, 1000);
         $scope.login = function () {
             if ($scope.loginForm.$valid) {
-                //if ($scope.connected) {
-                    $scope.notConnected = false;
+                if ($rootScope.connected) {
+                $scope.notConnected = false;
+                $("body").addClass("loading");
                     $http({
                         url: "/user/login",
                         method: "post",
                         data: { "username": $scope.username, "password": $scope.password }
                     }).then(function (res) {
+                        $("body").removeClass("loading");
                         if (res.data.user === null) {
                             $scope.loginErr = true;
                             $scope.loginSuc = false;
@@ -43,12 +38,12 @@
                             }, 1000);
                         }
                     });
-                //} else {
+                } else {
 
-                  //  $scope.loginSuc = false;
-                   // $scope.loginErr = false;
-                    //$scope.notConnected = true;
-                //}
+                  $scope.loginSuc = false;
+                  $scope.loginErr = false;
+                  $scope.notConnected = true;
+                }
                 
             }
             else {
