@@ -73,31 +73,36 @@
                 if (balance < $scope.request.price) {
                     $scope.errMsg = 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.\nNote that we do not give bonus for Nairabet';
                 } else {
-                    $("body").addClass("loading");
-                    $http({
-                        url: "/request/buy_data",
-                        method: "post",
-                        data: { "user": $scope.user, "request": $scope.request }
-                    }).then(function (res) {
-                        $("body").removeClass("loading");
-                        if (res.data.msg) {
-                            $scope.errMsg = res.data.msg;
-                            $scope.sucMsg = null;
-                        } else if (res.data.user.username) {
-                            $scope.user = res.data.user;
-                            sessionStorage.setItem("user", JSON.stringify(res.data.user));
-                            $scope.errMsg = null;
-                            $scope.sucMsg = "Your request has been sent.It will be processed soon";
-                            $timeout(function () {
-                                $scope.getWallet();
-                                $scope.request = {};
+                    if ($rootScope.connected) {
+                        $scope.notConnected = false;
+                        $("body").addClass("loading");
+                        $http({
+                            url: "/request/buy_data",
+                            method: "post",
+                            data: { "user": $scope.user, "request": $scope.request }
+                        }).then(function (res) {
+                            $("body").removeClass("loading");
+                            if (res.data.msg) {
+                                $scope.errMsg = res.data.msg;
                                 $scope.sucMsg = null;
-                            }, 1000);
-                        } else {
-                            $scope.errMsg = "An error occurred";
-                            $scope.sucMsg = null;
-                        }
-                    });
+                            } else if (res.data.user.username) {
+                                $scope.user = res.data.user;
+                                sessionStorage.setItem("user", JSON.stringify(res.data.user));
+                                $scope.errMsg = null;
+                                $scope.sucMsg = "Your request has been sent.It will be processed soon";
+                                $timeout(function () {
+                                    $scope.getWallet();
+                                    $scope.request = {};
+                                    $scope.sucMsg = null;
+                                }, 1000);
+                            } else {
+                                $scope.errMsg = "An error occurred";
+                                $scope.sucMsg = null;
+                            }
+                        });
+                    } else {
+                        $scope.notConnected = true;
+                    }
                 }
             } else {
                 $scope.errMsg = "Please fill in all the required details in the right format";
@@ -377,29 +382,34 @@
                 if (total < $scope.request.amount) {
                     $scope.errMsg = 'Insuficient balance!!';
                 } else {
-                    $("body").addClass("loading");
-                    $http({
-                        url: "/request/pay",
-                        method: "post",
-                        data: { "user": $scope.user, "request": $scope.request }
-                    }).then(function (res) {
-                        $("body").removeClass("loading");
-                        if (res.data.msg) {
-                            $scope.errMsg = res.data.msg;
-                            $scope.sucMsg = null;
-                        } else if (res.data.user.username) {
-                            $scope.user = res.data.user;
-                            sessionStorage.setItem("user", JSON.stringify(res.data.user));
-                            $scope.errMsg = null;
-                            $scope.sucMsg = "Your request has been sent.It will be processed soon";
-                            $timeout(function () {
-                                $scope.getWallet();
-                                $scope.request = {};
+                    if ($rootScope.connected) {
+                        $scope.notConnected = false;
+                        $("body").addClass("loading");
+                        $http({
+                            url: "/request/pay",
+                            method: "post",
+                            data: { "user": $scope.user, "request": $scope.request }
+                        }).then(function (res) {
+                            $("body").removeClass("loading");
+                            if (res.data.msg) {
+                                $scope.errMsg = res.data.msg;
                                 $scope.sucMsg = null;
-                            }, 1000);
-                        } else {
-                        }
-                    });
+                            } else if (res.data.user.username) {
+                                $scope.user = res.data.user;
+                                sessionStorage.setItem("user", JSON.stringify(res.data.user));
+                                $scope.errMsg = null;
+                                $scope.sucMsg = "Your request has been sent.It will be processed soon";
+                                $timeout(function () {
+                                    $scope.getWallet();
+                                    $scope.request = {};
+                                    $scope.sucMsg = null;
+                                }, 1000);
+                            } else {
+                            }
+                        });
+                    } else {
+                            $scope.notConnected = true;
+                    }
                 }
             } else {
                 $scope.errMsg = "Please fill in all the required details in the right format";
@@ -412,29 +422,34 @@
                 if (total < $scope.request.amount) {
                     $scope.errMsg = 'Insuficient balance!!';
                 } else {
-                    $("body").addClass("loading");
-                    $http({
-                        url: "/request/recharge",
-                        method: "post",
-                        data: { "user": $scope.user, "request": $scope.request }
-                    }).then(function (res) {
-                        $("body").removeClass("loading");
-                        if (res.data.msg) {
-                            $scope.errMsg = res.data.msg;
-                            $scope.sucMsg = null;
-                        } else if (res.data.user.username) {
-                            $scope.user = res.data.user;
-                            sessionStorage.setItem("user", JSON.stringify(res.data.user));
-                            $scope.errMsg = null;
-                            $scope.sucMsg = "Your request has been sent.It will be processed soon";
-                            $timeout(function () {
-                                $scope.getWallet();
-                                $scope.request = {};
+                    if ($rootScope.connected) {
+                        $scope.notConnected = false;
+                        $("body").addClass("loading");
+                        $http({
+                            url: "/request/recharge",
+                            method: "post",
+                            data: { "user": $scope.user, "request": $scope.request }
+                        }).then(function (res) {
+                            $("body").removeClass("loading");
+                            if (res.data.msg) {
+                                $scope.errMsg = res.data.msg;
                                 $scope.sucMsg = null;
-                            }, 1000);
-                        } else {
-                        }
-                    });
+                            } else if (res.data.user.username) {
+                                $scope.user = res.data.user;
+                                sessionStorage.setItem("user", JSON.stringify(res.data.user));
+                                $scope.errMsg = null;
+                                $scope.sucMsg = "Your request has been sent.It will be processed soon";
+                                $timeout(function () {
+                                    $scope.getWallet();
+                                    $scope.request = {};
+                                    $scope.sucMsg = null;
+                                }, 1000);
+                            } else {
+                            }
+                        });
+                    } else {
+                            $scope.notConnected = true;
+                    }
                 }
             } else {
                 $scope.errMsg = "Please fill in all the required details in the right format";
@@ -447,29 +462,34 @@
                 if (balance < $scope.request.amount) {
                     $scope.errMsg = 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.\nNote that we do not give bonus for Nairabet';
                 } else {
-                    $("body").addClass("loading");
-                    $http({
-                        url: "/request/booking",
-                        method: "post",
-                        data: { "user": $scope.user, "request": $scope.request }
-                    }).then(function (res) {
-                        $("body").removeClass("loading");
-                        if (res.data.msg) {
-                            $scope.errMsg = res.data.msg;
-                            $scope.sucMsg = null;
-                        } else if (res.data.user.username) {
-                            $scope.user = res.data.user;
-                            sessionStorage.setItem("user", JSON.stringify(res.data.user));
-                            $scope.errMsg = null;
-                            $scope.sucMsg = "Your request has been sent.It will be processed soon";
-                            $timeout(function () {
-                                $scope.getWallet();
-                                $scope.request = {};
+                    if ($rootScope.connected) {
+                        $scope.notConnected = false;
+                        $("body").addClass("loading");
+                        $http({
+                            url: "/request/booking",
+                            method: "post",
+                            data: { "user": $scope.user, "request": $scope.request }
+                        }).then(function (res) {
+                            $("body").removeClass("loading");
+                            if (res.data.msg) {
+                                $scope.errMsg = res.data.msg;
                                 $scope.sucMsg = null;
-                            }, 1000);
-                        } else {
-                        }
-                    });
+                            } else if (res.data.user.username) {
+                                $scope.user = res.data.user;
+                                sessionStorage.setItem("user", JSON.stringify(res.data.user));
+                                $scope.errMsg = null;
+                                $scope.sucMsg = "Your request has been sent.It will be processed soon";
+                                $timeout(function () {
+                                    $scope.getWallet();
+                                    $scope.request = {};
+                                    $scope.sucMsg = null;
+                                }, 1000);
+                            } else {
+                            }
+                        });
+                    } else {
+                            $scope.notConnected = true;
+                    }
                 }
             } else {
                 $scope.errMsg = "Please fill in all the required details in the right format";
@@ -484,30 +504,35 @@
                 if (check < $scope.request.amount) {
                     $scope.errMsg = 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.\nNote that we do not give bonus for Nairabet';
                 } else {
-                    $("body").addClass("loading");
-                    $http({
-                        url: "/request/fund_bet",
-                        method: "post",
-                        data: { "user": $scope.user, "request": $scope.request }
-                    }).then(function (res) {
-                        $("body").removeClass("loading");
-                        if (res.data.msg) {
-                            $scope.errMsg = res.data.msg;
-                            $scope.sucMsg = null;
-                        } else if (res.data.user.username) {
-                            $scope.user = res.data;
-                            sessionStorage.setItem("user", JSON.stringify(res.data));
-                            $scope.errMsg = null;
-                            $scope.sucMsg = "Your request has been sent.It will be processed soon";
-                            $timeout(function () {
-                                $scope.getWallet();
-                                $scope.request = {};
+                    if ($rootScope.connected) {
+                        $scope.notConnected = false;
+                        $("body").addClass("loading");
+                        $http({
+                            url: "/request/fund_bet",
+                            method: "post",
+                            data: { "user": $scope.user, "request": $scope.request }
+                        }).then(function (res) {
+                            $("body").removeClass("loading");
+                            if (res.data.msg) {
+                                $scope.errMsg = res.data.msg;
                                 $scope.sucMsg = null;
-                            }, 1000);
+                            } else if (res.data.user.username) {
+                                $scope.user = res.data;
+                                sessionStorage.setItem("user", JSON.stringify(res.data));
+                                $scope.errMsg = null;
+                                $scope.sucMsg = "Your request has been sent.It will be processed soon";
+                                $timeout(function () {
+                                    $scope.getWallet();
+                                    $scope.request = {};
+                                    $scope.sucMsg = null;
+                                }, 1000);
 
-                        } else {
-                        }
-                    });
+                            } else {
+                            }
+                        });
+                    } else {
+                            $scope.notConnected = true;
+                    }
                 }
             } else {
                 $scope.errMsg = "Please fill in all the required details in the right format";
@@ -521,29 +546,34 @@
                 if (withdrawableBalance < $scope.request.amount) {
                     $scope.errMsg = 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.\nNote that we do not give bonus for Nairabet';
                 } else {
-                    $("body").addClass("loading");
-                    $http({
-                        url: "/request/transfer",
-                        method: "post",
-                        data: { "user": $scope.user, "request": $scope.request }
-                    }).then(function (res) {
-                        $("body").removeClass("loading");
-                        if (res.data.msg) {
-                            $scope.errMsg = res.data.msg;
-                            $scope.sucMsg = null;
-                        } else if (res.data.user.username) {
-                            $scope.user = res.data.user;
-                            sessionStorage.setItem("user", JSON.stringify(res.data.user));
-                            $scope.errMsg = null;
-                            $scope.sucMsg = "Your request has been sent.It will be processed soon";
-                            $timeout(function () {
-                                $scope.getWallet();
-                                $scope.request = {};
+                    if ($rootScope.connected) {
+                        $scope.notConnected = false;
+                        $("body").addClass("loading");
+                        $http({
+                            url: "/request/transfer",
+                            method: "post",
+                            data: { "user": $scope.user, "request": $scope.request }
+                        }).then(function (res) {
+                            $("body").removeClass("loading");
+                            if (res.data.msg) {
+                                $scope.errMsg = res.data.msg;
                                 $scope.sucMsg = null;
-                            }, 1000);
-                        } else {
-                        }
-                    });
+                            } else if (res.data.user.username) {
+                                $scope.user = res.data.user;
+                                sessionStorage.setItem("user", JSON.stringify(res.data.user));
+                                $scope.errMsg = null;
+                                $scope.sucMsg = "Your request has been sent.It will be processed soon";
+                                $timeout(function () {
+                                    $scope.getWallet();
+                                    $scope.request = {};
+                                    $scope.sucMsg = null;
+                                }, 1000);
+                            } else {
+                            }
+                        });
+                    } else {
+                            $scope.notConnected = true;
+                    }
                 }
             } else {
                 $scope.errMsg = "Please fill in all the required details in the right format";
@@ -695,22 +725,26 @@
 
         $scope.update = function () {
             if ($scope.formHolder.update.$valid) {
-                $scope.errMsg = null;
-                $("body").addClass("loading");
-                $http({
-                    url: "/user/update-user",
-                    method: "post",
-                    data: { username: $scope.username, data: $scope.users }
-                }).then(function (res) {
-                    $("body").removeClass("loading");
-                    if (res.data._id) {
-                        sessionStorage.setItem("user", JSON.stringify(res.data));
-                        $scope.showUpdateMsg = true;
-                        $timeout(function () {
-                            $scope.getProfile();
-                        }, 1000);
-                    }
-                });
+                if ($rootScope.connected) {
+                    $scope.notConnected = false;
+                    $scope.errMsg = null;
+                    $("body").addClass("loading");
+                    $http({
+                        url: "/user/update-user",
+                        method: "post",
+                        data: { username: $scope.username, data: $scope.users }
+                    }).then(function (res) {
+                        $("body").removeClass("loading");
+                        if (res.data._id) {
+                            sessionStorage.setItem("user", JSON.stringify(res.data));
+                            $scope.showUpdateMsg = true;
+                            $timeout(function () {
+                                $scope.getProfile();
+                            }, 1000);
+                        }
+                    });
+                }else{
+                        $scope.notConnected = true;}
             } else {
                 $scope.errMsg = "Please fill in all the required details in the right format";
             }

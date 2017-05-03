@@ -67,7 +67,7 @@
           <div class="form-group" ng-show="showBanquet" ng-cloak="ng-cloak">
             <label>Price(₦)</label>
             <input class="form-control" name="amount" readonly="readonly" type="number" ng-model="request.price"/><br/>
-            <button class="btn btn-primary" ng-click="pay()">Pay</button>
+            <button class="btn btn-primary" ng-click="pay()">Pay</button><span ng-show="notConnected" style="color:red">You are not connected</span>
           </div>
         </form>
       </div>

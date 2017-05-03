@@ -4,9 +4,44 @@ router = express.Router(),
 User = require("../models/user-schema"),
 Message = require("../models/messages"),
 Alert = require("../models/alerts"),
-Hash = require("../models/hash-password");
+Hash = require("../models/hash-password"),
+nodemailer = require("nodemailer");
 
+router.post('/contact',function(req,res,next){
+    //Get form values
+    var username = req.body.name.toLowerCase(),
+    email = req.body.email.toLowerCase(),
+    subject = req.body.message.toLowerCase(),
+    phone = req.body.mobile,
+    message = req.body.message;
 
+            var transporter = nodemailer.createTransport({
+                    service:'Gmail',
+                    auth: {
+                        user:'paulsontiti@gmail.com',
+                        pass:'titile1987'
+                    }
+            });
+            var mailOptions = {
+                from:username + '<'+email+'>',
+                to:'evatel@gmail.com',
+                subject:subject,
+                html:'<p>A user contacted you with the following details....</p><ul><li>Username: '+username+'</li><li>Email: '+email+'</li><li>Phone number: '+phone+'</li><li>Message: '+message+'</li></ul>'
+            }
+            transporter.sendMail(mailOptions,function(err,info){
+            if(err){
+            var alert = new Alert();
+            alert.message = "An error occurred at contact us before line 35";
+            alert.err = err;
+            Alert.createAlert(alert, function (err, alert) {
+            });
+            res.json({ msg: 'Something bad happened,please try again or contact the admin' });
+            }else{
+                res.json({msg:"Thank you for contacting us"});
+            }
+            })
+
+});
 
 router.get("/getAllUsers",function(req,res){
     User.getAllUsers(function(err,users){
@@ -108,7 +143,7 @@ router.post("/register", function (req, res) {
 });
 
 router.get("/check_username", function (req, res) {
-    User.checkUsername(req.query.username, function (err, user) {
+    User.checkUsername(req.query.username.toLowerCase(), function (err, user) {
         if (err) {
             var alert = new Alert();
             alert.message = "An error occurred at check username before line 114";
@@ -143,7 +178,7 @@ router.get("/get_user", function (req, res) {
 });
 
 router.post("/login", function (req, res,next) {
-    User.checkUsername(req.body.username, function (err, user) {
+    User.checkUsername(req.body.username.toLowerCase(), function (err, user) {
         if (err) {
             var alert = new Alert();
             alert.message = "An error occurred at login before line 149";

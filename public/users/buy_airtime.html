@@ -25,7 +25,7 @@
             <label>Amount</label>
             <input class="form-control" type="number" min="100" placeholder="how much recharge do you want?" ng-required="true" name="amount" ng-model="request.amount"/>
             <br/>
-            <button class="btn btn-primary" ng-click="buy()">Recharge</button>
+            <button class="btn btn-primary" ng-click="buy()">Recharge</button><span ng-show="notConnected" style="color:red">You are not connected</span>
           </div>
         </form>
       </div>

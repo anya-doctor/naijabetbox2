@@ -46,7 +46,7 @@
             <input class="form-control" type="number" min="1000" placeholder="amount to transfer" name="amount" ng-model="request.amount" ng-required="true"/>
             <span ng-show="formHolder.transferCash.amount.$dirty && formHolder.transferCash.amount.$invalid" class="error-message">Amount must be minimum of 1000</span> 
           </div><br/>
-          <button class="btn btn-primary" ng-click="transfer()">Transfer</button>
+          <button class="btn btn-primary" ng-click="transfer()">Transfer</button><span ng-show="notConnected" style="color:red">You are not connected</span>
         </form>
       </div>
     </div>

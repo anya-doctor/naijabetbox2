@@ -48,7 +48,7 @@
           </div>
           <div class="row">
             <div class="col-md-6">
-              <button class="btn btn-primary" ng-click="update()"><i class="fa fa-sign-in"></i> Update           </button>
+              <button class="btn btn-primary" ng-click="update()"><i class="fa fa-sign-in"></i> Update           </button><span ng-show="notConnected" style="color:red">You are not connected</span>
             </div>
             <div class="col-md-6">
               <span style="color: green" ng-cloak ng-show="showUpdateMsg">Successfull update!!You will be redirected</span>

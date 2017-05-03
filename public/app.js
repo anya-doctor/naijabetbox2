@@ -26,6 +26,26 @@ $timeout(isConnected, 1000);
     }).when("/login", {
             templateUrl: "users/login.html",
             controller: "LoginController"
+    }).when("/fundbet", {
+        templateUrl: "users/fundbet.html"
+    }).when("/play_booking", {
+        templateUrl: "users/play_booking.html"
+    }).when("/transfer_cash", {
+        templateUrl: "users/transfer_cash.html"
+    }).when("/buy_data", {
+        templateUrl: "users/buy_bundle.html"
+    }).when("/pay_for_tv", {
+        templateUrl: "users/pay_tv.html"
+    }).when("/how_it_works", {
+        templateUrl: "users/how_it_works.html"
+    }).when("/why_us", {
+        templateUrl: "users/why_us.html"
+    }).when("/how_to_fundbet", {
+        templateUrl: "users/how_to_fundbet.html"
+    }).when("/how_to_fund_account", {
+        templateUrl: "users/how_to_fund_account.html"
+    }).when("/buy_airtime", {
+        templateUrl: "users/recharge.html"
     }).when("/dashboard",
         {
             templateUrl: "users/dashboard.html",

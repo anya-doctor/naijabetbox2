@@ -47,7 +47,7 @@
             <input class="form-control" type="number" ng-required="true" min="50" placeholder="how much do you want to fund?" name="amount"  ng-model="request.amount"/>
             <span ng-show="formHolder.fundBet.amount.$dirty && formHolder.fundBet.amount.$invalid" class="error-message">Minimum amount is 50</span>
             <span ng-show="formHolder.fundBet.amount.$dirty && formHolder.fundBet.amount.$error.required" class="error-message">Amount is required</span><br/>
-            <button class="btn btn-primary" ng-click="fundBet()">Fund bet</button>
+            <button class="btn btn-primary" ng-click="fundBet()">Fund bet</button><span ng-show="notConnected" style="color:red">You are not connected</span>
           </div>
         </form>
       </div>

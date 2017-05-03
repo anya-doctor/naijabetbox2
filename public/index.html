@@ -3,7 +3,6 @@
 <html ng-app="App">
 <head>
     <base href="/" />
-    <!-- Site made with Mobirise Website Builder v3.12.1, https://mobirise.com -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -68,7 +67,7 @@ body.loading .modal {
                     <div class="mbr-table-cell">
 
                         <div class="navbar-brand">
-                            <a ui-sref="home" class="navbar-logo"><img src="assets/images/logo.png" alt="Mobirise"></a>
+                            <a href="/#!/" class="navbar-logo"><img src="assets/images/logo.png" alt="Naijabetbox"></a>
                             <a class="navbar-caption"></a>
                         </div>
 
@@ -81,9 +80,9 @@ body.loading .modal {
 
                         <ul style="float:right" class="nav-dropdown collapse pull-xs-right nav navbar-nav navbar-toggleable-sm" id="exCollapsingNavbar">
                             <li class="nav-item"><a class="nav-link link" href="">ABOUT US</a></li>
-                            <li class="nav-item dropdown"><a class="nav-link link dropdown-toggle" data-toggle="dropdown-submenu" href="" aria-expanded="false">WHAT YOU CAN DO</a><div class="dropdown-menu"><a class="dropdown-item" href="https://mobirise.com/">Fund Bet</a><a class="dropdown-item" href="https://mobirise.com/">Play Bookings</a><a class="dropdown-item" href="https://mobirise.com/">Transfer Cash</a><a class="dropdown-item" href="https://mobirise.com/">Buy Airtime</a><a class="dropdown-item" href="https://mobirise.com/">Buy Data</a><a class="dropdown-item" href="https://mobirise.com/">Pay For Tv</a></div></li>
+                            <li class="nav-item dropdown"><a class="nav-link link dropdown-toggle" data-toggle="dropdown-submenu" href="" aria-expanded="false">WHAT YOU CAN DO</a><div class="dropdown-menu"><a class="dropdown-item" href="/#!/fundbet">Fund Bet</a><a class="dropdown-item" href="/#!/play_booking">Play Bookings</a><a class="dropdown-item" href="/#!/transfer_cash">Transfer Cash</a><a class="dropdown-item" href="/#!/buy_airtime">Buy Airtime</a><a class="dropdown-item" href="/#!/buy_data">Buy Data</a><a class="dropdown-item" href="/#!/pay_for_tv">Pay For Tv</a></div></li>
                             <li class="nav-item dropdown open"><a class="nav-link link dropdown-toggle" href="" aria-expanded="true" data-toggle="dropdown-submenu">ACCOUNT</a><div class="dropdown-menu"><a class="dropdown-item" href="#!/signup">Signup</a><a class="dropdown-item" href="#!/login">Login</a></div></li>
-                            <li class="nav-item dropdown"><a class="nav-link link dropdown-toggle" data-toggle="dropdown-submenu" href="" aria-expanded="false">HELP</a><div class="dropdown-menu"><a class="dropdown-item" href="">How it works</a><a class="dropdown-item" href="https://mobirise.com/">How to fund my account</a><a class="dropdown-item" href="https://mobirise.com/">How to fund bet</a><a class="dropdown-item" href="https://mobirise.com/">How to play bookings</a><a class="dropdown-item" href="https://mobirise.com/">Contact us</a></div></li>
+                            <li class="nav-item dropdown"><a class="nav-link link dropdown-toggle" data-toggle="dropdown-submenu" href="" aria-expanded="false">HELP</a><div class="dropdown-menu"><a class="dropdown-item" href="/#!/how_it_works">How it works</a><a class="dropdown-item" href="/#!/how_to_fund_account">How to fund my account</a><a class="dropdown-item" href="/#!/how_to_fundbet">How to fund bet</a><a class="dropdown-item" href="/#!/play_booking">How to play bookings</a><a class="dropdown-item" href="/#!/#contacts3-y">Contact us</a></div></li>
 
                         </ul>
                         <button hidden="" class="navbar-toggler navbar-close" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
@@ -108,60 +107,51 @@ body.loading .modal {
 
 <section ng-show="showNavBar" ng-cloak class="mbr-footer mbr-section mbr-section-md-padding" id="contacts3-y" style="background-color: rgb(46, 46, 46); padding-top: 90px; padding-bottom: 90px">
   <div class="row">
-    <div class="mbr-company col-xs-12 col-md-6 col-lg-3">
-      <div class="mbr-company card">
-        <div><img class="card-img-top" src="/assets/images/logo.png"/></div>                    
-        <div class="card-block">
-          <p class="card-text">Footer with solid color background and a contact form, Easily add subscribe and contact forms without any server-side integration.</p>
-        </div>                    
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item"><span class="list-group-icon"><span class="etl-icon icon-phone mbr-iconfont-company-contacts3"></span></span>                            <span class="list-group-text">+1 (0) 000 0000 001 or +1 (0) 000 0000 002</span></li>                        
-          <li class="list-group-item"><span class="list-group-icon"><span class="etl-icon icon-map-pin mbr-iconfont-company-contacts3"></span></span>                            <span class="list-group-text">1234 Street Name, City AA 99999</span></li>                        
-          <li class="list-group-item active"><span class="list-group-icon"><span class="etl-icon icon-envelope mbr-iconfont-company-contacts3"></span></span>                            <span class="list-group-text"><a href="mailto:support@naijabetbox.com">support@naijabetbox.com</a></span></li>
-        </ul>
-      </div>
-    </div>            
-    <div class="mbr-footer-content col-xs-12 col-md-6 col-lg-3">
+            
+    <div class="mbr-footer-content col-xs-12 col-md-6 col-lg-4">
       <h4>Quick Links</h4>                
       <ul>
         <li><a class="text-white" href="#">About Us</a></li>
-        <li><a class="text-white" href="#">How it works</a></li>
-        <li><a class="text-white" href="#">How to fund bet</a></li>
-        <li><a class="text-white" href="#">How to fund my account</a></li>
-        <li><a class="text-white" href="#">Whatever</a></li>
+        <li><a class="text-white" href="/#!/how_it_works">How it works</a></li>
+        <li><a class="text-white" href="/#!/how_to_fundbet">How to fund bet</a></li>
+        <li><a class="text-white" href="/#!/how_to_fund_account">How to fund my account</a></li>
       </ul>
     </div>            
-    <div class="mbr-footer-content col-xs-12 col-md-6 col-lg-3">
+    <div class="mbr-footer-content col-xs-12 col-md-6 col-lg-4">
       <p><strong>Contacts</strong><br/>Email: support@naijabetbox.com<br/>Phone: +1 (0) 000 0000 001<br/>Fax: +1 (0) 000 0000 002<br/><br/><br/><strong>Address</strong><br/>1234 Street Name<br/>City, AA 99999</p>
     </div>            
-    <div class="col-xs-12 col-md-6 col-lg-3" data-form-type="formoid">
+    <div class="col-xs-12 col-md-6 col-lg-4" data-form-type="formoid">
       <div data-form-alert="true">
-        <div hidden="" data-form-alert-success="true">Thanks for filling out form!</div>
+        <div hidden="" data-form-alert-success="true">Thanks for contacting us</div>
       </div>                
       <form action="" method="post" data-form-title="MESSAGE">
         <input type="hidden" value="FFuf07uqWF9fu9bjFuHDg+g9lAzxRS+hSA1pOs/gPLZKznVel7x2SDW0OAlCYv5oTxiuHBemn2R3p27aDv3u3r/0d0GyY36Pb/vGswYERraYaNhQQmdBitWnsaYW1OEP" data-form-email="true"/> 
         <div class="form-group">
           <label class="form-control-label" for="contacts3-y-email">Name<span class="form-asterisk">*</span></label>                        
-          <input class="form-control input-sm input-inverse" id="contacts3-y-email" type="text" name="name" required="" data-form-field="Name"/>
+          <input class="form-control input-sm input-inverse" id="contacts3-y-email" type="text" name="name" ng-model="name" required="" data-form-field="Name"/>
         </div>
                             
                             
         <div class="form-group">
           <label class="form-control-label" for="contacts3-y-email">Email<span class="form-asterisk">*</span></label>                        
-          <input class="form-control input-sm input-inverse" id="contacts3-y-email" type="email" name="email" required="" data-form-field="Email"/>
+          <input class="form-control input-sm input-inverse" id="contacts3-y-email" type="email" name="email" required="" ng-model="email" data-form-field="Email"/>
         </div>    
         <div class="form-group">
           <label class="form-control-label" for="contacts3-y-email">Mobile<span class="form-asterisk">*</span></label>                        
-          <input class="form-control input-sm input-inverse" id="contacts3-y-email" type="text" name="email" required="" data-form-field="Mobile"/>
+          <input class="form-control input-sm input-inverse" id="contacts3-y-email" type="text" name="email" ng-model="mobile" required="" data-form-field="Mobile"/>
         </div>
-                        
+               
+               <div class="form-group">
+          <label class="form-control-label" for="contacts3-y-email">Subject<span class="form-asterisk">*</span></label>                        
+          <input class="form-control input-sm input-inverse" id="contacts3-y-subject" type="text" name="subject" ng-model="subject" required="" data-form-field="Subject"/>
+        </div>         
                             
         <div class="form-group">
           <label class="form-control-label" for="contacts3-y-message">Message</label>                        
-          <textarea class="form-control input-sm input-inverse" id="contacts3-y-message" name="message" data-form-field="Message" rows="5"></textarea>
+          <textarea class="form-control input-sm input-inverse" id="contacts3-y-message" name="message" ng-model="message" data-form-field="Message" rows="5"></textarea>
         </div>                    
         <div>
-          <button class="btn btn-sm btn-primary" type="submit">Contact us</button>
+          <button class="btn btn-sm btn-primary" type="submit" ng-click="contact()">Contact us</button>
         </div>
       </form>
     </div>
@@ -171,7 +161,7 @@ body.loading .modal {
 <footer  ng-show="showNavBar" ng-cloak class="mbr-small-footer mbr-section mbr-section-nopadding" id="footer1-x" style="background-color: rgb(50, 50, 50); padding-top: 1.75rem; padding-bottom: 1.75rem;">
 
         <div class="container">
-            <p class="text-xs-center">Copyright &copy; {{currentDate}} Naijabetbox.All rights reserved.</p>
+            <p class="text-xs-center">Copyright &copy; {{currentDate}} Naijabetbox.All rights reserved</p>
         </div>
  </footer>
 
