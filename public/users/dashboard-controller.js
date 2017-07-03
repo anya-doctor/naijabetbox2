@@ -460,7 +460,7 @@
             if ($scope.formHolder.booking.$valid) {
                 var balance = $scope.user.balance;
                 if (balance < $scope.request.amount) {
-                    $scope.errMsg = 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.\nNote that we do not give bonus for Nairabet';
+                    $scope.errMsg = 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.\nWe only give bonus for Nairabet and Winners Golden Bet';
                 } else {
                     if ($rootScope.connected) {
                         $scope.notConnected = false;
@@ -499,40 +499,257 @@
         $scope.fundBet = function () {
             if ($scope.formHolder.fundBet.$valid) {
                 $scope.errMsg = null;
-                var isNairabet = $scope.request.bet_company === 'nairabet';
-                var check = isNairabet ? $scope.user.total_balance : ($scope.user.balance - 100);
-                if (check < $scope.request.amount) {
-                    $scope.errMsg = 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.\nNote that we do not give bonus for Nairabet';
-                } else {
-                    if ($rootScope.connected) {
-                        $scope.notConnected = false;
-                        $("body").addClass("loading");
-                        $http({
-                            url: "/request/fund_bet",
-                            method: "post",
-                            data: { "user": $scope.user, "request": $scope.request }
-                        }).then(function (res) {
-                            $("body").removeClass("loading");
-                            if (res.data.msg) {
-                                $scope.errMsg = res.data.msg;
-                                $scope.sucMsg = null;
-                            } else if (res.data.user.username) {
-                                $scope.user = res.data;
-                                sessionStorage.setItem("user", JSON.stringify(res.data));
-                                $scope.errMsg = null;
-                                $scope.sucMsg = "Your request has been sent.It will be processed soon";
-                                $timeout(function () {
-                                    $scope.getWallet();
-                                    $scope.request = {};
-                                    $scope.sucMsg = null;
-                                }, 1000);
+                var bet_company = $scope.request.bet_company,
+                    amount = $scope.request.amount,
+                    total = $scope.user.total_balance,
+                    balance = $scope.user.balance;
+                switch (true) {
+                    case bet_company == "nairabet" || bet_company == "winners golden bet":
+                        if (total < amount) {
+                            $scope.errMsg = 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.\nWe only give bonus for Nairabet and Winners Golden Bet';
+                        } else {
+                            if ($rootScope.connected) {
+                                $scope.notConnected = false;
+                                $("body").addClass("loading");
+                                $http({
+                                    url: "/request/fund_bet",
+                                    method: "post",
+                                    data: { "user": $scope.user, "request": $scope.request }
+                                }).then(function (res) {
+                                    $("body").removeClass("loading");
+                                    if (res.data.msg) {
+                                        $scope.errMsg = res.data.msg;
+                                        $scope.sucMsg = null;
+                                    } else if (res.data.user.username) {
+                                        $scope.user = res.data.user;
+                                        sessionStorage.setItem("user", JSON.stringify(res.data.user));
+                                        $scope.errMsg = null;
+                                        $scope.sucMsg = "Your request has been sent.It will be processed soon";
+                                        $timeout(function () {
+                                            $scope.getWallet();
+                                            $scope.request = {};
+                                            $scope.sucMsg = null;
+                                        }, 1000);
 
+                                    } else {
+                                    }
+                                });
                             } else {
+                                $scope.notConnected = true;
                             }
-                        });
-                    } else {
-                            $scope.notConnected = true;
-                    }
+                        }
+                        break;
+                    case amount <= 5000:
+                        if ((balance - 100) < amount) {
+                            $scope.errMsg = 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.\nWe only give bonus for Nairabet and Winners Golden Bet';
+                        } else {
+                            if ($rootScope.connected) {
+                                $scope.notConnected = false;
+                                $("body").addClass("loading");
+                                $http({
+                                    url: "/request/fund_bet",
+                                    method: "post",
+                                    data: { "user": $scope.user, "request": $scope.request }
+                                }).then(function (res) {
+                                    $("body").removeClass("loading");
+                                    if (res.data.msg) {
+                                        $scope.errMsg = res.data.msg;
+                                        $scope.sucMsg = null;
+                                    } else if (res.data.user.username) {
+                                        $scope.user = res.data.user;
+                                        sessionStorage.setItem("user", JSON.stringify(res.data.user));
+                                        $scope.errMsg = null;
+                                        $scope.sucMsg = "Your request has been sent.It will be processed soon";
+                                        $timeout(function () {
+                                            $scope.getWallet();
+                                            $scope.request = {};
+                                            $scope.sucMsg = null;
+                                        }, 1000);
+
+                                    } else {
+                                    }
+                                });
+                            } else {
+                                $scope.notConnected = true;
+                            }
+                        }
+                        break;
+                    case amount > 5000 && amount <= 10000:
+                        if ((balance - 150) < amount) {
+                            $scope.errMsg = 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.\nWe only give bonus for Nairabet and Winners Golden Bet';
+                        } else {
+                            if ($rootScope.connected) {
+                                $scope.notConnected = false;
+                                $("body").addClass("loading");
+                                $http({
+                                    url: "/request/fund_bet",
+                                    method: "post",
+                                    data: { "user": $scope.user, "request": $scope.request }
+                                }).then(function (res) {
+                                    $("body").removeClass("loading");
+                                    if (res.data.msg) {
+                                        $scope.errMsg = res.data.msg;
+                                        $scope.sucMsg = null;
+                                    } else if (res.data.user.username) {
+                                        $scope.user = res.data.user;
+                                        sessionStorage.setItem("user", JSON.stringify(res.data.user));
+                                        $scope.errMsg = null;
+                                        $scope.sucMsg = "Your request has been sent.It will be processed soon";
+                                        $timeout(function () {
+                                            $scope.getWallet();
+                                            $scope.request = {};
+                                            $scope.sucMsg = null;
+                                        }, 1000);
+
+                                    } else {
+                                    }
+                                });
+                            } else {
+                                $scope.notConnected = true;
+                            }
+                        }
+                        break;
+                    case amount > 10000 && amount <= 20000:
+                        if ((balance - 200) < amount) {
+                            $scope.errMsg = 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.\nWe only give bonus for Nairabet and Winners Golden Bet';
+                        } else {
+                            if ($rootScope.connected) {
+                                $scope.notConnected = false;
+                                $("body").addClass("loading");
+                                $http({
+                                    url: "/request/fund_bet",
+                                    method: "post",
+                                    data: { "user": $scope.user, "request": $scope.request }
+                                }).then(function (res) {
+                                    $("body").removeClass("loading");
+                                    if (res.data.msg) {
+                                        $scope.errMsg = res.data.msg;
+                                        $scope.sucMsg = null;
+                                    } else if (res.data.user.username) {
+                                        $scope.user = res.data.user;
+                                        sessionStorage.setItem("user", JSON.stringify(res.data.user));
+                                        $scope.errMsg = null;
+                                        $scope.sucMsg = "Your request has been sent.It will be processed soon";
+                                        $timeout(function () {
+                                            $scope.getWallet();
+                                            $scope.request = {};
+                                            $scope.sucMsg = null;
+                                        }, 1000);
+
+                                    } else {
+                                    }
+                                });
+                            } else {
+                                $scope.notConnected = true;
+                            }
+                        }
+                        break;
+                    case amount > 20000 && amount <= 50000:
+                        if ((balance - 250) < amount) {
+                            $scope.errMsg = 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.\nWe only give bonus for Nairabet and Winners Golden Bet';
+                        } else {
+                            if ($rootScope.connected) {
+                                $scope.notConnected = false;
+                                $("body").addClass("loading");
+                                $http({
+                                    url: "/request/fund_bet",
+                                    method: "post",
+                                    data: { "user": $scope.user, "request": $scope.request }
+                                }).then(function (res) {
+                                    $("body").removeClass("loading");
+                                    if (res.data.msg) {
+                                        $scope.errMsg = res.data.msg;
+                                        $scope.sucMsg = null;
+                                    } else if (res.data.user.username) {
+                                        $scope.user = res.data.user;
+                                        sessionStorage.setItem("user", JSON.stringify(res.data.user));
+                                        $scope.errMsg = null;
+                                        $scope.sucMsg = "Your request has been sent.It will be processed soon";
+                                        $timeout(function () {
+                                            $scope.getWallet();
+                                            $scope.request = {};
+                                            $scope.sucMsg = null;
+                                        }, 1000);
+
+                                    } else {
+                                    }
+                                });
+                            } else {
+                                $scope.notConnected = true;
+                            }
+                        }
+                        break;
+                    case amount > 50000 && amount <= 100000:
+                        if ((balance - 300) < amount) {
+                            $scope.errMsg = 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.\nWe only give bonus for Nairabet and Winners Golden Bet';
+                        } else {
+                            if ($rootScope.connected) {
+                                $scope.notConnected = false;
+                                $("body").addClass("loading");
+                                $http({
+                                    url: "/request/fund_bet",
+                                    method: "post",
+                                    data: { "user": $scope.user, "request": $scope.request }
+                                }).then(function (res) {
+                                    $("body").removeClass("loading");
+                                    if (res.data.msg) {
+                                        $scope.errMsg = res.data.msg;
+                                        $scope.sucMsg = null;
+                                    } else if (res.data.user.username) {
+                                        $scope.user = res.data.user;
+                                        sessionStorage.setItem("user", JSON.stringify(res.data.user));
+                                        $scope.errMsg = null;
+                                        $scope.sucMsg = "Your request has been sent.It will be processed soon";
+                                        $timeout(function () {
+                                            $scope.getWallet();
+                                            $scope.request = {};
+                                            $scope.sucMsg = null;
+                                        }, 1000);
+
+                                    } else {
+                                    }
+                                });
+                            } else {
+                                $scope.notConnected = true;
+                            }
+                        }
+                        break;
+                    case amount > 100000:
+                        if ((balance - 500) < amount) {
+                            $scope.errMsg = 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.\nWe only give bonus for Nairabet and Winners Golden Bet';
+                        } else {
+                            if ($rootScope.connected) {
+                                $scope.notConnected = false;
+                                $("body").addClass("loading");
+                                $http({
+                                    url: "/request/fund_bet",
+                                    method: "post",
+                                    data: { "user": $scope.user, "request": $scope.request }
+                                }).then(function (res) {
+                                    $("body").removeClass("loading");
+                                    if (res.data.msg) {
+                                        $scope.errMsg = res.data.msg;
+                                        $scope.sucMsg = null;
+                                    } else if (res.data.user.username) {
+                                        $scope.user = res.data.user;
+                                        sessionStorage.setItem("user", JSON.stringify(res.data.user));
+                                        $scope.errMsg = null;
+                                        $scope.sucMsg = "Your request has been sent.It will be processed soon";
+                                        $timeout(function () {
+                                            $scope.getWallet();
+                                            $scope.request = {};
+                                            $scope.sucMsg = null;
+                                        }, 1000);
+
+                                    } else {
+                                    }
+                                });
+                            } else {
+                                $scope.notConnected = true;
+                            }
+                        }
+                        break;
+
                 }
             } else {
                 $scope.errMsg = "Please fill in all the required details in the right format";
@@ -542,38 +759,213 @@
         $scope.transfer = function () {
             if ($scope.formHolder.transferCash.$valid) {
                 var balance = $scope.user.balance,
-                withdrawableBalance = $scope.user.withdrawable_balance;
-                if (withdrawableBalance < $scope.request.amount) {
-                    $scope.errMsg = 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.\nNote that we do not give bonus for Nairabet';
-                } else {
-                    if ($rootScope.connected) {
-                        $scope.notConnected = false;
-                        $("body").addClass("loading");
-                        $http({
-                            url: "/request/transfer",
-                            method: "post",
-                            data: { "user": $scope.user, "request": $scope.request }
-                        }).then(function (res) {
-                            $("body").removeClass("loading");
-                            if (res.data.msg) {
-                                $scope.errMsg = res.data.msg;
-                                $scope.sucMsg = null;
-                            } else if (res.data.user.username) {
-                                $scope.user = res.data.user;
-                                sessionStorage.setItem("user", JSON.stringify(res.data.user));
-                                $scope.errMsg = null;
-                                $scope.sucMsg = "Your request has been sent.It will be processed soon";
-                                $timeout(function () {
-                                    $scope.getWallet();
-                                    $scope.request = {};
-                                    $scope.sucMsg = null;
-                                }, 1000);
+                    amount = $scope.request.amount;
+                switch (true) {
+                    case amount <= 5000:
+                        if ((balance - 100) < amount) {
+                            $scope.errMsg = 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.';
+                        } else {
+                            if ($rootScope.connected) {
+                                $scope.notConnected = false;
+                                $("body").addClass("loading");
+                                $http({
+                                    url: "/request/transfer",
+                                    method: "post",
+                                    data: { "user": $scope.user, "request": $scope.request }
+                                }).then(function (res) {
+                                    $("body").removeClass("loading");
+                                    if (res.data.msg) {
+                                        $scope.errMsg = res.data.msg;
+                                        $scope.sucMsg = null;
+                                    } else if (res.data.user.username) {
+                                        $scope.user = res.data.user;
+                                        sessionStorage.setItem("user", JSON.stringify(res.data.user));
+                                        $scope.errMsg = null;
+                                        $scope.sucMsg = "Your request has been sent.It will be processed soon";
+                                        $timeout(function () {
+                                            $scope.getWallet();
+                                            $scope.request = {};
+                                            $scope.sucMsg = null;
+                                        }, 1000);
+                                    } else {
+                                    }
+                                });
                             } else {
+                                $scope.notConnected = true;
                             }
-                        });
-                    } else {
-                            $scope.notConnected = true;
-                    }
+                        }
+                        break;
+                    case amount > 5000 && amount <= 10000:
+                        if ((balance - 150) < amount) {
+                            $scope.errMsg = 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.';
+                        } else {
+                            if ($rootScope.connected) {
+                                $scope.notConnected = false;
+                                $("body").addClass("loading");
+                                $http({
+                                    url: "/request/transfer",
+                                    method: "post",
+                                    data: { "user": $scope.user, "request": $scope.request }
+                                }).then(function (res) {
+                                    $("body").removeClass("loading");
+                                    if (res.data.msg) {
+                                        $scope.errMsg = res.data.msg;
+                                        $scope.sucMsg = null;
+                                    } else if (res.data.user.username) {
+                                        $scope.user = res.data.user;
+                                        sessionStorage.setItem("user", JSON.stringify(res.data.user));
+                                        $scope.errMsg = null;
+                                        $scope.sucMsg = "Your request has been sent.It will be processed soon";
+                                        $timeout(function () {
+                                            $scope.getWallet();
+                                            $scope.request = {};
+                                            $scope.sucMsg = null;
+                                        }, 1000);
+                                    } else {
+                                    }
+                                });
+                            } else {
+                                $scope.notConnected = true;
+                            }
+                        }
+                        break;
+                    case amount > 10000 && amount <= 20000:
+                        if ((balance - 200) < amount) {
+                            $scope.errMsg = 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.';
+                        } else {
+                            if ($rootScope.connected) {
+                                $scope.notConnected = false;
+                                $("body").addClass("loading");
+                                $http({
+                                    url: "/request/transfer",
+                                    method: "post",
+                                    data: { "user": $scope.user, "request": $scope.request }
+                                }).then(function (res) {
+                                    $("body").removeClass("loading");
+                                    if (res.data.msg) {
+                                        $scope.errMsg = res.data.msg;
+                                        $scope.sucMsg = null;
+                                    } else if (res.data.user.username) {
+                                        $scope.user = res.data.user;
+                                        sessionStorage.setItem("user", JSON.stringify(res.data.user));
+                                        $scope.errMsg = null;
+                                        $scope.sucMsg = "Your request has been sent.It will be processed soon";
+                                        $timeout(function () {
+                                            $scope.getWallet();
+                                            $scope.request = {};
+                                            $scope.sucMsg = null;
+                                        }, 1000);
+                                    } else {
+                                    }
+                                });
+                            } else {
+                                $scope.notConnected = true;
+                            }
+                        }
+                        break;
+                    case amount > 20000 && amount <= 50000:
+                        if ((balance - 250) < amount) {
+                            $scope.errMsg = 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.';
+                        } else {
+                            if ($rootScope.connected) {
+                                $scope.notConnected = false;
+                                $("body").addClass("loading");
+                                $http({
+                                    url: "/request/transfer",
+                                    method: "post",
+                                    data: { "user": $scope.user, "request": $scope.request }
+                                }).then(function (res) {
+                                    $("body").removeClass("loading");
+                                    if (res.data.msg) {
+                                        $scope.errMsg = res.data.msg;
+                                        $scope.sucMsg = null;
+                                    } else if (res.data.user.username) {
+                                        $scope.user = res.data.user;
+                                        sessionStorage.setItem("user", JSON.stringify(res.data.user));
+                                        $scope.errMsg = null;
+                                        $scope.sucMsg = "Your request has been sent.It will be processed soon";
+                                        $timeout(function () {
+                                            $scope.getWallet();
+                                            $scope.request = {};
+                                            $scope.sucMsg = null;
+                                        }, 1000);
+                                    } else {
+                                    }
+                                });
+                            } else {
+                                $scope.notConnected = true;
+                            }
+                        }
+                        break;
+                    case amount > 50000 && amount <= 100000:
+                        if ((balance - 300) < amount) {
+                            $scope.errMsg = 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.';
+                        } else {
+                            if ($rootScope.connected) {
+                                $scope.notConnected = false;
+                                $("body").addClass("loading");
+                                $http({
+                                    url: "/request/transfer",
+                                    method: "post",
+                                    data: { "user": $scope.user, "request": $scope.request }
+                                }).then(function (res) {
+                                    $("body").removeClass("loading");
+                                    if (res.data.msg) {
+                                        $scope.errMsg = res.data.msg;
+                                        $scope.sucMsg = null;
+                                    } else if (res.data.user.username) {
+                                        $scope.user = res.data.user;
+                                        sessionStorage.setItem("user", JSON.stringify(res.data.user));
+                                        $scope.errMsg = null;
+                                        $scope.sucMsg = "Your request has been sent.It will be processed soon";
+                                        $timeout(function () {
+                                            $scope.getWallet();
+                                            $scope.request = {};
+                                            $scope.sucMsg = null;
+                                        }, 1000);
+                                    } else {
+                                    }
+                                });
+                            } else {
+                                $scope.notConnected = true;
+                            }
+                        }
+                        break;
+                    case amount > 100000:
+                        if ((balance - 500) < amount) {
+                            $scope.errMsg = 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.';
+                        } else {
+                            if ($rootScope.connected) {
+                                $scope.notConnected = false;
+                                $("body").addClass("loading");
+                                $http({
+                                    url: "/request/transfer",
+                                    method: "post",
+                                    data: { "user": $scope.user, "request": $scope.request }
+                                }).then(function (res) {
+                                    $("body").removeClass("loading");
+                                    if (res.data.msg) {
+                                        $scope.errMsg = res.data.msg;
+                                        $scope.sucMsg = null;
+                                    } else if (res.data.user.username) {
+                                        $scope.user = res.data.user;
+                                        sessionStorage.setItem("user", JSON.stringify(res.data.user));
+                                        $scope.errMsg = null;
+                                        $scope.sucMsg = "Your request has been sent.It will be processed soon";
+                                        $timeout(function () {
+                                            $scope.getWallet();
+                                            $scope.request = {};
+                                            $scope.sucMsg = null;
+                                        }, 1000);
+                                    } else {
+                                    }
+                                });
+                            } else {
+                                $scope.notConnected = true;
+                            }
+                        }
+                        break;
+
                 }
             } else {
                 $scope.errMsg = "Please fill in all the required details in the right format";

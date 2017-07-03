@@ -50,10 +50,6 @@ var schema = mongoose.Schema({
         type: Number,
         default: 0
     },
-    withdrawable_balance: {
-        type: Number,
-        default: 0
-    },
     reg_num: {
         type: Number
     },

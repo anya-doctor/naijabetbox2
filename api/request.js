@@ -428,43 +428,90 @@ router.post("/fund_bet", function (req, res) {
         customer_id = req.body.request.customer_id,
     bet_company = req.body.request.bet_company.toLowerCase(),
     amount = req.body.request.amount,
-    user = req.body.user;
-    var isNairabet = bet_company === 'nairabet';
-    var check = isNairabet ? user.total_balance : (user.balance - 100),
-    username = user.username, balance = user.balance, bonus = user.bonus, total = user.total_balance, withdrawableBalance = user.withdrawable_balance;
-    if (isNaN(check)) {
-        res.json({ msg: 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.\nNote that we do not give bonus for Nairabet' });
+    user = req.body.user,
+    username = user.username, balance = user.balance, bonus = user.bonus, total = user.total_balance;
+    switch (true) {
+        case bet_company == "nairabet" || bet_company == "winners golden bet":
+            if (total < amount) {
+                res.json({ msg: 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.\nWe only give bonus for Nairabet and Winners Golden Bet' });
+            } else {
+                total -= amount;
+                switch (true) {
+                    case total == 0:
+                        balance = 0;
+                        bonus = 0;
+                        break;
+                    case total == bonus:
+                        balance = 0;
+                        break;
+                    case total > bonus:
+                        balance = total - bonus;
+                        break;
+                }
+            }
+            break;
+        case amount <= 5000:
+            if ((balance - 100) < amount) {
+                res.json({ msg: 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.\nWe only give bonus for Nairabet and Winners Golden Bet' });
+            } else {
+                balance -= amount + 100;
+                total = balance + bonus;
+            }
+            break;
+        case amount > 5000 && amount <= 10000:
+            if ((balance - 150) < amount) {
+                res.json({ msg: 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.\nWe only give bonus for Nairabet and Winners Golden Bet' });
+            } else {
+                balance -= amount + 150;
+                total = balance + bonus;
+            }
+            break;
+        case amount > 10000 && amount <= 20000:
+            if ((balance - 200) < amount) {
+                res.json({ msg: 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.\nWe only give bonus for Nairabet and Winners Golden Bet' });
+            } else {
+                balance -= amount + 200;
+                total = balance + bonus;
+            }
+            break;
+        case amount > 20000 && amount <= 50000:
+            if ((balance - 250) < amount) {
+                res.json({ msg: 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.\nWe only give bonus for Nairabet and Winners Golden Bet' });
+            } else {
+                balance -= amount + 250;
+                total = balance + bonus;
+            }
+            break;
+        case amount > 50000 && amount <= 100000:
+            if ((balance - 300) < amount) {
+                res.json({ msg: 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.\nWe only give bonus for Nairabet and Winners Golden Bet' });
+            } else {
+                balance -= amount + 300;
+                total = balance + bonus;
+            }
+            break;
+        case amount > 100000:
+            if ((balance - 500) < amount) {
+                res.json({ msg: 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.\nWe only give bonus for Nairabet and Winners Golden Bet' });
+            } else {
+                balance -= amount + 500;
+                total = balance + bonus;
+            }
+            break;
+
     }
-    else if (check < amount) {
-        res.json({ msg: 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.\nNote that we do not give bonus for Nairabet' });
-    } else {
-        var updateParams = {};
-        if (isNairabet) {
-            total = total - amount,
-        balance = amount > balance ? 0 : (total - bonus),
-        bonus = amount > balance ? total : (total - balance),
-        withdrawableBalance = amount > balance ? 0 : balance - balance * 0.025;
-            updateParams = {
-                balance: balance,
-                total_balance: total,
-                bonus: bonus,
-                withdrawable_balance: withdrawableBalance
+       
+           var updateParams = {
+                balance: isNaN(balance)?0:balance,
+                total_balance: isNaN(total) ? 0 : total,
+                bonus: isNaN(bonus) ? 0 : bonus
             };
-        } else {
-            balance = balance - (amount + 100),
-       total = balance + bonus,
-       withdrawableBalance = amount > balance ? 0 : balance - balance * 0.025;
-            updateParams = {
-                balance: balance,
-                total_balance: total,
-                bonus: bonus,
-                withdrawable_balance: withdrawableBalance
-            };
-        }
+        
         User.updateAUser(username, updateParams, function (err, result) {
             if (err) {
+                console.log(err);
                 var alert = new Alert();
-                alert.message = "An error occurred at fundbet request before line 478";
+                alert.message = "An error occurred at fundbet request before line 513";
                 alert.err = err;
                 Alert.createAlert(alert, function (err, alert) {
                 });
@@ -479,20 +526,22 @@ router.post("/fund_bet", function (req, res) {
                     request.amount = amount;
                     FundRequest.createFundRequest(request, function (err, fundRequest) {
                         if (err) {
+                            console.log("error from fund"+err);
                             var alert = new Alert();
-                            alert.message = "An error occurred at fundbet request before line 494";
+                            alert.message = "An error occurred at fundbet request before line 529";
                             alert.err = err;
                             Alert.createAlert(alert, function (err, alert) {
                             });
                             res.json({ msg: 'Something bad happened,it will be fixed in a moment,please try again or contact the admin' });
                         } else {
-                            res.json({user:user});
+                            console.log("user"+user);
+                            res.json({ user: user });
                         }
                     });
                 });
             }
         });
-    }
+    
 });
 
 router.post("/transfer", function (req, res) {
@@ -505,21 +554,56 @@ router.post("/transfer", function (req, res) {
       _user = req.body.user;
 
     var balance = _user.balance,
-    withdrawableBalance = _user.withdrawable_balance,
     username = _user.username, bonus = _user.bonus, total;
-    if (isNaN(withdrawableBalance)) {
-        res.json({ msg: 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.\nNote that we do not give bonus for Nairabet' });
+    switch (true) {
+        case amount <= 5000:
+            if ((balance - 100) < amount) {
+                res.json({ msg: 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.'});
+            } else {
+                balance -= amount + 100;
+            }
+            break;
+        case amount > 5000 && amount <= 10000:
+            if ((balance - 150) < amount) {
+                res.json({ msg: 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.' });
+            } else {
+                balance -= amount + 150;
+            }
+            break;
+        case amount  > 10000 && amount <= 20000:
+            if ((balance - 200) < amount) {
+                res.json({ msg: 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.' });
+            } else {
+                balance -= amount + 200;
+            }
+            break;
+        case amount  > 20000 && amount <= 50000:
+            if ((balance - 250) < amount) {
+                res.json({ msg: 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.' });
+            } else {
+                balance -= amount + 250;
+            }
+            break;
+        case amount  > 50000 && amount <= 100000:
+            if ((balance - 300) < amount) {
+                res.json({ msg: 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.' });
+            } else {
+                balance -= amount + 300;
+            }
+            break;
+        case amount  > 100000:
+            if ((balance - 500) < amount) {
+                res.json({ msg: 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.' });
+            } else {
+                balance -= amount + 500;
+            }
+            break;
+
     }
-    else if (withdrawableBalance < amount) {
-        res.json({ msg: 'Insuficient balance.Please credit your account!!' });
-    } else {
-        balance = withdrawableBalance - amount;
         total = balance + bonus;
-        withdrawableBalance = balance - (balance * 0.025);
         var updateParams = {
             balance: balance,
-            total_balance: total,
-            withdrawable_balance: withdrawableBalance
+            total_balance: total
         };
         User.updateAUser(username, updateParams, function (err, result) {
             if (err) {
@@ -553,7 +637,7 @@ router.post("/transfer", function (req, res) {
                 });
             }
         });
-    }
+    
 });
 
 router.post("/recharge", function (req, res) {

@@ -48,8 +48,8 @@
         </div>
         <div class="form-group">
         	<label>Amount</label>
-        		<input type="number" min="50" name="amount" ng-model="request.amount" ng-required="true" class="form-control">
-        		<span ng-show="formHolder.booking.amount.$dirty && formHolder.booking.amount.$invalid" class="error-message">Amount is minimum of 50</span>
+        		<input type="number" min="100" name="amount" ng-model="request.amount" ng-required="true" class="form-control">
+        		<span ng-show="formHolder.booking.amount.$dirty && formHolder.booking.amount.$invalid" class="error-message">Amount is minimum of 100</span>
         </div>
         <button class="btn btn-primary" ng-click="book()">Book</button>
             <span ng-show="notConnected" style="color:red">You are not connected</span>
