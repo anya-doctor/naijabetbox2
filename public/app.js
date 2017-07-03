@@ -40,6 +40,8 @@ $timeout(isConnected, 1000);
         templateUrl: "users/how_it_works.html"
     }).when("/why_us", {
         templateUrl: "users/why_us.html"
+    }).when("/about_us", {
+        templateUrl: "users/about_us.html"
     }).when("/how_to_fundbet", {
         templateUrl: "users/how_to_fundbet.html"
     }).when("/how_to_fund_account", {
