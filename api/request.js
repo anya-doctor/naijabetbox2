@@ -649,22 +649,18 @@ router.post("/recharge", function (req, res) {
 
     var balance = _user.balance,
         username = _user.username, bonus = _user.bonus, total = _user.total_balance, withdrawableBalance;
-    if (isNaN(total)) {
+    if (isNaN(balance)) {
         res.json({ msg: 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.\nNote that we do not give bonus for Nairabet' });
     }
-    else if (total < amount) {
+    else if (balance < amount) {
         res.res({ msg: 'Insuficient balance!!' });
     } else {
         var updateParams = {};
-        total = total - amount,
-       balance = amount > balance ? 0 : (total - bonus),
-       bonus = amount > balance ? total : (total - balance),
-       withdrawableBalance = amount > balance ? 0 : balance - balance * 0.025;
+        balance -= amount + 150;
+        total = balance + bonus;
         updateParams = {
             balance: balance,
-            total_balance: total,
-            bonus: bonus,
-            withdrawable_balance: withdrawableBalance
+            total_balance: total
         };
         User.updateAUser(username, updateParams, function (err, result) {
             if (err) {
@@ -709,19 +705,29 @@ router.post("/buy_data", function (req, res) {
 
     var balance = _user.balance,
         username = _user.username, bonus = _user.bonus, total, withdrawableBalance;
-    if (isNaN(balance)) {
+    if (isNaN(total)) {
         res.json({ msg: 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.\nNote that we do not give bonus for Nairabet' });
     }
-    else if (balance < amount) {
+    else if (total < amount) {
         res.json({ msg: 'Insuficient balance!!' });
     } else {
-        balance -= amount;
-        total = balance + bonus;
-        withdrawableBalance = balance - balance * 0.025;
+        total -= amount;
+        switch (true) {
+            case total == 0:
+                balance = 0;
+                bonus = 0;
+                break;
+            case total == bonus:
+                balance = 0;
+                break;
+            case total > bonus:
+                balance = total - bonus;
+                break;
+        }
         var updateParams = {
             balance: balance,
             total_balance: total,
-            withdrawable_balance: withdrawableBalance
+            bonus: bonus
         };
         User.updateAUser(username, updateParams, function (err, result) {
             if (err) {
@@ -767,23 +773,20 @@ router.post('/pay', function (req, res) {
     _user = req.body.user;
 
     var balance = _user.balance,
-        username = _user.username, bonus = _user.bonus, total = _user.total_balance, withdrawableBalance;
-    if (isNaN(total)) {
+        username = _user.username, bonus = _user.bonus, total = _user.total_balance;
+    if (isNaN(balance)) {
         res.json({ msg: 'Insuficient balance!!.Please credit your Naijabetbox account and try agiain.\nNote that we do not give bonus for Nairabet' });
     }
-    else if (total < amount) {
+    else if (balance < amount) {
         res.json({ msg: 'Insuficient balance!!.Please credit your account and try again' });
     } else {
         var updateParams = {};
-        total = total - amount,
-       balance = amount > balance ? 0 : (total - bonus),
-       bonus = amount > balance ? total : (total - balance),
-       withdrawableBalance = amount > balance ? 0 : balance - balance * 0.025;
+        balance -= amount,
+       balance = isNAN(balance) ? 0 : balance,
+       total = total - balance;
         updateParams = {
             balance: balance,
-            total_balance: total,
-            bonus: bonus,
-            withdrawable_balance: withdrawableBalance
+            total_balance: total
         };
         User.updateAUser(username, updateParams, function (err, result) {
             if (err) {

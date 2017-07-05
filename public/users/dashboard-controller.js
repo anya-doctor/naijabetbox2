@@ -109,20 +109,7 @@
             }
         }
         $scope.mtn = [
-            { name: "Better Me Daily", price: 25.00 },
-            { name: "Better Me Monthly", price: 2035.00 },
-            { name: "Data 30mb", price: 100.00 },
-            { name: "Data 100mb", price: 200.00 },
-            { name: "Data 750mb", price: 510.00 },
-            { name: "Data 1.5Gb", price: 1015.00 },
-            { name: "Data 3.5Gb", price: 2030.00 },
-            { name: "Data 10Gb", price: 5060.00 },
-            { name: "Data 22Gb", price: 10100.00 },
-            { name: "XtraVoice 7Days@N300", price: 300.00 },
-            { name: "XtraVoice 7Days@N510", price: 510.00 },
-            { name: "XtraVoice 14Days", price: 1015.00 },
-            { name: "XtraData 30Days@N2030", price: 2030.00 },
-            { name: "XtraData 30Days@N5060", price: 5060.00 }
+            { name: "Better Me Monthly", price: 2035.00 }
         ];
         $scope.airtel = [
             { name: "1.5Gb", price: 1015.00 },
@@ -132,72 +119,32 @@
             { name: "12Gb", price: 5080.00 },
             { name: "24Gb", price: 8120.00 },
         ];
-        $scope.etisalat = [
-            { name: "50Mb validity period of a day", price: 100.00 },
-            { name: "10Mb validity period of a day", price: 50.00 },
-            { name: "200Mb Validity period of 7 days ", price: 200.00 },
-            { name: "500Mb validity period of 30 days", price: 510.00 },
-            { name: "500Mb validity period of 30 days", price: 510.00 },
-            { name: "1Gb validity period of 33 days,", price: 1015.00 },
-            { name: "1.5Gb validity period of 33 days,", price: 1220.00 },
-            { name: "2.5Gb validity period of 33 days,", price: 2030.00 },
-            { name: "3.5Gb validity period of 33 days,", price: 2535.00 },
-            { name: "5Gb validity period of 33 days,", price: 3550.00 },
-            { name: "11.5Gb validity period of 33 days,", price: 8120.00 },
-            { name: "15Gb validity period of 33 days,", price: 10000.00 }
-        ];
+       
 
         $scope.mytv = [
-        { name: "MyTV Smart – 1 month banquet", price: 1000.00 },
-        { name: "MyTV Smart – 3 months banquet", price: 2500.00 },
-        { name: " MyTV Smart – 6 months banquet ", price: 4650.00 },
-        { name: "MyTV Smart – 12 months banquet", price: 8850.00 }
+        { name: "MyTV Smart – 1 month banquet", price: 600.00 },
+        { name: "MyTV Smart – 3 months banquet", price: 1550.00 },
+        { name: " MyTV Smart – 6 months banquet ", price: 2900.00 },
+        { name: "MyTV Smart – 12 months banquet", price: 5550.00 }
         ];
         $scope.irokotv = [
-    { name: "Iroko banquet", price: 1000.00 }
+    { name: "Iroko banquet", price: 900.00 }
         ];
         $scope.daarsat = [
-    { name: "Daarsat banquet", price: 5700.00 }
+    { name: "Daarsat banquet", price: 5650.00 }
         ];
         $scope.dstv = [
-                { name: "Access + Asia", price: 6800.00 },
-                { name: "Access + HD/ExtraView", price: 4100.00 },
-                { name: " Asia Add-on ", price: 5000.00 },
-                { name: "Asia", price: 5000.00 },
-                { name: "Asian + HD/ExtraView ", price: 7160.00 },
+                { name: "Access", price: 2000.00 },
+                { name: "Access + HD/ExtraView ", price: 4200.00 },
                 { name: "Family", price: 3800.00 },
-                { name: "Family + Asia", price: 8600.00 },
-                { name: "Family + HD/ExtraView", price: 5960.00 },
-                { name: "Compact Plus ", price: 9620.00 },
-                { name: "Compact Plus + Asia", price: 14420.00 },
-                { name: "Compact Plus + HD/ExtraView", price: 11780.00 },
-                { name: "French Plus", price: 6250.00 },
-                { name: " French Touch ", price: 1600.00 },
-                { name: "HDPVR Access/Extraview", price: 2360.00 },
-                { name: " Compact", price: 6200.00 },
-                { name: "Compact + French Touch ", price: 7600.00 },
-                { name: "Compact + French Touch + HD/ExtraView", price: 9760.00 },
-                { name: "Compact + HD/ExtraView", price: 8360.00 },
-                { name: "Mobile Mini", price: 800.00 },
-                { name: "Mobile Maxi", price: 1000.00 },
-                { name: "Mobile Maxi Plus", price: 1200.00 },
-                { name: "Premium Asia", price: 15940.00 },
-                { name: "Premium Asia + HD/ExtraView", price: 18100.00 },
-                { name: "Premium", price: 14180.00 },
-                { name: "Premium + French Touch", price: 15580.00 },
-                { name: "Premium + French Touch + HD/ExtraView", price: 17740.00 },
-                { name: "Premium + HD/ExtraView", price: 16340.00 },
-                { name: "GERMAN (PREMIUM SUBSCRIBERS ONLY)", price: 2140.00 },
-                { name: "GERMAN", price: 3840.00 }
+                { name: "Mobile Maxi", price: 950.00 },
         ];
 
         $scope.gotv = [
-            { name: "GOtv Lite Monthly", price: 600.00 },
-            { name: "GOtv Lite Quarterly", price: 1250.00 },
-            { name: "GOTV Lite Annual", price: 3300.00 },
-            { name: "GOtv Value", price: 1400.00 },
+            { name: "GOtv Lite Monthly", price: 500.00 },
+            { name: "GOtv Value", price: 1350.00 },
             { name: "GOtv Plus", price: 2000.00 },
-            { name: "GOtv Mobile Access", price: 800.00 }
+            { name: "GOtv Mobile Access", price: 750.00 }
         ];
 
         $scope.startimes = [
