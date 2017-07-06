@@ -70,7 +70,7 @@ router.post('/change_password', function (req, res) {
                                 from: "Naijabetbox.com",
                                 to: req.body.email,
                                 subject: "Confirm change of password",
-                                html: '<p>You requested for a change of password<br/>You can continue with the process by clicking this link http://tinyurl.com/ybs4y874 or ignore this mail</p>'
+                                html: '<p>You requested for a change of password<br/>You can continue with the process by clicking this link http://tinyurl.com/yb3jzqg2 or ignore this mail</p>'
                             }
                             transporter.sendMail(mailOptions, function (err, info) {
                                 if (err) {
