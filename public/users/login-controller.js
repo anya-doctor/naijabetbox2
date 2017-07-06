@@ -2,7 +2,9 @@
     ["$rootScope", "$location", "$scope", "$http", "$timeout",
     function ($rootScope, $location, $scope, $http, $timeout) {
         $rootScope.title = "Login";
+
         $rootScope.showNavbar = true;
+
         $scope.login = function () {
             if ($scope.loginForm.$valid) {
                 if ($rootScope.connected) {
@@ -53,4 +55,7 @@
                 }
             }
         }
+
+        
+
     }])

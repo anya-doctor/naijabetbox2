@@ -26,6 +26,9 @@ $timeout(isConnected, 1000);
     }).when("/login", {
             templateUrl: "users/login.html",
             controller: "LoginController"
+    }).when("/change_password", {
+        templateUrl: "users/change_password.html",
+        controller: "ChangePasswordController"
     }).when("/fundbet", {
         templateUrl: "users/fundbet.html"
     }).when("/play_booking", {

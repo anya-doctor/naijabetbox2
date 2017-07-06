@@ -656,7 +656,7 @@ router.post("/recharge", function (req, res) {
         res.res({ msg: 'Insuficient balance!!' });
     } else {
         var updateParams = {};
-        balance -= amount + 150;
+        balance -= amount;
         total = balance + bonus;
         updateParams = {
             balance: balance,

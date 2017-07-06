@@ -982,7 +982,7 @@
             $scope.showBuyData = false;
             $scope.showBuyAirtime = false;
             $scope.showBooking = false;
-
+            $(".navbar-ex1-collapse").css({ "display": "none" });
         
         }
         $scope.getWithdrawCash = function () {

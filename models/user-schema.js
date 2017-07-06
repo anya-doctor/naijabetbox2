@@ -66,6 +66,10 @@ module.exports.checkUsername = function (username, callback) {
     User.findOne({ username: username }, callback);
 };
 
+module.exports.checkUser = function (query, callback) {
+    User.findOne(query, callback);
+};
+
 module.exports.getAllUsers = function (callback) {
     User.find(callback);
 };

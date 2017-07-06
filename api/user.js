@@ -43,6 +43,36 @@ router.post('/contact',function(req,res,next){
 
 });
 
+router.post('/change_password', function (req, res) {
+    User.checkUsername(req.body.username.toLowerCase(), function (err, user) {
+        if (err) {
+            var alert = new Alert();
+            alert.message = "An error occurred at login before line 149";
+            alert.err = err;
+            Alert.createAlert(alert, function (err, alert) {
+            });
+            res.json({ err: 'Something bad happened,please try again or contact the admin' });
+        } else {
+            if (user) {
+                User.checkUser({ email: req.body.email }, function (err, user) {
+                    if (err) {
+                        res.json({ err: 'Something bad happened,please try again or contact the admin' });
+                    } else {
+                        if (user) {
+                            res.json({ suc: "suc" });
+                        } else {
+                            res.json({ err: 'invalid credentials' });
+                        }
+                    }
+                });
+            } else {
+                res.json({ err: 'invalid credentials' });
+            }
+
+        }
+    });
+});
+
 router.get("/getAllUsers",function(req,res){
     User.getAllUsers(function(err,users){
         if(err){
