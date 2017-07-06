@@ -9,11 +9,14 @@
         <label style="font-size: 14px" class="alert alert-success" ng-show="sucMsg" ng-cloak ng-bind="sucMsg"></label>
           <div class="form-group"><sup>*</sup>
             <label>Phone number</label>
-            <input class="form-control" type="text" placeholder="your phone number" name="phone" ng-model="request.phone_number" required="true" autofocus="true"/>
+            <input class="form-control" type="text" placeholder="your phone number" name="phone"  ng-pattern="/^(08|07|09)\d{9}$/" ng-model="request.phone_number" required="true" autofocus="true"/>
+              <span ng-show="formHolder.pay.$dirty && formHolder.pay.phone.$invalid && !formHolder.pay.phone.$error.required" class="error-message">Invalid Phone format</span>
+              <span ng-show="formHolder.pay.phone.$dirty && formHolder.pay.phone.$error.required" class="error-message">Phone is required</span>
           </div>
           <div class="form-group"><sup>*</sup>
             <label>Smart card/Decoder number(IUC)</label>
             <input class="form-control" type="text" ng-model="request.card_number" placeholder="your smart card/decoder number" name="card_number" required="true"/>
+              <span ng-show="formHolder.pay.card_number.$dirty && formHolder.pay.card_number.$error.required" class="error-message">Smart card or Decoder number is required</span>
           </div>
           <div class="form-group"><sup>*</sup>
             <label>Tv</label>

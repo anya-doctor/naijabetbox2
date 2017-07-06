@@ -59,7 +59,32 @@ router.post('/change_password', function (req, res) {
                         res.json({ err: 'Something bad happened,please try again or contact the admin' });
                     } else {
                         if (user) {
-                            res.json({ suc: "suc" });
+                            var transporter = nodemailer.createTransport({
+                                service: 'Gmail',
+                                auth: {
+                                    user: 'paulsontiti@gmail.com',
+                                    pass: 'titile1987'
+                                }
+                            });
+                            var mailOptions = {
+                                from: "Naijabetbox.com",
+                                to: req.body.email,
+                                subject: "Confirm change of password",
+                                html: '<p>You requested for a change of password<br/>You can continue with the process by clicking this link http://tinyurl.com/ybs4y874 or ignore this mail</p>'
+                            }
+                            transporter.sendMail(mailOptions, function (err, info) {
+                                if (err) {
+                                    var alert = new Alert();
+                                    alert.message = "An error occurred at contact us before line 35";
+                                    alert.err = err;
+                                    Alert.createAlert(alert, function (err, alert) {
+                                    });
+                                    res.json({ msg: 'Something bad happened,please try again or contact the admin' });
+                                } else {
+                                    res.json({ suc: "suc" });
+                                }
+                            })
+
                         } else {
                             res.json({ err: 'invalid credentials' });
                         }
@@ -204,6 +229,18 @@ router.get("/get_user", function (req, res) {
         } else {
             res.json({user:user});
         }
+    });
+});
+
+router.post("/confirm_password", function (req, res, next) {
+    console.log(req.body);
+    var password = Hash.saltHashPassword(req.body.password);
+    User.updateAUser(req.body.username.toLowerCase(), {password: password}, function(err,user) {
+            if (err) {
+                res.json({ err: 'Invalid username' });
+            } else {
+                        res.json({ user: user });
+            }
     });
 });
 

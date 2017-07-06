@@ -26,6 +26,9 @@ $timeout(isConnected, 1000);
     }).when("/login", {
             templateUrl: "users/login.html",
             controller: "LoginController"
+    }).when("/confirm_password", {
+        templateUrl: "users/confirm_password.html",
+        controller: "ChangePasswordController"
     }).when("/change_password", {
         templateUrl: "users/change_password.html",
         controller: "ChangePasswordController"

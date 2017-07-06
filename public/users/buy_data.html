@@ -9,7 +9,9 @@
         <label style="font-size: 14px" class="alert alert-success" ng-show="sucMsg" ng-cloak ng-bind="sucMsg"></label>
           <div class="form-group"><sup>*</sup>
             <label>Phone number</label>
-            <input class="form-control" type="text" placeholder="your phone number" name="phone" ng-required="true" autofocus="true" ng-model="request.phone"/>
+            <input class="form-control" type="text" placeholder="your phone number" name="phone"  ng-pattern="/^(08|07|09)\d{9}$/" ng-required="true" autofocus="true" ng-model="request.phone"/>
+              <span ng-show="formHolder.buyData.phone.$dirty && formHolder.buyData.phone.$invalid && !formHolder.buyData.phone.$error.required" class="error-message">Invalid Phone format</span>
+              <span ng-show="formHolder.buyData.phone.$dirty && formHolder.buyData.phone.$error.required" class="error-message">Phone is required</span>
           </div>
           <div class="form-group"><sup>*</sup>
             <label>Network</label>
