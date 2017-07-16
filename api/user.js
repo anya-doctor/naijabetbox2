@@ -17,9 +17,11 @@ router.post('/contact',function(req,res,next){
 
             var transporter = nodemailer.createTransport({
                     service:'Gmail',
-                    auth: {
-                        user:'paulsontiti@gmail.com',
-                        pass:'titile1987'
+                    XOAuth2: {
+                        user: "titidprogrammer@gmail.com",
+                        clientId: "56442406317-4nbq6e4mu87sgk9b8um051ulego19ais.apps.googleusercontent.com",
+                        clientSecret: "_MivzchRHbls662jupT2AsUD",
+                        refreshToken: "1/MI7MPGQ-l4BXpMA-hMB4BmHwtcHnaS0AjhWRtuynmlg"
                     }
             });
             var mailOptions = {
